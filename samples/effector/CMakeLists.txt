@@ -1,0 +1,5 @@
+project(effector-test)
+file(GLOB sources "*.c")
+add_subdirectory(res)
+add_executable(effector-demo effector.c)
+install(DIRECTORY res DESTINATION ${PROJECT_BINARY_DIR}/)

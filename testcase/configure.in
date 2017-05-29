@@ -1,0 +1,49 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.61)
+AC_INIT([mgeff-testcase], [0.1])
+AC_CONFIG_SRCDIR([auto/schedular.cpp])
+AC_CONFIG_HEADER([config.h])
+
+AM_INIT_AUTOMAKE([foreign no-define])
+
+# Checks for programs.
+AC_PROG_CXX
+
+# Checks for libraries.
+AC_CHECK_LIB([mgeff], [mGEffInit])
+
+# Checks for header files.
+
+# Checks for typedefs, structures, and compiler characteristics.
+dnl ========================================================================
+dnl check for run-time mode of MiniGUI
+dnl ========================================================================
+procs_version="no"
+AC_CHECK_DECLS(_MGRM_PROCESSES, procs_version="yes", foo=bar, [#include <minigui/common.h>])
+
+# Checks for library functions.
+dnl ========================================================================
+dnl Write Output
+dnl ========================================================================
+if test "$ac_cv_prog_gcc" = "yes"; then
+    CFLAGS="$CFLAGS -Wall -Wstrict-prototypes -pipe"
+fi
+
+AM_CONDITIONAL(MGRM_PROCESSES, test "x$procs_version" = "xyes")
+
+PKG_CHECK_MODULES([MINIGUI], [minigui >= 3.0.7])
+APP_LIBS="$APP_LIBS $MINIGUI_LIBS"
+
+PKG_CHECK_MODULES([MGPLUS], [mgplus >= 1.2.0])
+APP_LIBS="$APP_LIBS $MGPLUS_LIBS"
+
+PKG_CHECK_MODULES([MGEFF], [mgeff >= 0.8.0])
+APP_LIBS="$APP_LIBS $MGEFF_LIBS"
+
+AC_CONFIG_FILES([Makefile
+                 auto/Makefile
+                 manual/Makefile
+                 ])
+AC_OUTPUT

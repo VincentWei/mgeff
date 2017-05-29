@@ -1,0 +1,28 @@
+#ifndef MGEFFCONFIG_H
+#define MGEFFCONFIG_H
+
+#cmakedefine _MGEFF_EFFECTOR
+#cmakedefine _MGEFF_FASTMODE
+#cmakedefine HAVE_MESA_MINIGUI
+#cmakedefine HAVE_EGL_SUPPORT
+#cmakedefine HAVE_GLES2_SUPPORT
+#cmakedefine _MGEFF_FIVEPOINTEDSTAREFFECTOR
+#cmakedefine _MGEFF_ROTATEEFFECTOR
+#cmakedefine _MGEFF_RADARSCANEFFECTOR
+#cmakedefine _MGEFF_CUBICROTATEEFFECTOR
+#cmakedefine _MGEFF_SCROLLEFFECTOR
+#cmakedefine _MGEFF_LEAFWINDOWEFFECTOR
+#cmakedefine _MGEFF_ZOOMEFFECTOR
+#cmakedefine _MGEFF_CENTERSPLITEFFECTOR
+#cmakedefine _MGEFF_FLIPEFFECTOR
+#cmakedefine _MGEFF_ALPHAEFFECTOR
+#cmakedefine _MGEFF_ZIPEFFECTOR
+#cmakedefine _MGEFF_CLEAREFFECTOR
+#cmakedefine _MGEFF_PUSHEFFECTOR
+#cmakedefine _MGEFF_WINDOWANIMATION
+
+#ifdef WIN32
+#   define inline __inline
+#endif /* WIN32 */
+
+#endif /* MGEFFCONFIG_H */

@@ -1,0 +1,5 @@
+project(image_box)
+file(GLOB sources "*.c")
+add_subdirectory(res)
+add_executable(image_box ${sources})
+install(DIRECTORY res DESTINATION ${PROJECT_BINARY_DIR}/)

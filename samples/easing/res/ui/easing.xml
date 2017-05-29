@@ -1,0 +1,68 @@
+<window class="window::MainWnd" serial-number="733648896">
+	<ID>0x80001</ID>
+	<X>0</X>
+	<Y>0</Y>
+	<Width>1024</Width>
+	<Height>768</Height>
+	<Text>0x00022711</Text>
+	<BgColor>0xFF2E1D01</BgColor>
+	<Border>False</Border>
+	<HasCaption>True</HasCaption>
+	<SystemMenu>False</SystemMenu>
+	<BorderType>DlgFrame</BorderType>
+	<MinimizeBox>True</MinimizeBox>
+	<MaximizeBox>True</MaximizeBox>
+	<onCreate>onCreate</onCreate>
+	<onClose>onClose</onClose>
+	<onLButtonDown>onLButtonDown</onLButtonDown>
+	<onLButtonUp>onLButtonUp</onLButtonUp>
+	<onDestroy>onDestroy</onDestroy>
+	<window class="window::MlEdit" serial-number="1805846528">
+		<ID>0x4000000a</ID>
+		<ScrollBarMode>Never</ScrollBarMode>
+		<X>100</X>
+		<Y>350</Y>
+		<Width>815</Width>
+		<Height>335</Height>
+		<Text>0x00022713</Text>
+		<BgColor>0xFF2E1D01</BgColor>
+		<Border>True</Border>
+		<ReadOnly>True</ReadOnly>
+		<NeedIME>False</NeedIME>
+	</window>
+	<window class="window::Rectangle" serial-number="3726995456">
+		<ID>0x4000000b</ID>
+		<EdgeSize>0</EdgeSize>
+		<EdgeColor>0xFF06D1E8</EdgeColor>
+		<FillColor>0xFF2E1D01</FillColor>
+		<X>620</X>
+		<Y>5</Y>
+		<Width>300</Width>
+		<Height>300</Height>
+		<BgColor>0xFF2E1D01</BgColor>
+		<Border>False</Border>
+		<onPaint>onPaint</onPaint>
+	</window>
+	<window class="window::Rectangle" serial-number="1448777728">
+		<ID>0x4000000c</ID>
+		<EdgeSize>0</EdgeSize>
+		<EdgeColor>0xFF06D1E8</EdgeColor>
+		<FillColor>0xFF2E1D01</FillColor>
+		<X>420</X>
+		<Y>5</Y>
+		<Width>119</Width>
+		<Height>300</Height>
+		<Border>True</Border>
+	</window>
+	<window class="window::Rectangle" serial-number="4286294016">
+		<ID>0x4000000d</ID>
+		<EdgeSize>0</EdgeSize>
+		<EdgeColor>0xFF06D1E8</EdgeColor>
+		<FillColor>0xFF2E1D01</FillColor>
+		<X>100</X>
+		<Y>5</Y>
+		<Width>240</Width>
+		<Height>300</Height>
+		<onPaint>onPaint</onPaint>
+	</window>
+</window>

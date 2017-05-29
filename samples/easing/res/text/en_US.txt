@@ -1,0 +1,8 @@
+#The Text of en_US
+0x00022711	"Main Frame"
+0x00022712	"MlEdit1"
+0x00022713	""
+0x00022714	"Duration"
+0x00022715	"Curve"
+0x00022716	"Start"
+0x00022717	"Stop"
