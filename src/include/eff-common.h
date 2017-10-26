@@ -13,9 +13,7 @@
 
 #include <assert.h>
 #ifndef WIN32
-#ifndef __THREADX__
 #   include <unistd.h>
-#endif
 #else
 #   include "eff-win32.h"
 #endif

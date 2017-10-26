@@ -1,5 +1,5 @@
 /* 
- * $Id: radarscan-effector.c 1676 2011-03-14 09:53:02Z xbwang $
+ * $Id: radarscan-effector.c 1677 2011-03-14 10:09:33Z xbwang $
  *
  * radarscan-effector.c: radar scan function.
  *

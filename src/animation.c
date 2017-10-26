@@ -430,11 +430,10 @@ void effanimation_setstate(EffAnimation* anim, int state)
 #endif
 
     if (anim->state != state && anim->statechanged_cb) {
-        anim->statechanged_cb((MGEFF_ANIMATION)anim, (enum EffState)state, anim->state);
+        anim->statechanged_cb((MGEFF_ANIMATION)anim, state, anim->state);
     }
 
-    anim->state = (enum EffState)state;
-
+    anim->state = state;
     switch (state) {
         case MGEFF_STATE_RUNNING:
             /* not need call at this moment.*/
@@ -470,7 +469,7 @@ void effanimation_setstate(EffAnimation* anim, int state)
 MGEFF_ANIMATION mGEffAnimationCreateEx(void* target, MGEFF_SETPROPERTY_CB setproperty, int id,
        int size, MGEFF_VARMALLOC_CB cb1, MGEFF_CALCVALUE_CB cb2)
 {
-    MGEFF_ANIMATION handle = mGEffAnimationCreate(target, setproperty, id, (enum EffVariantType)-1);
+    MGEFF_ANIMATION handle = mGEffAnimationCreate(target, setproperty, id, -1);
     EffAnimation* anim;
 
     CHECK_HANDLE_RET_NIL(handle);
@@ -553,7 +552,7 @@ void  mGEffAnimationDelete(MGEFF_ANIMATION handle)
 
 static void effanimation_setdirection(EffAnimation* anim, int direction)
 {
-    anim->direction= (enum EffDirection)direction;
+    anim->direction= direction;
     if (anim->dirchanged_cb) {
         anim->dirchanged_cb((MGEFF_ANIMATION)anim);
     }
@@ -595,13 +594,6 @@ void mGEffAnimationSetProperty(MGEFF_ANIMATION handle, enum EffAnimProperty id, 
     }
 }
 
-void mGEffAnimationSetDuration(MGEFF_ANIMATION handle,
-        int duration_ms)
-{
-    mGEffAnimationSetProperty(handle, MGEFF_PROP_DURATION, duration_ms);
-}
-
-
 int mGEffAnimationGetProperty(MGEFF_ANIMATION handle, enum EffAnimProperty id)
 {
     int ret = 0;
@@ -636,12 +628,6 @@ int mGEffAnimationGetProperty(MGEFF_ANIMATION handle, enum EffAnimProperty id)
     }
     return ret;
 }
-
-int mGEffAnimationGetDuration(MGEFF_ANIMATION handle)
-{
-    return mGEffAnimationGetProperty(handle, MGEFF_PROP_DURATION);
-}
-
 
 void mGEffAnimationSetStartValue(MGEFF_ANIMATION handle, const void* value)
 {

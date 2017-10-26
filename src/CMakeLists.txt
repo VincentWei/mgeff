@@ -98,25 +98,18 @@ endif (_MGEFF_EFFECTOR)
 
 include_directories(${PROJECT_SOURCE_DIR}/include include include/effector)
 
-# share
-if (_ENABLE_SHARED)
+if (NOT disable_shared)
+    # shared
     add_library(${MGEFF_LIBNAME} SHARED ${mgeff_source_files_ON})
-    set_target_properties(${MGEFF_LIBNAME} PROPERTIES VERSION
-        ${MGEFF_MAJOR_VERSION}.${MGEFF_MINOR_VERSION}.${MGEFF_MICRO_VERSION})
-    set_target_properties (${MGEFF_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-    target_link_libraries(${MGEFF_LIBNAME} ${PC_LIBS_LIST})
-    list (APPEND _targets_install ${MGEFF_LIBNAME})
-endif (_ENABLE_SHARED)
-
-# static
-if (_ENABLE_STATIC)
-    add_library(${MGEFF_LIBNAME}_static STATIC ${mgeff_source_files_ON})
-    set_target_properties (${MGEFF_LIBNAME}_static PROPERTIES OUTPUT_NAME ${MGEFF_LIBNAME})
-    set_target_properties (${MGEFF_LIBNAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-    list (APPEND _targets_install ${MGEFF_LIBNAME}_static)
-endif (_ENABLE_STATIC)
-
-install (TARGETS ${_targets_install}
+else()
+    # static
+    add_library(${MGEFF_LIBNAME} STATIC ${mgeff_source_files_ON})
+endif (NOT disable_shared)
+set_target_properties(${MGEFF_LIBNAME} PROPERTIES VERSION
+    ${MGEFF_MAJOR_VERSION}.${MGEFF_MINOR_VERSION}.${MGEFF_MICRO_VERSION})
+set_target_properties (${MGEFF_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries(${MGEFF_LIBNAME} ${PC_LIBS_LIST})
+install (TARGETS ${MGEFF_LIBNAME}
     LIBRARY DESTINATION lib     # for .so  (dynamic library)
     ARCHIVE DESTINATION lib     # for .lib (import library)
     RUNTIME DESTINATION bin     # for .dll (dynamic library)

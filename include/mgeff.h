@@ -14,14 +14,6 @@
 extern "C" {
 #endif
 
-#ifndef __FUNCTION__
-#define __FUNCTION__ "function"
-#endif
-
-#ifndef __LINE__
-#define __LINE__ 0
-#endif
-
 #include "mgeff-common.h"
 #include "mgeff-animation.h"
 #include "mgeff-animationgroup.h"

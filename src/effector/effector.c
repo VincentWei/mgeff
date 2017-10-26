@@ -212,8 +212,9 @@ MGEFF_EFFECTOROPS* mGEffEffectorGetOps(unsigned long key)
 
     list_for_each(i, &effector_list) {
         EffCBObjInfo *item = (EffCBObjInfo *)i;
-        ops = (MGEFF_EFFECTOROPS*)(item->obj);
+        MGEFF_EFFECTOROPS* ops_tmp = (MGEFF_EFFECTOROPS*)(item->obj);
         if (mGEffStr2Key(ops->name) == key) {
+            ops = ops_tmp;
             break;
         }
     }

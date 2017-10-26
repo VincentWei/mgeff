@@ -327,8 +327,11 @@ MGEFF_EXPORT int mGEffAnimationGetProperty(MGEFF_ANIMATION handle,
  *
  * \sa  mGEffAnimationGetDuration.
  */
-MGEFF_EXPORT void mGEffAnimationSetDuration(MGEFF_ANIMATION handle,
-        int duration_ms);
+static inline void mGEffAnimationSetDuration(MGEFF_ANIMATION handle,
+        int duration_ms)
+{
+    mGEffAnimationSetProperty(handle, MGEFF_PROP_DURATION, duration_ms);
+}
 
 /**
  * \fn int mGEffAnimationGetDuration(MGEFF_ANIMATION handle).
@@ -342,7 +345,10 @@ MGEFF_EXPORT void mGEffAnimationSetDuration(MGEFF_ANIMATION handle,
  *
  * \sa  mGEffAnimationSetDuration.
  */
-MGEFF_EXPORT int mGEffAnimationGetDuration(MGEFF_ANIMATION handle);
+static inline int mGEffAnimationGetDuration(MGEFF_ANIMATION handle)
+{
+    return mGEffAnimationGetProperty(handle, MGEFF_PROP_DURATION);
+}
 
 /**
  * \fn void mGEffAnimationSetStartValue(MGEFF_ANIMATION handle,

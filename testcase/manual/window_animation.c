@@ -46,10 +46,8 @@ MGEFF_ANIMATION smash_animation_generator(HWND sink_hwnd, RECT* start, RECT* end
 
 void smash_animation_gen(MGEFF_ANIMATION handle, HWND hwnd, int id, POINT *pos) {
     int i;
-    if (HDC_INVALID != g_screen_store) {
     BitBlt(g_screen_store, g_smash[id].pos.x, g_smash[id].pos.y, g_smash[id].size.cx, g_smash[id].size.cy,
             HDC_SCREEN, g_smash[id].pos.x, g_smash[id].pos.y, -1);
-    }
     memcpy(&(g_smash[id].pos), pos, sizeof(POINT));
     if (id == PARTICLE_MAX - 1)
     {
@@ -103,13 +101,8 @@ int WindowSmashOut(HWND hwnd)
         if (HDC_INVALID == g_screen_store) {
             g_screen_store = CreateCompatibleDC(HDC_SCREEN);
         }
-//        BitBlt(HDC_SCREEN, 0, 0, 0, 0, g_screen_store, 0, 0, -1);
-#if 0
+        BitBlt(HDC_SCREEN, 0, 0, 0, 0, g_screen_store, 0, 0, -1);
         mGEffAnimationSyncRun(hgroup);
-#else
-        mGEffAnimationAsyncRun(hgroup);
-        mGEffAnimationWait ((void *)&hwnd, hgroup);
-#endif
         return 0;
     }
     return -1;
@@ -177,7 +170,6 @@ void WindowSmashIn(MGEFF_WindowAnimCtxt* ctxt)
     RECT wnd_rc;
 
     MGEFF_ANIMATION hgroup = mGEffAnimationCreateGroup(MGEFF_PARALLEL);
-    mGEffAnimationSetProperty (hgroup, MGEFF_PROP_KEEPALIVE, 0);
 
     hwnd = ctxt->hwnd;
     time = 1000;
@@ -196,7 +188,6 @@ void WindowSmashIn(MGEFF_WindowAnimCtxt* ctxt)
                 int index = i * MAX_CUT_LINE + j;
                 POINT target = {x, y};
                 MGEFF_ANIMATION animation = mGEffAnimationCreate(hwnd, (void *)smash_animation_gen, index, MGEFF_POINT);
-                mGEffAnimationSetProperty (animation, MGEFF_PROP_KEEPALIVE, 0);
 
                 WindowToScreen(hwnd, &target.x, &target.y);
                 g_smash[index].rc = rc;
@@ -252,7 +243,6 @@ static int TestWinProc(HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
 
     switch (message) {
         case MSG_CREATE:
-            mGEffInit();
             CreateWindow (CTRL_BUTTON, "ok", 
                           WS_VISIBLE, 
 			  50, 55, 95, 45, 45, hWnd, 0);
@@ -305,7 +295,6 @@ static int TestWinProc(HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
             return 0;
 
         case MSG_CLOSE:
-            mGEffDeinit();
 //            KillTimer (hWnd, 100);
             DestroyMainWindow (hWnd);
             PostQuitMessage (hWnd);
@@ -320,7 +309,10 @@ int MiniGUIMain (int argc, const char* argv[])
     MSG Msg;
     HWND hMainWnd;
     MAINWINCREATE CreateInfo;
+    //MGEFF_WINDOW_ANIMATION_CONTEXT hctxt = mGEffCreateWindowAnimationContext(1200, MGEFF_EFFECTOR_SCROLL, Linear, NULL);
+    MGEFF_WINDOW_ANIMATION_CONTEXT hctxt = mGEffCreateWindowAnimationContext(1200, MGEFF_EFFECTOR_PUSH, Linear, NULL, NULL);
 
+    mGEffInit();
 #ifdef _MGRM_PROCESSES
     JoinLayer(NAME_DEF_LAYER , "window_animation" , 0 , 0);
 #endif
@@ -339,24 +331,23 @@ int MiniGUIMain (int argc, const char* argv[])
     CreateInfo.iBkColor = COLOR_lightwhite;
     CreateInfo.dwAddData = 0;
     CreateInfo.hHosting = HWND_DESKTOP;
-
-    //MGEFF_WINDOW_ANIMATION_CONTEXT hctxt = mGEffCreateWindowAnimationContext(1200, MGEFF_EFFECTOR_SCROLL, Linear, NULL);
-    MGEFF_WINDOW_ANIMATION_CONTEXT hctxt = mGEffCreateWindowAnimationContext(1200, MGEFF_EFFECTOR_PUSH, Linear, NULL, NULL);
+    g_screen_store = CreateCompatibleDC(HDC_SCREEN);
+    if (HDC_INVALID != g_screen_store) {
+        BitBlt(HDC_SCREEN, 0, 0, 0, 0, g_screen_store, 0, 0, -1);
+    }
 
     //hMainWnd = CreateMainWindow(&CreateInfo);
     hMainWnd = mGEffCreateMainWindowEx(&CreateInfo, hctxt, WindowSmashIn);
-
+    mGEffDestroyWindowAnimationContext(hctxt);
+    
     if (hMainWnd == HWND_INVALID)
         return -1;
-
-    mGEffShowWindow (hMainWnd, SW_SHOWNORMAL, hctxt);
 
     while (GetMessage(&Msg, hMainWnd)) {
         TranslateMessage(&Msg);
         DispatchMessage(&Msg);
     }
 
-//    mGEffDestroyWindowAnimationContext(hctxt);
     MainWindowThreadCleanup (hMainWnd);
     return 0;
 }

@@ -205,7 +205,7 @@ qreal easeOutInSine(qreal t)
 qreal easeInExpo(qreal t)
 {
 #if 1
-    return (t==0 || t == 1.0) ? t : pow(2.0f, 10 * (t - 1)) - (qreal)(0.001);
+    return (t==0 || t == 1.0) ? t : pow(2.0, 10 * (t - 1)) - (qreal)(0.001);
 #else
     return 0.0;
 #endif
@@ -437,7 +437,7 @@ qreal easeOutInBounce(qreal t, qreal a)
     return 1.0 - easeOutBounce_helper (2.0-2*t, 0.5, a);
 }
 
-qreal qt_sinProgress(qreal value)
+inline qreal qt_sinProgress(qreal value)
 {
 #if 1
     return sin((value * M_PI) - M_PI_2) / 2 + (qreal)(0.5);
@@ -446,7 +446,7 @@ qreal qt_sinProgress(qreal value)
 #endif
 }
 
-qreal qt_smoothBeginEndMixFactor(qreal value)
+inline qreal qt_smoothBeginEndMixFactor(qreal value)
 {
 #if 1
     return MIN(MAX(1 - value * 2 + (qreal)(0.3), (qreal)(0.0)), (qreal)(1.0));

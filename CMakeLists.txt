@@ -6,14 +6,7 @@ set(MGEFF_MINOR_VERSION 0)
 set(MGEFF_MICRO_VERSION 0)
 set(MGEFF_LIBNAME "mgeff")
 
-SET (CMAKE_MODULE_PATH ${CMAKE_INSTALL_PREFIX}/share/minigui/cmake/Modules)
-
-include (common)
-mg_declare_option_and_set_value (_ENABLE_SHARED enable_shared BOOL ON "whether output the shared lib")
-mg_declare_option_and_set_value (_ENABLE_STATIC enable_static BOOL OFF "whether output the static lib")
-
-option(ARCH_LEADCORE "Build mgeff for leadcore" OFF)
-
+option(disable_shared "Disable shared library" OFF)
 option(_MGEFF_EFFECTOR "Enable effector" ON)
 if (_MGEFF_EFFECTOR)
     option(_MGEFF_FASTMODE "Enable fastmode effector" ON)
@@ -85,10 +78,6 @@ configure_file (
     )
 include_directories("${PROJECT_BINARY_DIR}")
 
-if (ARCH_LEADCORE)
-    set (WIN32 OFF)
-    set (UNIX ON)
-endif ()
 add_subdirectory(src)
 add_subdirectory(include)
 #add_subdirectory(samples)

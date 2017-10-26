@@ -1,11 +1,11 @@
-noinst_PROGRAMS=window_animation test-effector test-effector-api
-#noinst_PROGRAMS=window_animation test-iconflow test-ctrlfrctmotion
+noinst_PROGRAMS=window_anmation test-effector test-effector-api
+#noinst_PROGRAMS=window_anmation test-iconflow test-ctrlfrctmotion
 
 LIBS = @LIBS@ 
 MINIGUI_LIBS = @MGEFF_LIBS@ @MGPLUS_LIBS@ -lstdc++
 
-window_animation_SOURCES=window_animation.c
-window_animation_LDADD=$(MINIGUI_LIBS)
+window_anmation_SOURCES=window_animation.c
+window_anmation_LDADD=$(MINIGUI_LIBS)
 
 #test_iconflow_SOURCES=test-iconflow.c
 #test_iconflow_LDADD=-lmgeff $(MINIGUI_LIBS)

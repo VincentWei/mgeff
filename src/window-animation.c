@@ -208,7 +208,7 @@ void effector_animation_play(MGEFF_WindowAnimCtxt* _ctxt)
     }
     anim = mGEffAnimationCreateWithEffector(effector);
     mGEffAnimationSetDuration(anim, ctxt->m_time);
-    mGEffAnimationSetCurve(anim, (enum EffMotionType)ctxt->m_curve_type);
+    mGEffAnimationSetCurve(anim, ctxt->m_curve_type);
     mGEffAnimationSyncRun(anim);
     mGEffEffectorDelete(effector);
 }
@@ -661,27 +661,19 @@ MGEFF_ANIMATION mGEffMoveWindowPreparation(HWND hWnd, int x, int y, int w, int h
 {
     WindowAnimationContext * ctxt = (WindowAnimationContext*)hctxt;
     RECT source_rc;
-    RECT target_rc;
-
-    target_rc.left =x;
-    target_rc.top = y;
-    target_rc.right = x + w;
-    target_rc.bottom = y + h;
-
+    RECT target_rc = {x, y, x + w, y + h};
     GetWindowRect(hWnd, &source_rc);
-
     if (source_rc.left == x && source_rc.top == y &&
             RECTW(source_rc) == w && RECTH(source_rc) == h) {
         return (MGEFF_ANIMATION)NULL;
     }
-
     if (NULL != ctxt) {
         ctxt->m_src_dc = mGEffGetWindowForeground(hWnd, FALSE);
         if (HDC_INVALID != ctxt->m_src_dc) {
             WindowAnimationContext *ctxt_copy = (WindowAnimationContext*)malloc(sizeof(*ctxt_copy));
             if (NULL != ctxt_copy) {
                 MGEFF_ANIMATION animation = mGEffAnimationCreate((void*)ctxt_copy, 
-                        (MGEFF_SETPROPERTY_CB)animation_generate, 1, MGEFF_RECT);
+                        (void *)animation_generate, 1, MGEFF_RECT);
                 memcpy(ctxt_copy, ctxt, sizeof(*ctxt_copy));
                 ctxt_copy->m_new_rect = ctxt_copy->m_old_rect = source_rc;
                 ctxt_copy->m_paint = fPaint;
@@ -689,7 +681,7 @@ MGEFF_ANIMATION mGEffMoveWindowPreparation(HWND hWnd, int x, int y, int w, int h
                 mGEffAnimationSetStartValue(animation, &source_rc);
                 mGEffAnimationSetEndValue(animation, &target_rc);
                 mGEffAnimationSetDuration(animation, ctxt_copy->m_time);
-                mGEffAnimationSetCurve(animation, ( enum EffMotionType)ctxt_copy->m_curve_type);
+                mGEffAnimationSetCurve(animation, ctxt_copy->m_curve_type);
 
                 mGEffAnimationSetContext(animation, ctxt_copy);
                 mGEffAnimationSetFinishedCb(animation, move_anim_finished);
