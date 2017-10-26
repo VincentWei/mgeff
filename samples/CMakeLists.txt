@@ -23,7 +23,7 @@ set(mgeff_sample_libraries libminigui_sa libmgplus libjpeg libpng mgeff)
 
 else (WIN32) # not WIN32
 
-set(mgeff_sample_libraries minigui_ths mgplus jpeg png pthread z freetype mgeff)
+set(mgeff_sample_libraries minigui_ths mgplus jpeg png pthread z freetype mgeff m)
 
 endif (WIN32)
 
