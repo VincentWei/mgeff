@@ -105,6 +105,7 @@ else()
     # static
     add_library(${MGEFF_LIBNAME} STATIC ${mgeff_source_files_ON})
 endif (NOT disable_shared)
+
 set_target_properties(${MGEFF_LIBNAME} PROPERTIES VERSION
     ${MGEFF_MAJOR_VERSION}.${MGEFF_MINOR_VERSION}.${MGEFF_MICRO_VERSION})
 set_target_properties (${MGEFF_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)

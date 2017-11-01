@@ -3,7 +3,7 @@ project(mGEff)
 
 set(MGEFF_MAJOR_VERSION 1)
 set(MGEFF_MINOR_VERSION 0)
-set(MGEFF_MICRO_VERSION 0)
+set(MGEFF_MICRO_VERSION 1)
 set(MGEFF_LIBNAME "mgeff")
 
 option(disable_shared "Disable shared library" OFF)
