@@ -5,11 +5,16 @@ mGEff - An animation framework for MiniGUI.
 mGEff is a component of MiniGUI, which provides an animation framework
 on MiniGUI. 
 
-This is mGEff v1.0.x for MiniGUI Version 3.0.x or later.
+This is the mainline release of mGEff for MiniGUI Version 3.0.x or later.
+
+## Prerequisites
+
+    * MiniGUI: v3.0.10 or later
+    * mGPlus: v1.2.0 or later
 
 ## Building Instructions
 
-To build libmgeff:
+To build and install mGEff:
 
 	$ cmake .
 	$ make; sudo make install

@@ -3,8 +3,8 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: mgeff
-Description: An animation framework for embedded system.
+Name: mGEff
+Description: An animation framework for MiniGUI-based embedded system.
 Version: @MGEFF_VERSION@
 Requires: minigui
 Libs: -L${libdir} @PC_LIBS@
