@@ -109,7 +109,6 @@ endif (NOT disable_shared)
 set_target_properties(${MGEFF_LIBNAME} PROPERTIES VERSION
     ${MGEFF_MAJOR_VERSION}.${MGEFF_MINOR_VERSION}.${MGEFF_MICRO_VERSION})
 set_target_properties (${MGEFF_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${MGEFF_LIBNAME} ${PC_LIBS_LIST})
 install (TARGETS ${MGEFF_LIBNAME}
     LIBRARY DESTINATION lib     # for .so  (dynamic library)
     ARCHIVE DESTINATION lib     # for .lib (import library)

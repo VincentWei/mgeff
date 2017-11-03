@@ -6,7 +6,7 @@ if [ "x$PREFIX" != "x" ]; then
     OPT="-D $OPT CMAKE_INSTALL_PREFIX=$PREFIX"
 fi
 
-ccmake $OPT .
+cmake $OPT .
 
 echo "*****************************************************************"
 echo "There is no need to 'configure', just type 'make' to build."

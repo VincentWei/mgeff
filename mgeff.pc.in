@@ -6,7 +6,7 @@ includedir=@includedir@
 Name: mgeff
 Description: An animation framework for embedded system.
 Version: @MGEFF_VERSION@
-Requires:
+Requires: minigui
 Libs: -L${libdir} @PC_LIBS@
 Libs.private:
 Cflags: -I${includedir}
