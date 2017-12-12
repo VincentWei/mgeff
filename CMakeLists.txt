@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.6)
 project(mGEff)
 
-set(MGEFF_MAJOR_VERSION 1)
-set(MGEFF_MINOR_VERSION 0)
-set(MGEFF_MICRO_VERSION 1)
-set(MGEFF_LIBNAME "mgeff")
+SET(MGEFF_MAJOR_VERSION 1)
+SET(MGEFF_MINOR_VERSION 0)
+SET(MGEFF_MICRO_VERSION 1)
+SET(MGEFF_LIB_NAME "mgeff")
+SET(MGEFF_PACKAGE_NAME "libmgeff")
 
 option(disable_shared "Disable shared library" OFF)
 option(_MGEFF_EFFECTOR "Enable effector" ON)
@@ -55,7 +56,7 @@ IF (_MGEFF_EFFECTOR)
 #    LIST (APPEND PC_LIBS_LIST ${MGPLUS_LIBRARIES})
 ENDIF (_MGEFF_EFFECTOR)
 
-LIST (APPEND PC_LIBS_LIST ${MGEFF_LIBNAME})
+LIST (APPEND PC_LIBS_LIST ${MGEFF_LIB_NAME})
 set (prefix ${CMAKE_INSTALL_PREFIX})
 set (exec_prefix "\${prefix}")
 set (libdir "\${exec_prefix}/lib")
@@ -88,3 +89,16 @@ install (DIRECTORY "${PROJECT_SOURCE_DIR}/cmake/"
     PATTERN "*private*" EXCLUDE
     PATTERN ".svn" EXCLUDE
     )
+
+# Packing stuff
+SET(CPACK_PACKAGE_VENDOR "FMSoft")
+SET(CPACK_PACKAGE_NAME "${MGEFF_PACKAGE_NAME}")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MiniGUI Component for UI Speciall Effects")
+SET(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${MGEFF_MAJOR_VERSION}.${MGEFF_MINOR_VERSION}.${MGEFF_MICRO_VERSION}")
+SET(CPACK_SOURCE_GENERATOR "TGZ")
+set(CPACK_SOURCE_IGNORE_FILES
+      "/auto/;/cmake/;/.svn/;/.git/;/.bzr/;/CMakeFiles/;/_CPack_Packages/;CMakeCache.txt$;
+      ~$;.swp$;.cmake$;
+      ${CPACK_SOURCE_IGNORE_FILES}")
+
+INCLUDE(CPack)
