@@ -1,28 +1,198 @@
-#ifndef MGEFFCONFIG_H
-#define MGEFFCONFIG_H
+/* mgeffconfig.h.in.  Generated from configure.ac by autoheader.  */
 
-#cmakedefine _MGEFF_EFFECTOR
-#cmakedefine _MGEFF_FASTMODE
-#cmakedefine HAVE_MESA_MINIGUI
-#cmakedefine HAVE_EGL_SUPPORT
-#cmakedefine HAVE_GLES2_SUPPORT
-#cmakedefine _MGEFF_FIVEPOINTEDSTAREFFECTOR
-#cmakedefine _MGEFF_ROTATEEFFECTOR
-#cmakedefine _MGEFF_RADARSCANEFFECTOR
-#cmakedefine _MGEFF_CUBICROTATEEFFECTOR
-#cmakedefine _MGEFF_SCROLLEFFECTOR
-#cmakedefine _MGEFF_LEAFWINDOWEFFECTOR
-#cmakedefine _MGEFF_ZOOMEFFECTOR
-#cmakedefine _MGEFF_CENTERSPLITEFFECTOR
-#cmakedefine _MGEFF_FLIPEFFECTOR
-#cmakedefine _MGEFF_ALPHAEFFECTOR
-#cmakedefine _MGEFF_ZIPEFFECTOR
-#cmakedefine _MGEFF_CLEAREFFECTOR
-#cmakedefine _MGEFF_PUSHEFFECTOR
-#cmakedefine _MGEFF_WINDOWANIMATION
+/* Define to 1 if you have the `bzero' function. */
+#undef HAVE_BZERO
 
-#ifdef WIN32
-#   define inline __inline
-#endif /* WIN32 */
+/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_DIRENT_H
 
-#endif /* MGEFFCONFIG_H */
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
+#undef HAVE_DOPRNT
+
+/* Define to 1 if you have the `dup2' function. */
+#undef HAVE_DUP2
+
+/* Define if have eGL for MiniGUI */
+#undef HAVE_EGL_SUPPORT
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define to 1 if you have the `getcwd' function. */
+#undef HAVE_GETCWD
+
+/* Define if have OpenGL ES 2.0 */
+#undef HAVE_GLES2_SUPPORT
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `memmove' function. */
+#undef HAVE_MEMMOVE
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `memset' function. */
+#undef HAVE_MEMSET
+
+/* Define if have Mesa for MiniGUI */
+#undef HAVE_MESA_MINIGUI
+
+/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_NDIR_H
+
+/* Define to 1 if you have the `putenv' function. */
+#undef HAVE_PUTENV
+
+/* Define to 1 if `stat' has the bug that it succeeds when given the
+   zero-length file name argument. */
+#undef HAVE_STAT_EMPTY_STRING_BUG
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `strchr' function. */
+#undef HAVE_STRCHR
+
+/* Define to 1 if you have the `strdup' function. */
+#undef HAVE_STRDUP
+
+/* Define to 1 if you have the `strerror' function. */
+#undef HAVE_STRERROR
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the `strstr' function. */
+#undef HAVE_STRSTR
+
+/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_DIR_H
+
+/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_NDIR_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the `vprintf' function. */
+#undef HAVE_VPRINTF
+
+/* Define to 1 if `lstat' dereferences a symlink specified with a trailing
+   slash. */
+#undef LSTAT_FOLLOWS_SLASHED_SYMLINK
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if your <sys/time.h> declares `struct tm'. */
+#undef TM_IN_SYS_TIME
+
+/* Version number of package */
+#undef VERSION
+
+/* Define if include alpha effector */
+#undef _MGEFF_ALPHAEFFECTOR
+
+/* Define if include split effector */
+#undef _MGEFF_CENTERSPLITEFFECTOR
+
+/* Define if include clear effector */
+#undef _MGEFF_CLEAREFFECTOR
+
+/* Define if include cubic-rotate effector */
+#undef _MGEFF_CUBICROTATEEFFECTOR
+
+/* Define if include effectors */
+#undef _MGEFF_EFFECTOR
+
+/* Define if enable fast mode of effectors */
+#undef _MGEFF_FASTMODE
+
+/* Define if include five-pointed-star effector */
+#undef _MGEFF_FIVEPOINTEDSTAREFFECTOR
+
+/* Define if include flip effector */
+#undef _MGEFF_FLIPEFFECTOR
+
+/* Define if include leaf window effector */
+#undef _MGEFF_LEAFWINDOWEFFECTOR
+
+/* Define if include push effector */
+#undef _MGEFF_PUSHEFFECTOR
+
+/* Define if include radar scan effector */
+#undef _MGEFF_RADARSCANEFFECTOR
+
+/* Define if include rotate effector */
+#undef _MGEFF_ROTATEEFFECTOR
+
+/* Define if include scroll effector */
+#undef _MGEFF_SCROLLEFFECTOR
+
+/* Define if include window animation */
+#undef _MGEFF_WINDOWANIMATION
+
+/* Define if include zip effector */
+#undef _MGEFF_ZIPEFFECTOR
+
+/* Define if include zoom effector */
+#undef _MGEFF_ZOOMEFFECTOR
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+
+/* Define to `int' if <sys/types.h> does not define. */
+#undef pid_t

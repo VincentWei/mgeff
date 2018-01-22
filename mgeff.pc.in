@@ -4,9 +4,9 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: mGEff
-Description: An animation framework for MiniGUI-based embedded system.
+Description: An animation and user interface effects framework for MiniGUI-based embedded systems and smart IoT devices.
 Version: @MGEFF_VERSION@
 Requires: minigui
 Libs: -L${libdir} @PC_LIBS@
 Libs.private:
-Cflags: -I${includedir}
+Cflags: -I${includedir} @PC_CFLAGS@
