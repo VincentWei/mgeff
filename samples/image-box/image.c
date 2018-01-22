@@ -73,7 +73,7 @@ void do_shrink (MGEFF_ANIMATION handle, HWND hwnd, int id, RECT * rc)
     }
 }
 
-int ImagesInitialize ()
+int ImagesInitialize (void)
 {
     int i, j;
 
@@ -116,7 +116,7 @@ int ImagesInitialize ()
     return 0;
 }
 
-void ImagesFinalize ()
+void ImagesFinalize (void)
 {
 }
 

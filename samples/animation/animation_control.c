@@ -22,7 +22,7 @@ static MGEFF_ANIMATION g_handle = NULL;
 
 /*****************************************************************************/
 /* main window proc */
-static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam);
+static LRESULT mainWindowProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 /* draw a frame */
 static void draw_frame (HWND hWnd);
 /* callback function called when property change */
@@ -76,7 +76,7 @@ int MiniGUIMain (int argc, const char *argv[])
 
 /*****************************************************************************/
 /* main window proc */
-static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT mainWindowProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_CREATE:
@@ -89,7 +89,7 @@ static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
         break;
 
     case MSG_KEYDOWN:
-        sprintf (g_str, "you press key, keycode(%d)", wParam);
+        sprintf (g_str, "you press key, keycode(%d)", (int)wParam);
 
         printf ("%s\n", g_str);
 

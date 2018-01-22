@@ -13,7 +13,7 @@
 
 /*****************************************************************************/
 /* main window proc */
-static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam);
+static LRESULT mainWindowProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 /*****************************************************************************/
 int MiniGUIMain (int argc, const char *argv[])
@@ -67,7 +67,7 @@ int MiniGUIMain (int argc, const char *argv[])
 
 /*****************************************************************************/
 /* main window proc */
-static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT mainWindowProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_CREATE:

@@ -596,7 +596,7 @@ MGEFF_ANIMATION do_animation (HWND hWnd, int curve)
     return group_animation;
 }
 
-static int DlgProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT DlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_INITDIALOG:

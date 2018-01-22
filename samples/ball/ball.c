@@ -30,22 +30,22 @@ void mycb(MGEFF_ANIMATION handle, HWND hwnd, int id, RECT *rc) {
     memcpy(&s_old_rc, rc, sizeof(s_old_rc));
 }
 
-static int mainWindowProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT mainWindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
         case MSG_CREATE:
             {
                 RECT rc;
-                int x, y;
+                //int x, y;
 
                 s_hwnd = hwnd;
 
                 mGEffInit();
                 animation = mGEffAnimationCreate((void *)hwnd, (void *)mycb, 1, MGEFF_RECT);
                 GetClientRect(hwnd, &rc);
-                x = (rc.left + rc.right) / 2;
-                y = (rc.top + rc.bottom) / 2;
+                //x = (rc.left + rc.right) / 2;
+                //y = (rc.top + rc.bottom) / 2;
                 // printf("x,y=%d,%d\n", x, y);
                 // rc.left = x-20; rc.right = x+20; rc.top = y-10; rc.bottom = y+10;
                 rc.left = 0; rc.right = 50; rc.top = 0; rc.bottom = 50;

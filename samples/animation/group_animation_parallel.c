@@ -21,7 +21,7 @@ static int g_color[ANIMATION_NUM] = { 0 };
 
 /*****************************************************************************/
 /* main window proc */
-static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam);
+static LRESULT mainWindowProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 /* draw a frame */
 static void draw_frame (HWND hWnd);
 /* callback function called when property change */
@@ -74,7 +74,7 @@ int MiniGUIMain (int argc, const char *argv[])
 }
 
 /*****************************************************************************/
-static int mainWindowProc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT mainWindowProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_CREATE:

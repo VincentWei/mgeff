@@ -178,7 +178,7 @@ static int wndKeyDown (HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-static int wndProc (HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT wndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_CREATE:

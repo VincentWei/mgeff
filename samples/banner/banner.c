@@ -1,6 +1,7 @@
 #define dbg() printf("F:%s L:%d\n", __FUNCTION__, __LINE__)
 
 #include <stdio.h>
+#include <time.h>
 #include <sys/times.h>
 #include <assert.h>
 #include <string.h>
@@ -320,7 +321,7 @@ static void setup_animations(void)
     mGEffAnimationDelete (sequence_group);
 }
 
-static int mainWindowProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT mainWindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {

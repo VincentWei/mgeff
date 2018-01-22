@@ -832,8 +832,7 @@ static int fillAnimation (HWND hWnd, HDC src1_dc, HDC src2_dc,
     return 0;
 }
 
-static int MEWinProc (HWND hWnd, int message, WPARAM wParam,
-                      LPARAM lParam)
+static LRESULT MEWinProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_CREATE:
@@ -845,7 +844,7 @@ static int MEWinProc (HWND hWnd, int message, WPARAM wParam,
             g_hdc_pic[1] = createDCByPicture (hdc, "res/2.png", 0, 0);
 
             if (g_hdc_pic[0] == HDC_INVALID
-                || !g_hdc_pic[1] == HDC_INVALID)
+                || g_hdc_pic[1] == HDC_INVALID)
                 return -1;
 
             ReleaseDC (hdc);

@@ -149,7 +149,7 @@ static MGEFF_ANIMATION animationGroupInit(void * target, RECT *rc, CalcPosition 
     return group;
 }
 
-static int mainWindowProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT mainWindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {

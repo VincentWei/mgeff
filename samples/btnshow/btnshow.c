@@ -43,12 +43,12 @@ void set_property (MGEFF_ANIMATION handle, HWND hWnd, int id, int *value)
     EndPaint (hWnd, hdc);
 }
 
-static int motion_button_proc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT motion_button_proc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     static int is_move_out = 1;
     static int old_id = -1;
 
-    MGEFF_ANIMATION handle;
+    MGEFF_ANIMATION handle = 0;
     int i;
     for (i = 0; i < BTN_AMOUNT; ++i) {
         if (g_btn_handle[i].hWnd == hWnd) {
@@ -202,7 +202,7 @@ void click_the_btn (HWND hWnd)
 }
 
 /*main windonw proc*/
-static int main_win_proc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT main_win_proc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HWND btn_hWnd;
     MGEFF_ANIMATION handle;

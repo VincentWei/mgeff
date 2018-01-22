@@ -35,11 +35,11 @@ typedef struct {
     BOOL is_expanded;
 } Image;
 
-int  ImagesInitialize();
+int  ImagesInitialize(void);
 void ImagePaint(HDC hdc);
 BOOL CursorInImage(int x, int y, int* index);
 int ExpandImageWithAnimation(HWND hwnd, int index);
 int ShrinkImageWithAnimation(HWND hwnd, int index);
-void ImagesFinalize();
+void ImagesFinalize(void);
 #endif   /* ----- #ifndef IMAGE_INC  ----- */
 

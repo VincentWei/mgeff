@@ -293,19 +293,19 @@ AC_OUTPUT([
     src/Makefile
     src/include/Makefile
     src/effector/Makefile
+    samples/Makefile
+    samples/animation/Makefile
+    samples/ball/Makefile
+    samples/banner/Makefile
+    samples/btnshow/Makefile
+    samples/curve/Makefile
+    samples/curve/res/Makefile
+    samples/custom-effector/Makefile
+    samples/custom-effector/res/Makefile
+    samples/effector/Makefile
+    samples/image-box/Makefile
+    samples/image-box/res/Makefile
+    samples/particle-sys/Makefile
 ])
 
-dnl    samples/Makefile
-dnl    samples/animation/Makefile
-dnl    samples/ball/Makefile
-dnl    samples/banner/Makefile
-dnl    samples/btnshow/Makefile
-dnl    samples/curve/Makefile
-dnl    samples/curve/res/Makefile
-dnl    samples/custom-effector/Makefile
-dnl    samples/custom-effector/res/Makefile
 dnl    samples/easing/Makefile
-dnl    samples/effector/Makefile
-dnl    samples/image-box/Makefile
-dnl    samples/image-box/res/Makefile
-dnl    samples/particle-sys/Makefile
