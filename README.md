@@ -9,22 +9,16 @@ This is the mainline release of mGEff for MiniGUI Version 3.0.x or later.
 
 ## Prerequisites
 
-    * MiniGUI: v3.0.10 or later
-    * mGPlus: v1.2.0 or later
+    * MiniGUI: v3.2.0 or later
+    * mGPlus: v1.4.0 or later
 
 ## Building Instructions
 
 To build and install mGEff:
 
-	$ cmake .
+	$ ./configure
 	$ make; sudo make install
-
-To build the samples:
-
-	$ cd samples
-	$ cmake .
-	$ make
 
 ## Copying
 
-Copyright (C) 2002-2017, Beijing FMSoft Technologies Co., Ltd.
+Copyright (C) 2008-2018, Beijing FMSoft Technologies Co., Ltd.
