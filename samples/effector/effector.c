@@ -13,12 +13,12 @@
 static BOOL load_res (HDC hdc);
 static HDC createDCByPicture(HDC hdc, const char* path, int w, int h);
 static void get_pic_idx (int* cur_pic, int* next_pic);
-static int get_duration ();
-static int get_stay_time ();
+static int get_duration (void);
+static int get_stay_time (void);
 static int mGEffFillAnimation(HWND hWnd,
                               HDC src1_dc, HDC src2_dc, HDC dst_dc,
                               const char* effector_name, int duration);
-static void delete_cur_anim ();
+static void delete_cur_anim (void);
 
 #define PICTURE_NUM		2
 
@@ -161,7 +161,7 @@ static const char* s_pic_paths[] =
 };
 
 
-static void do_selected_effector ()
+static void do_selected_effector (void)
 {
     int index = SendMessage (GetDlgItem (g_main_hwnd, IDL_EFFECTOR), CB_GETCURSEL, 0, 0);
     int duration = get_duration ();
@@ -181,7 +181,7 @@ static void do_selected_effector ()
     g_status = STA_PLAY;
 }
 
-static BOOL stay_timer_cb (HWND hwnd, int id, DWORD count)
+static BOOL stay_timer_cb (HWND hwnd, LINT id, DWORD count)
 {
     do_selected_effector ();
     return FALSE;
@@ -197,7 +197,7 @@ static void anim_finished_cb(MGEFF_ANIMATION handle)
 }
 
 
-static int canvas_win_proc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT canvas_win_proc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
     case MSG_PAINT:
@@ -220,7 +220,7 @@ static int canvas_win_proc (HWND hWnd, int message, WPARAM wParam, LPARAM lParam
 
 
 
-static int WindProc (HWND hDlg, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT WindProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     int i;
     switch (message) {
@@ -341,7 +341,7 @@ static void get_pic_idx (int* cur_pic, int* next_pic)
     }
 }
 
-static void delete_cur_anim ()
+static void delete_cur_anim (void)
 {
     if (g_anim_handle) {
         /* mGEffAnimationStop (g_anim_handle); */
@@ -351,13 +351,13 @@ static void delete_cur_anim ()
     }
 }
 
-static int get_stay_time ()
+static int get_stay_time (void)
 {
     /* printf ("stay time: %d\n", SendMessage (GetDlgItem (g_main_hwnd, IDC_STAYTIME), CB_GETSPINVALUE, 0, 0)); */
     return SendMessage (GetDlgItem (g_main_hwnd, IDC_STAYTIME), CB_GETSPINVALUE, 0, 0) / 10;
 }
 
-static int get_duration ()
+static int get_duration (void)
 {
     return SendMessage (GetDlgItem (g_main_hwnd, IDC_DURATION), CB_GETSPINVALUE, 0, 0) / 10;
 }

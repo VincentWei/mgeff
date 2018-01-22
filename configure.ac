@@ -303,9 +303,21 @@ AC_OUTPUT([
     samples/custom-effector/Makefile
     samples/custom-effector/res/Makefile
     samples/effector/Makefile
+    samples/effector/res/Makefile
     samples/image-box/Makefile
     samples/image-box/res/Makefile
     samples/particle-sys/Makefile
+    samples/easing/Makefile
+    samples/easing/src/Makefile
 ])
 
-dnl    samples/easing/Makefile
+dnl generate license pictures
+echo
+echo "Creating include directory for samples"
+cd samples/
+if test ! -h mgeff; then
+    ln -s ../include mgeff
+fi
+cd ..
+echo "Done."
+dnl fi

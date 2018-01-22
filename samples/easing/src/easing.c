@@ -279,7 +279,7 @@ static void setProperty_move(MGEFF_ANIMATION animation, mWidget *widget, int id,
 
 static void DoStart(mWidget *parent);
 
-static BOOL my_ontimer(HWND hwnd, int id, DWORD count) {
+static BOOL my_ontimer(HWND hwnd, LINT id, DWORD count) {
     mWidget *parent = ncsObjFromHandle(hwnd);
     DoStart(parent);
     KillTimer(hwnd, id);
@@ -372,11 +372,11 @@ static void DoStart (mWidget *parent)
 
             snprintf(code_duration, sizeof(code_duration)/sizeof(code_duration[0]), 
                     "mGEffAnimationSetDuration(animation, %d);\n" , duration);
-            code_duration[sizeof(code_duration)/sizeof(code_duration[0])] = 0;
+            code_duration[sizeof(code_duration)/sizeof(code_duration[0]) - 1] = 0;
 
             snprintf(code_curve, sizeof(code_curve)/sizeof(code_curve[0]), 
                     "mGEffAnimationSetCurve(animation, %s);\n", str_curve);
-            code_curve[sizeof(code_curve)/sizeof(code_curve[0])] = 0;
+            code_curve[sizeof(code_curve)/sizeof(code_curve[0]) - 1] = 0;
 
             animation = mGEffAnimationCreate(edit, (void *)setProperty_code, 0, MGEFF_INT);
             n = 0;

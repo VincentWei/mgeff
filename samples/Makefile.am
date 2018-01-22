@@ -1,1 +1,1 @@
-SUBDIRS=animation  ball  banner  btnshow  curve  custom-effector  easing  effector  image-box  particle-sys
+SUBDIRS=animation  ball  banner  btnshow  curve  custom-effector  effector  image-box  particle-sys easing
