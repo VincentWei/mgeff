@@ -92,13 +92,15 @@ int Set3DPointOfView (TransAffine3D* pTrans, double dXMove, double dYMove, doubl
 
 int Scale3DSence (TransAffine3D* pTrans, double x, double y, double z)
 {
-    double tx, ty, tz;
-
     CHECK_SAFE_PAREMATER(pTrans);
+
+/* not used 
+    double tx, ty, tz;
 
 	tx = pTrans->m[3];
 	ty = pTrans->m[7];
 	tz = pTrans->m[11];
+*/
 
     pTrans->m[0] *= x;
     pTrans->m[4] *= x;

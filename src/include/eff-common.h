@@ -30,7 +30,7 @@ static inline void eff_ms_sleep(int ms) {
 static inline int eff_time(void) {
 #ifndef WIN32
     /* MiniGUI API */
-    unsigned int GetTickCount(void);
+    DWORD GetTickCount(void);
     return GetTickCount() * 10;
 #else /* WIN32 */
     return eff_time_win32();
@@ -62,6 +62,7 @@ static inline int eff_time(void) {
 
 #define CHECK_HANDLE(handle)     do { if (handle == NULL) { assert(handle); return;} } while (0)
 #define CHECK_HANDLE_RET(handle) do { if (handle == NULL) { assert(handle); return -1;} } while(0)
+#define CHECK_HANDLE_RET_INV(handle) do { if (handle == NULL) { assert(handle); return INV_PTR;} } while(0)
 #define CHECK_HANDLE_RET_NIL(handle) do { if (handle == NULL) { assert(handle); return NULL;} } while(0)
 
 #ifdef DEBUG

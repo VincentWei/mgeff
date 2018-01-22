@@ -22,7 +22,7 @@ MGEFF_SOURCE mGEffCreateSourceEx(HDC hdc, MGEFF_DELETEHDC_CB cb)
 HDC mGEffGetSourceDC(MGEFF_SOURCE handle)
 {
     EffHDCSource* source = (EffHDCSource*)handle;
-    CHECK_HANDLE_RET(handle);
+    CHECK_HANDLE_RET_INV(handle);
 
     return source->hdc;
 }

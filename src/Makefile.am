@@ -1,4 +1,4 @@
-AM_CPPFLAGS=-I../include -Iinclude/
+AM_CPPFLAGS=-I../include -I./include/ -I./effector/
 
 SUBDIRS=include effector
 

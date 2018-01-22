@@ -134,7 +134,7 @@ static inline void effschedular_delete_threadkey (void)
 #endif
 
 #ifndef _MG_MINIMALGDI 
-static MGEFF_BOOL effschedular_ontimer(HWND hwnd, int id, DWORD tickcount) {
+static MGEFF_BOOL effschedular_ontimer(HWND hwnd, LINT id, DWORD tickcount) {
     EffSchedular *schedular = (EffSchedular *)hwnd;
     effschedular_one_step(schedular, NULL);
     return MGEFF_TRUE;

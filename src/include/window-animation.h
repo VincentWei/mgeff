@@ -38,5 +38,5 @@ HDC hold_window_for_foreground(WindowAnimationContext* ctxt);
 void drop_window_release_foreground(WindowAnimationContext* ctxt);
 void animation_generate(MGEFF_ANIMATION handle, WindowAnimationContext *context, int id, RECT *rc);
 void effector_animation_play(MGEFF_WindowAnimCtxt* ctxt);
-int AnimateWindowProcHook(HWND hWnd, int message, WPARAM wParam, LPARAM lParam);
+LRESULT AnimateWindowProcHook(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 #endif   /* ----- #ifndef WINDOW_ANIMATION_INC  ----- */

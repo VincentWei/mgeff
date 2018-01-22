@@ -402,11 +402,11 @@ void effanimation_paused(EffAnimation* anim, int no_used)
 
 void effanimation_setstate(EffAnimation* anim, int state)
 {
-    int oldstate;
+    //int oldstate;
     if (anim->state == state) {
         return;
     }
-    oldstate = anim->state;
+    //oldstate = anim->state;
 #if 0
     if ((state == MGEFF_STATE_RUNNING || state == MGEFF_STATE_PAUSED
                 || state == MGEFF_STATE_READY)

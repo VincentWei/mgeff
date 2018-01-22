@@ -170,7 +170,7 @@ void mGEffDropWindowForeground(MGEFF_WINDOW_ANIMATION_CONTEXT hctxt)
 }
 
 // hook for user msg-proc
-int AnimateWindowProcHook(HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+LRESULT AnimateWindowProcHook(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
         case MSG_NCCREATE:
@@ -718,24 +718,24 @@ BOOL mGEffMoveWindow (HWND hWnd, int x, int y, int w, int h, BOOL fPaint, MGEFF_
 }
 
 
-int ExtractWindowProc(HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
+LRESULT ExtractWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
         case MSG_PAINT:
             {
                 HDC hdc = BeginPaint (hWnd);
-                DWORD foreground = GetWindowAdditionalData(hWnd);
+                HDC foreground = (HDC)GetWindowAdditionalData(hWnd);
                 if (foreground && HDC_INVALID != foreground) {
-                    StretchBlt((HDC)foreground, 0, 0, 0, 0, hdc, 0, 0, 0, 0, -1);
+                    StretchBlt(foreground, 0, 0, 0, 0, hdc, 0, 0, 0, 0, -1);
                 }
                 EndPaint(hWnd, hdc);
             }
             return 0;
         case MSG_CLOSE:
             {
-                DWORD hdc = GetWindowAdditionalData(hWnd);
+                HDC hdc = (HDC)GetWindowAdditionalData(hWnd);
                 if (hdc && HDC_INVALID != hdc) {
-                    DeleteMemDC((HDC)hdc);
+                    DeleteMemDC(hdc);
                 }
                 DestroyMainWindow (hWnd);
                 PostQuitMessage (hWnd);
@@ -778,7 +778,7 @@ BOOL ControlExtract(HWND mainHwnd, int ctrl_id, PMAINWINCREATE pCreateInfo)
                         pCreateInfo->ty = y;
                         pCreateInfo->rx = pCreateInfo->lx + RECTW(rc);
                         pCreateInfo->by = pCreateInfo->ty + RECTH(rc);
-                        pCreateInfo->dwAddData = clone_dc;
+                        pCreateInfo->dwAddData = (DWORD)clone_dc;
                         ret = TRUE;
                     }
                     else {
@@ -815,7 +815,7 @@ BOOL WindowExtract(HWND mainHwnd, RECT *rc, PMAINWINCREATE pCreateInfo)
             pCreateInfo->ty = pos_rc.top + rc->top;
             pCreateInfo->rx = pCreateInfo->lx + RECTWP(rc);
             pCreateInfo->by = pCreateInfo->ty + RECTHP(rc);
-            pCreateInfo->dwAddData = clone_dc;
+            pCreateInfo->dwAddData = (DWORD)clone_dc;
             ret = TRUE;
         }
         else {

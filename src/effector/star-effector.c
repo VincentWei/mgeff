@@ -229,7 +229,7 @@ void effstareffector_begindraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
     star_context->path = MGPlusPathCreate (MP_PATH_FILL_MODE_WINDING);
 
     if (effector->sink) {
-        int kr_e, r2_e;
+        int /*kr_e, */r2_e;
 
         EffHDCSource *source1 = (EffHDCSource *) (effector->source_list.next);
         EffHDCSource *source2 = (EffHDCSource *) (source1->list.next);
@@ -243,7 +243,7 @@ void effstareffector_begindraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
          */
         if (star_context->zoom == MGEFF_ZOOMOUT) {
             r2_e = MIN(w/2, h/2) * 1.4;
-            kr_e = r2_e * ANG_COS(36);
+            //kr_e = r2_e * ANG_COS(36);
             //r_e = kr_e / ANG_COS(72);
             r_e = r2_e / ANG_COS(72);
         }
