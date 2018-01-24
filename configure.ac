@@ -311,7 +311,6 @@ AC_OUTPUT([
     samples/easing/src/Makefile
 ])
 
-dnl generate license pictures
 echo
 echo "Creating include directory for samples"
 cd samples/
@@ -320,4 +319,3 @@ if test ! -h mgeff; then
 fi
 cd ..
 echo "Done."
-dnl fi

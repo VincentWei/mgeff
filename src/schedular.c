@@ -10,6 +10,7 @@
 #endif
 
 #include <minigui/common.h>
+#include <minigui/minigui.h>
 #include <minigui/gdi.h>
 #include <minigui/window.h>
 
