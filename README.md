@@ -5,7 +5,7 @@ mGEff - An animation framework for MiniGUI.
 mGEff is a component of MiniGUI, which provides an animation framework
 on MiniGUI. 
 
-This is the mainline release of mGEff for MiniGUI Version 3.0.x or later.
+This is the mainline release of mGEff for MiniGUI Version 3.2.x or later.
 
 ## Prerequisites
 
