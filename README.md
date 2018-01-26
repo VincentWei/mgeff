@@ -19,6 +19,11 @@ To build and install mGEff:
 	$ ./configure
 	$ make; sudo make install
 
+mGEff also provides some configuration options to customize the features.
+For more information, please run
+
+    $ ./configure --help
+
 ## Copying
 
 Copyright (C) 2008-2018, Beijing FMSoft Technologies Co., Ltd.
