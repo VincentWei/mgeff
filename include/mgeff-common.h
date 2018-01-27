@@ -21,12 +21,14 @@
 #endif
 
 #ifndef MGEFF_MAJOR_VERSION
-#  include "mgeffconfig.h"
+#  undef PACKAGE
+#  undef VERSION
 #  undef PACKAGE_BUGREPORT
 #  undef PACKAGE_NAME
 #  undef PACKAGE_STRING
 #  undef PACKAGE_TARNAME
 #  undef PACKAGE_VERSION
+#  include "mgeffconfig.h"
 #endif
 
 /** \brief type of MGEFF_BOOL */
