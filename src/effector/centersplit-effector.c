@@ -7,7 +7,7 @@
 
 #ifdef _MGEFF_CENTERSPLITEFFECTOR
 void effcenterspliteffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
-        HDC sink_dc, int id, void *value)
+        HDC sink_dc, intptr_t id, void *value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffHDCSource *source1 = (EffHDCSource *) (effector->source_list.next);

@@ -13,5 +13,5 @@ int  effcleareffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int
 void effcleareffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
 void effcleareffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
 void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, int id, void* value);
+        HDC sink_dc, intptr_t id, void* value);
 #endif

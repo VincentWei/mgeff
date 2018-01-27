@@ -10,6 +10,7 @@
 #ifndef _MGEFF_ANIMATION_H_
 #define _MGEFF_ANIMATION_H_
 
+#include <stdint.h>
 #include "mgeff-motioncurve.h"
 
 /**
@@ -132,7 +133,7 @@ typedef void (*MGEFF_DIRCHANGED_CB)(MGEFF_ANIMATION handle);
 
 /**
  * \typedef void (*MGEFF_SETPROPERTY_CB)(MGEFF_ANIMATION handle,
- *                  void *target, int id, void *value)
+ *                  void *target, intptr_t id, void *value)
  * \brief Type of animation set property function. This fuction is used to produce
  * every animation frame when animation is running
  *
@@ -144,7 +145,7 @@ typedef void (*MGEFF_DIRCHANGED_CB)(MGEFF_ANIMATION handle);
  * \param value animation current value,startvalue <= value <= endvalue
  */
 typedef void (*MGEFF_SETPROPERTY_CB)(MGEFF_ANIMATION handle,
-        void *target, int id, void *value);
+        void *target, intptr_t id, void *value);
 
 /**
  * \typedef void (*MGEFF_CALCVALUE_CB)(MGEFF_ANIMATION handle,
@@ -178,7 +179,7 @@ typedef void *(*MGEFF_VARMALLOC_CB)(MGEFF_ANIMATION handle);
 
 /**
  * \fn MGEFF_ANIMATION mGEffAnimationCreateEx(void *target,
- *             MGEFF_SETPROPERTY_CB setproperty, int id, int size,
+ *             MGEFF_SETPROPERTY_CB setproperty, intptr_t id, int size,
  *             MGEFF_VARMALLOC_CB cb1, MGEFF_CALCVALUE_CB cb2);
  * \brief Create an animation.
  *
@@ -203,12 +204,12 @@ typedef void *(*MGEFF_VARMALLOC_CB)(MGEFF_ANIMATION handle);
  * \sa  mGEffAnimationCreate.
  */
 MGEFF_EXPORT MGEFF_ANIMATION mGEffAnimationCreateEx(void *target,
-        MGEFF_SETPROPERTY_CB setproperty, int id, int size,
+        MGEFF_SETPROPERTY_CB setproperty, intptr_t id, int size,
         MGEFF_VARMALLOC_CB cb1, MGEFF_CALCVALUE_CB cb2);
 
 /**
  * \fn MGEFF_ANIMATION mGEffAnimationCreate(void *target,
- *             MGEFF_SETPROPERTY_CB setproperty, int id,
+ *             MGEFF_SETPROPERTY_CB setproperty, intptr_t id,
  *             enum EffVariantType varianttype);
  * \brief Creates an animation.
  *
@@ -229,7 +230,7 @@ MGEFF_EXPORT MGEFF_ANIMATION mGEffAnimationCreateEx(void *target,
  * \sa  mGEffAnimationCreateEx.
  */
 MGEFF_EXPORT MGEFF_ANIMATION mGEffAnimationCreate(void *target,
-        MGEFF_SETPROPERTY_CB setproperty, int id,
+        MGEFF_SETPROPERTY_CB setproperty, intptr_t id,
         enum EffVariantType varianttype);
 
 /**

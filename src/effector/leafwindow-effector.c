@@ -58,7 +58,7 @@ int  effleafceffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int
 }
 
 void effleafeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, int id, void* value)
+        HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffLeafCtxt* leaf_context = (EffLeafCtxt*)effector->context;

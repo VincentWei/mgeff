@@ -3,5 +3,5 @@
 #include "effector.h"
 
 void effalphaeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, int id, void* value);
+        HDC sink_dc, intptr_t id, void* value);
 #endif

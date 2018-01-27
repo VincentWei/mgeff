@@ -14,5 +14,5 @@ int  effflipeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int 
 void effflipeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
 void effflipeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
 void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, int id, void* value);
+        HDC sink_dc, intptr_t id, void* value);
 #endif

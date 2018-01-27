@@ -87,7 +87,7 @@ void effscrolleffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effect
     MGPlusGraphicDelete (scrollpage_context->graphics);
 }
 
-void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value)
+void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffScrollPageCtxt* scrollpage_context = (EffScrollPageCtxt*)effector->context;

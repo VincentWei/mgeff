@@ -35,7 +35,7 @@ void effcleareffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
     mGEffAnimationSetEndValue(animation, &pt_e);
 }
 
-void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value)
+void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffClearCtxt* cleareffector = (EffClearCtxt*)effector->context;

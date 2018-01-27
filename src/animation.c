@@ -467,7 +467,7 @@ void effanimation_setstate(EffAnimation* anim, int state)
     }
 }
 
-MGEFF_ANIMATION mGEffAnimationCreateEx(void* target, MGEFF_SETPROPERTY_CB setproperty, int id,
+MGEFF_ANIMATION mGEffAnimationCreateEx(void* target, MGEFF_SETPROPERTY_CB setproperty, intptr_t id,
        int size, MGEFF_VARMALLOC_CB cb1, MGEFF_CALCVALUE_CB cb2)
 {
     MGEFF_ANIMATION handle = mGEffAnimationCreate(target, setproperty, id, -1);
@@ -486,7 +486,7 @@ MGEFF_ANIMATION mGEffAnimationCreateEx(void* target, MGEFF_SETPROPERTY_CB setpro
 }
 
 MGEFF_ANIMATION mGEffAnimationCreate(void* target, MGEFF_SETPROPERTY_CB setproperty, 
-        int id, enum EffVariantType varianttype)
+        intptr_t id, enum EffVariantType varianttype)
 {
     EffAnimation* anim = (EffAnimation*)calloc(1, sizeof(EffAnimation));
 
@@ -956,7 +956,7 @@ void mGEffAnimationStop(MGEFF_ANIMATION handle)
 #endif
 }
 
-static void eff_copy_value(MGEFF_ANIMATION animation, void *target, int id, void *value) 
+static void eff_copy_value(MGEFF_ANIMATION animation, void *target, intptr_t id, void *value) 
 {
     memcpy(target, value, ((EffAnimation *)animation)->variantsize);
 }

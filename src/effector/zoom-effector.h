@@ -13,7 +13,7 @@ MGEFF_EFFECTOR effzoomeffector_init (MGEFF_EFFECTOR _effector);
 void effzoomeffector_finalize (MGEFF_EFFECTOR _effector);
 
 void effzoomeffector_ondraw (MGEFF_ANIMATION animation,
-        MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value);
+        MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
 
 void effstarscaneffector_begindraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);

@@ -96,7 +96,7 @@ void effflipeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
     }
     MGPlusPathDelete (flip_context->path);
 }
-void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value)
+void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffFlipCtxt* flip_context = (EffFlipCtxt*)effector->context;

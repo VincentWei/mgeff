@@ -16,4 +16,41 @@ https://github.com/VincentWei/mgeff
 
 ### API changes
 
-(none.)
+We now use a `intptr_t` integer for the identifier of an animation. 
+So you can pass a pointer as the identifier of the animation on 64-bit 
+platform. 
+
+As a result, the prototype of SetProperty callback function of an animation
+changed from
+
+    typedef void (*MGEFF_SETPROPERTY_CB)(MGEFF_ANIMATION handle,
+        void *target, int id, void *value);
+
+to
+
+    typedef void (*MGEFF_SETPROPERTY_CB)(MGEFF_ANIMATION handle,
+        void *target, intptr_t id, void *value);
+
+The function to create an animation object changed from
+
+    MGEFF_ANIMATION mGEffAnimationCreateEx(void *target,
+        MGEFF_SETPROPERTY_CB setproperty, int id, int size,
+        MGEFF_VARMALLOC_CB cb1, MGEFF_CALCVALUE_CB cb2);
+
+to
+
+    MGEFF_ANIMATION mGEffAnimationCreateEx(void *target,
+        MGEFF_SETPROPERTY_CB setproperty, intptr_t id, int size,
+        MGEFF_VARMALLOC_CB cb1, MGEFF_CALCVALUE_CB cb2);
+
+And the following function changed from
+
+    MGEFF_ANIMATION mGEffAnimationCreate(void *target,
+        MGEFF_SETPROPERTY_CB setproperty, int id,
+        enum EffVariantType varianttype);
+
+to
+
+    MGEFF_ANIMATION mGEffAnimationCreate(void *target,
+        MGEFF_SETPROPERTY_CB setproperty, intptr_t id,
+        enum EffVariantType varianttype);

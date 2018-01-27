@@ -142,7 +142,7 @@ void effradarscaneffector_finalize (MGEFF_EFFECTOR _effector)
 }
 
 void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
-        MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value)
+        MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffRadarScanCtxt *radar_context = (EffRadarScanCtxt*)effector->context;

@@ -29,7 +29,7 @@ static void effpusheffector_in_rect(MGEFF_EFFECTOR _effector, RECT* cur_rc, RECT
     }
 }
 
-static void effpusheffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value)
+static void effpusheffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
 

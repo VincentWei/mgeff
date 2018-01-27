@@ -69,7 +69,7 @@ void effbaseeffector_rect(HDC hdc, RECT* rect)
     rect->bottom = GetGDCapability(hdc, GDCAP_MAXY) + 1;
 }
 
-static void effbaserender_ondraw(MGEFF_ANIMATION handle, void* target, int id, void* value)
+static void effbaserender_ondraw(MGEFF_ANIMATION handle, void* target, intptr_t id, void* value)
 {
     EffEffector* effector = (EffEffector*)target;
     HDC sink_dc = effsink_get(effector->sink);

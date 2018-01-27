@@ -92,7 +92,7 @@ void effcubiceffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effecto
 }
 
 void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, int id, void* value)
+        HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     int nZprep, w, h, j, index;

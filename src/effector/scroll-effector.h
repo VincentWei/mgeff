@@ -12,7 +12,7 @@ typedef struct _EffScrollPageCtxt{
 
 MGEFF_EFFECTOR effscrolleffector_init(MGEFF_EFFECTOR _effector);
 void effscrolleffector_finalize(MGEFF_EFFECTOR _effector);
-void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value);
+void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
 void effscrolleffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
 void effscrolleffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
 #endif

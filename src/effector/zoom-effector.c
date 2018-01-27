@@ -18,7 +18,7 @@ void effzoomeffector_finalize (MGEFF_EFFECTOR _effector)
 }
 
 void effzoomeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
-        HDC sink_dc, int id, void *value)
+        HDC sink_dc, intptr_t id, void *value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffZoomCtxt* zoom_context = (EffZoomCtxt*)effector->context;

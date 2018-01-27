@@ -43,7 +43,7 @@ static void effcustomeffector_finalize (MGEFF_EFFECTOR effector)
     free (context);
 }
 
-static void effcustomeffector_ondraw (MGEFF_ANIMATION anim, MGEFF_EFFECTOR effector, HDC sink_dc, int id, void *value)
+static void effcustomeffector_ondraw (MGEFF_ANIMATION anim, MGEFF_EFFECTOR effector, HDC sink_dc, intptr_t id, void *value)
 {
     EffCustomContext *context = (EffCustomContext *) mGEffEffectorGetContext (effector);
     MGEFF_SOURCE src1 = mGEffEffectorGetSource (effector, 0);

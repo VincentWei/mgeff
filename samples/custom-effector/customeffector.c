@@ -43,7 +43,7 @@ static MGEFF_EFFECTOR effme1effector_init (MGEFF_EFFECTOR effector);
 static void effme1effector_finalize (MGEFF_EFFECTOR effector);
 static void effme1effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value);
+                                   intptr_t id, void *value);
 static void effme1effector_begindraw (MGEFF_ANIMATION anim,
                                       MGEFF_EFFECTOR effector);
 
@@ -70,7 +70,7 @@ static MGEFF_EFFECTOR effme2effector_init (MGEFF_EFFECTOR effector);
 static void effme2effector_finalize (MGEFF_EFFECTOR effector);
 static void effme2effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value);
+                                   intptr_t id, void *value);
 static void effme2effector_begindraw (MGEFF_ANIMATION anim,
                                       MGEFF_EFFECTOR effector);
 
@@ -95,7 +95,7 @@ MGEFF_EFFECTOROPS me2 = {
 /* function */
 static void effme3effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value);
+                                   intptr_t id, void *value);
 static void effme3effector_begindraw (MGEFF_ANIMATION anim,
                                       MGEFF_EFFECTOR effector);
 
@@ -122,7 +122,7 @@ static MGEFF_EFFECTOR effme4effector_init (MGEFF_EFFECTOR effector);
 static void effme4effector_finalize (MGEFF_EFFECTOR effector);
 static void effme4effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value);
+                                   intptr_t id, void *value);
 static void effme4effector_begindraw (MGEFF_ANIMATION anim,
                                       MGEFF_EFFECTOR effector);
 
@@ -149,7 +149,7 @@ static MGEFF_EFFECTOR effme5effector_init (MGEFF_EFFECTOR effector);
 static void effme5effector_finalize (MGEFF_EFFECTOR effector);
 static void effme5effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value);
+                                   intptr_t id, void *value);
 static void effme5effector_begindraw (MGEFF_ANIMATION anim,
                                       MGEFF_EFFECTOR effector);
 
@@ -252,7 +252,7 @@ static void effme1effector_finalize (MGEFF_EFFECTOR effector)
 
 static void effme1effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value)
+                                   intptr_t id, void *value)
 {
     EffMECtxt *context;
     MGEFF_SOURCE src1, src2;
@@ -334,7 +334,7 @@ static void effme2effector_finalize (MGEFF_EFFECTOR effector)
 
 static void effme2effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value)
+                                   intptr_t id, void *value)
 {
     EffMECtxt *context;
     MGEFF_SOURCE src1, src2;
@@ -431,7 +431,7 @@ static void effme2effector_begindraw (MGEFF_ANIMATION anim,
 /*****************************************************************************/
 static void effme3effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value)
+                                   intptr_t id, void *value)
 {
     //EffMECtxt *context;
     MGEFF_SOURCE src1, src2;
@@ -535,7 +535,7 @@ static void effme4effector_finalize (MGEFF_EFFECTOR effector)
 
 static void effme4effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value)
+                                   intptr_t id, void *value)
 {
     EffMECtxt *context;
     MGEFF_SOURCE src1, src2;
@@ -652,7 +652,7 @@ static void effme5effector_finalize (MGEFF_EFFECTOR effector)
 
 static void effme5effector_ondraw (MGEFF_ANIMATION anim,
                                    MGEFF_EFFECTOR effector, HDC sink_dc,
-                                   int id, void *value)
+                                   intptr_t id, void *value)
 {
     EffMECtxt *context;
     MGEFF_SOURCE src1, src2;

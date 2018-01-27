@@ -10,6 +10,8 @@
 #ifndef _MGEFF_EFFECTOR_H_
 #define _MGEFF_EFFECTOR_H_
 
+#include <stdint.h>
+
 #include <minigui/common.h>
 #include <minigui/minigui.h>
 #include <minigui/gdi.h>
@@ -60,7 +62,7 @@ typedef int (*MGEFF_EFFECTOR_GETPROPERTY)(MGEFF_EFFECTOR effector,
 
 /**
  * \typedef void (*MGEFF_EFFECTOR_ANIM_ONDRAW)(MGEFF_ANIMATION animation,
- *                  MGEFF_EFFECTOR effector, HDC sink_dc, int id, void *value)
+ *                  MGEFF_EFFECTOR effector, HDC sink_dc, intptr_t id, void *value)
  * \brief Type of effector on draw callback function.
  *
  * It is going to be called every frame
@@ -72,7 +74,7 @@ typedef int (*MGEFF_EFFECTOR_GETPROPERTY)(MGEFF_EFFECTOR effector,
  * \param value animation current value, startvalue <= value <= endvalue
  * */
 typedef void (*MGEFF_EFFECTOR_ANIM_ONDRAW)(MGEFF_ANIMATION animation,
-        MGEFF_EFFECTOR effector, HDC sink_dc, int id, void *value);
+        MGEFF_EFFECTOR effector, HDC sink_dc, intptr_t id, void *value);
 
 /**
  * \typedef void (*MGEFF_EFFECTOR_ONBEGINDRAW)(MGEFF_ANIMATION animation,
