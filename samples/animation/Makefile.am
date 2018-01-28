@@ -1,6 +1,6 @@
 AM_CPPFLAGS=-I..
 
-LDADD=../../src/.libs/libmgeff.a @APP_LIBS@
+LDADD=../../src/libmgeff.la @APP_LIBS@
 
 noinst_PROGRAMS= \
 animation_async     animation_curve        animation_sync    effector_custom \

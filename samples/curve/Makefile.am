@@ -4,6 +4,6 @@ noinst_PROGRAMS=curve
 
 curve_SOURCES=curve.c
 
-curve_LDADD=../../src/.libs/libmgeff.a @APP_LIBS@
+curve_LDADD=../../src/libmgeff.la @APP_LIBS@
 
 SUBDIRS=res

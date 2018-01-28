@@ -4,4 +4,4 @@ noinst_PROGRAMS=btnshow
 
 btnshow_SOURCES=btnshow.c
 
-btnshow_LDADD=../../src/.libs/libmgeff.a @APP_LIBS@
+btnshow_LDADD=../../src/libmgeff.la @APP_LIBS@

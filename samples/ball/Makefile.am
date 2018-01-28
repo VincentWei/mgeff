@@ -4,4 +4,4 @@ noinst_PROGRAMS=ball
 
 ball_SOURCES=ball.c
 
-ball_LDADD=../../src/.libs/libmgeff.a @APP_LIBS@
+ball_LDADD=../../src/libmgeff.la @APP_LIBS@

@@ -18,7 +18,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 #include <math.h>
-#include "mgeffconfig.h"
+#include "mgeff.h"
 #include "easing.h"
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
