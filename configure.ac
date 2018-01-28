@@ -264,9 +264,12 @@ fi
 
 CFLAGS="$CFLAGS -D__MGEFF_LIB__"
 if test "x$devel_mode" = "xyes"; then
+    CPPFLAGS="$CPPFLAGS -D_DEBUG"
     if test "$ac_cv_prog_gcc" = "yes"; then
         CPPFLAGS="$CPPFLAGS -Wall -Werror"
     fi
+else
+    CPPFLAGS="$CPPFLAGS -DNDEBUG"
 fi
 
 if test "$ac_cv_prog_gcc" = "yes"; then
@@ -277,11 +280,15 @@ AM_CONDITIONAL(MGEFF_NOSUFFIX, test "x$with_libsuffix" = "x")
 
 AC_SUBST(LIB_SUFFIX)
 
-APP_LIBS="$APP_LIBS $MINIGUI_LIBS $MGPLUS_LIBS"
-AC_SUBST(APP_LIBS)
+DEP_LIBS="$DEP_LIBS $MINIGUI_LIBS $MGPLUS_LIBS"
+AC_SUBST(DEP_LIBS)
 
-PC_LIBS="-l${MGEFF_LIBNAME}"
+APP_LIBS="-l${MGEFF_LIBNAME} $DEP_LIBS"
+PC_LIBS="$APP_LIBS"
+
 PC_CFLAGS=""
+AC_SUBST(DEP_LIBS)
+AC_SUBST(APP_LIBS)
 AC_SUBST(PC_LIBS)
 AC_SUBST(PC_CFLAGS)
 
