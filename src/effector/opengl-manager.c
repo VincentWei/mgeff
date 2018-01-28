@@ -11,10 +11,12 @@
 #include <assert.h>
 #include <string.h>
 #include <minigui/common.h>
-#include "mgeffconfig.h"
-#if defined(HAVE_MESA_MINIGUI) || defined(HAVE_EGL_SUPPORT)
-#include "opengl-manager.h"
+
 #include "mgeff.h"
+
+#if defined(HAVE_MESA_MINIGUI) || defined(HAVE_EGL_SUPPORT)
+
+#include "opengl-manager.h"
 #include "effector.h"
 
 static GLuint s_textureCounter = 0;

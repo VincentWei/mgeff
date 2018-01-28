@@ -10,8 +10,9 @@
 
 #include <assert.h>
 #include <minigui/common.h>
-#include "mgeffconfig.h"
+
 #include "mgeff.h"
+
 #if HAVE_MESA_MINIGUI
 #include "gl-cubeturn-effector.h"
 #include <GL/gl.h>

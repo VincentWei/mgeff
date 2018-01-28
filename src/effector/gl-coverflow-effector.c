@@ -10,8 +10,9 @@
 
 #include <assert.h>
 #include <minigui/common.h>
-#include "mgeffconfig.h"
+
 #include "mgeff.h"
+
 #if defined(HAVE_MESA_MINIGUI) || defined(HAVE_EGL_SUPPORT)
 
 #include "gl-coverflow-effector.h"
