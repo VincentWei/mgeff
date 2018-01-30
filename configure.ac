@@ -262,6 +262,15 @@ if test "x$effector_windowanimation" = "xyes"; then
     AC_DEFINE(_MGEFF_WINDOWANIMATION, 1, [Define if include window animation])
 fi
 
+DEP_LIBS="$DEP_LIBS $MINIGUI_LIBS $MGPLUS_LIBS"
+APP_LIBS="-l${MGEFF_LIBNAME} $DEP_LIBS"
+PC_LIBS="$APP_LIBS"
+PC_CFLAGS=""
+
+dnl Check sqlite3 and xml2 for samples
+AC_CHECK_LIB(sqlite3, sqlite3_open_v2, APP_LIBS="$APP_LIBS -lsqlite3", foo=bar)
+AC_CHECK_LIB(xml2, xmlFree, APP_LIBS="$APP_LIBS -lxml2", foo=bar)
+
 CFLAGS="$CFLAGS -D__MGEFF_LIB__"
 if test "x$devel_mode" = "xyes"; then
     CPPFLAGS="$CPPFLAGS -D_DEBUG"
@@ -279,14 +288,6 @@ fi
 AM_CONDITIONAL(MGEFF_NOSUFFIX, test "x$with_libsuffix" = "x")
 
 AC_SUBST(LIB_SUFFIX)
-
-DEP_LIBS="$DEP_LIBS $MINIGUI_LIBS $MGPLUS_LIBS"
-AC_SUBST(DEP_LIBS)
-
-APP_LIBS="-l${MGEFF_LIBNAME} $DEP_LIBS"
-PC_LIBS="$APP_LIBS"
-
-PC_CFLAGS=""
 AC_SUBST(DEP_LIBS)
 AC_SUBST(APP_LIBS)
 AC_SUBST(PC_LIBS)
