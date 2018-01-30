@@ -273,7 +273,7 @@ AC_CHECK_LIB(xml2, xmlFree, APP_LIBS="$APP_LIBS -lxml2", foo=bar)
 
 CFLAGS="$CFLAGS -D__MGEFF_LIB__"
 if test "x$devel_mode" = "xyes"; then
-    CPPFLAGS="$CPPFLAGS -D_DEBUG"
+    CPPFLAGS="$CPPFLAGS -DDEBUG -D_DEBUG"
     if test "$ac_cv_prog_gcc" = "yes"; then
         CPPFLAGS="$CPPFLAGS -Wall -Werror"
     fi
