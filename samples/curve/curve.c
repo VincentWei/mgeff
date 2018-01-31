@@ -89,7 +89,7 @@ typedef struct _CURVELIST {
 } CURVELIST;
 
 /*****************************************************************************/
-static void listbox_notif_proc (HWND hwnd, int id, int nc, DWORD add_data);
+static void listbox_notif_proc (HWND hwnd, LINT id, int nc, DWORD add_data);
 
 /* draw a frame */
 static void draw_frame (HWND hWnd);
@@ -395,7 +395,7 @@ static void draw_color (HDC hdc)
 #endif
 }
 
-static void listbox_notif_proc (HWND hWnd, int id, int nc, DWORD add_data)
+static void listbox_notif_proc (HWND hWnd, LINT id, int nc, DWORD add_data)
 {
     int curve;
 
