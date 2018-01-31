@@ -315,9 +315,10 @@ AC_OUTPUT([
     samples/image-box/Makefile
     samples/image-box/res/Makefile
     samples/particle-sys/Makefile
-    samples/easing/Makefile
-    samples/easing/src/Makefile
 ])
+
+dnl samples/easing/Makefile
+dnl samples/easing/src/Makefile
 
 echo
 echo "Creating include directory for samples"
