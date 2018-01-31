@@ -9,8 +9,8 @@ This is the mainline release of mGEff for MiniGUI Version 3.2.x or later.
 
 ## Prerequisites
 
-    * MiniGUI: v3.2.0 or later
-    * mGPlus: v1.4.0 or later
+  * MiniGUI: v3.2.0 or later
+  * mGPlus: v1.4.0 or later
 
 ## Building Instructions
 
