@@ -54,3 +54,4 @@ to
     MGEFF_ANIMATION mGEffAnimationCreate(void *target,
         MGEFF_SETPROPERTY_CB setproperty, intptr_t id,
         enum EffVariantType varianttype);
+
