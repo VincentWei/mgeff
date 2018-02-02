@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # build.sh: mGEff Daily build shell script
-# Copyright (C) 2010 Feynman Software.
+# Copyright (C) 2010 FMSoft
 # Author: humingming
 #
 

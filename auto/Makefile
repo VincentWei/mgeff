@@ -1,6 +1,6 @@
 #
 # Makefile: mGEff Daily build makefile
-# Copyright (C) 2010 Feynman Software.
+# Copyright (C) 2010 FMSoft
 # Author: humingming
 #
 
