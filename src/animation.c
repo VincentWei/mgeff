@@ -1,4 +1,3 @@
-#define dbg() printf("%s %d\n", __FUNCTION__, __LINE__)
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>
@@ -178,7 +177,7 @@ static int effanimation_updatevalue(EffAnimation* anim, int time)
         progress = 1.0f;
 
     curve_value  = effmotioncurve_calcvalue(anim->curve, progress);
-    _MGEFF_PRINTF("%s:time =%d, anim->duration = %d, progess = %f, curve_value = %f\n", 
+    _DBG_PRINTF("%s:time =%d, anim->duration = %d, progess = %f, curve_value = %f\n", 
             __FUNCTION__, time, anim->duration, progress, curve_value);
 
     if (anim->calcValue) {
@@ -296,9 +295,9 @@ MGEFF_BOOL effanimation_ready(EffAnimation* anim)
 static int effanimation_getdelta (EffAnimation* anim, int currenttime)
 {
     int delta = currenttime - anim->lasttime;
-    _MGEFF_PRINTF("%s:direction = %d\n", __FUNCTION__, anim->direction);
+    _DBG_PRINTF("%s:direction = %d\n", __FUNCTION__, anim->direction);
     if (anim->direction != MGEFF_DIR_FORWARD) {
-        _MGEFF_PRINTF("%s:anim->lasttime = %d, currenttime is %d, delta is %d\n", __FUNCTION__, 
+        _DBG_PRINTF("%s:anim->lasttime = %d, currenttime is %d, delta is %d\n", __FUNCTION__, 
                 anim->lasttime, currenttime, delta);
         delta = -delta;
     }
@@ -326,7 +325,7 @@ int effanimation_setcurrenttime(EffAnimation* anim, int currenttime)
     }
 
     anim->currenttime += delta ;
-    _MGEFF_PRINTF("%s: anim->duration = %d, totaltime = %d, anim->loopcount = %d\n", __FUNCTION__, anim->duration, 
+    _DBG_PRINTF("%s: anim->duration = %d, totaltime = %d, anim->loopcount = %d\n", __FUNCTION__, anim->duration, 
             anim->duration * anim->loopcount, anim->loopcount);
 
     total_time = effanimation_get_totaltime(anim);
@@ -373,7 +372,7 @@ int effanimation_setcurrenttime(EffAnimation* anim, int currenttime)
         }
     }
 
-    _MGEFF_PRINTF("%s:time = %d, anim->currentloop = %d, anim->currenttime = %d\n", __FUNCTION__, 
+    _DBG_PRINTF("%s:time = %d, anim->currentloop = %d, anim->currenttime = %d\n", __FUNCTION__, 
             time, anim->currentloop, anim->currenttime);
 
     if (!IS_GROUP(anim) && ((anim->direction == MGEFF_DIR_FORWARD
@@ -557,7 +556,7 @@ static void effanimation_setdirection(EffAnimation* anim, int direction)
     if (anim->dirchanged_cb) {
         anim->dirchanged_cb((MGEFF_ANIMATION)anim);
     }
-    _MGEFF_PRINTF("%s: direction =%d\n", __FUNCTION__, anim->direction);
+    _DBG_PRINTF("%s: direction =%d\n", __FUNCTION__, anim->direction);
 }
 
 void mGEffAnimationSetProperty(MGEFF_ANIMATION handle, enum EffAnimProperty id, int value)
@@ -897,7 +896,6 @@ MGEFF_BOOL mGEffAnimationWait(void* phWnd, MGEFF_ANIMATION handle)
     schedular = effschedular_check_sch();
     if (!schedular) {
         assert(0);
-        dbg();
         return MGEFF_FALSE;
     }
 
@@ -916,7 +914,6 @@ MGEFF_BOOL mGEffAnimationWait(void* phWnd, MGEFF_ANIMATION handle)
                     }
                 }
                 if (! find_flag) {
-                    dbg();
                     break;
                 }
             }

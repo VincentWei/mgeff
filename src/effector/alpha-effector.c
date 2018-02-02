@@ -18,7 +18,7 @@ void effalphaeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
     effbaseeffector_rect(source2->hdc, &rc2);
     effbaseeffector_rect(sink_dc, &rc_sink);
 
-    _MGEFF_PRINTF("%s:value = %f\n", __FUNCTION__, *(float*)value);
+    _DBG_PRINTF("%s:value = %f\n", __FUNCTION__, *(float*)value);
 
     if (sink_dc != HDC_INVALID) {
         SetMemDCAlpha (source2->hdc, MEMDC_FLAG_SRCALPHA,  (*(float*)value) * 255);
