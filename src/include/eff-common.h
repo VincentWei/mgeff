@@ -65,10 +65,6 @@ static inline int eff_time(void) {
 #define CHECK_HANDLE_RET_INV(handle) do { if (handle == NULL) { assert(handle); return INV_PTR;} } while(0)
 #define CHECK_HANDLE_RET_NIL(handle) do { if (handle == NULL) { assert(handle); return NULL;} } while(0)
 
-#ifdef DEBUG
-#   define _MGEFF_PRINTF(fmt, ...) fprintf (stderr, fmt, ##__VA_ARGS__)
-#else
-#   define _MGEFF_PRINTF(fmt, ...) /* NULL */
-#endif
+#define _MGEFF_PRINTF _MG_PRINTF
 
 #endif
