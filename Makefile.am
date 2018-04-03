@@ -1,9 +1,3 @@
-if MGEFF_NOSUFFIX
-SAMPLES=samples
-else
-SAMPLES=
-endif
-
 SUBDIRS=m4 src include $(SAMPLES)
 
 # header files
