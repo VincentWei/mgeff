@@ -1,4 +1,4 @@
-SUBDIRS=m4 src include $(SAMPLES)
+SUBDIRS=m4 src include
 
 # header files
 libmgeffincludedir=$(includedir)/mgeff

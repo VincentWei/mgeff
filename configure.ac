@@ -311,15 +311,3 @@ AC_OUTPUT([
     src/include/Makefile
     src/effector/Makefile
 ])
-
-dnl samples/easing/Makefile
-dnl samples/easing/src/Makefile
-
-echo
-echo "Creating include directory for samples"
-cd samples/
-if test ! -h mgeff; then
-    ln -s ../include mgeff
-fi
-cd ..
-echo "Done."
