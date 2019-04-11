@@ -10,3 +10,5 @@ pkgconfig_DATA=mgeff.pc
 
 EXTRA_DIST=INSTALL README.md LICENSE
 
+docs:
+	doxygen Doxyfile
