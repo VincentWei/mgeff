@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.60)
-AC_INIT(libmgeff, 1.2.0)
+AC_INIT(libmgeff, 1.2.1)
 AC_CONFIG_SRCDIR(src/animation.c)
 AM_CONFIG_HEADER(mgeffconfig.h)
 
@@ -20,7 +20,7 @@ dnl Set various version strings
 #
 MGEFF_MAJOR_VERSION=1
 MGEFF_MINOR_VERSION=2
-MGEFF_MICRO_VERSION=0
+MGEFF_MICRO_VERSION=1
 MGEFF_INTERFACE_AGE=0
 MGEFF_BINARY_AGE=0
 

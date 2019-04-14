@@ -1,24 +1,36 @@
 # Release Notes
 
-## Version 1.2.0
+## Version 1.2.1
 
 The MiniGUI development team announces the availability of mGEff 1.2.0.
-All users of MiniGUI are encouraged to test this version carefully, and 
+All users of MiniGUI are encouraged to test this version carefully, and
 report any bugs and incompatibilities on GitHub:
 
 https://github.com/VincentWei/mgeff
 
 ### What's new in this version
 
-  * Tune code to comply with MiniGUI 3.2.x. 
+  * Fix a bug which will cause SEGV on 64-bit platform.
+
+## Version 1.2.0
+
+The MiniGUI development team announces the availability of mGEff 1.2.0.
+All users of MiniGUI are encouraged to test this version carefully, and
+report any bugs and incompatibilities on GitHub:
+
+https://github.com/VincentWei/mgeff
+
+### What's new in this version
+
+  * Tune code to comply with MiniGUI 3.2.x.
   * Tune code for 64-bit platform.
   * Tune code to eliminate all warnings.
 
 ### API changes
 
-We now use a `intptr_t` integer for the identifier of an animation. 
-So you can pass a pointer as the identifier of the animation on 64-bit 
-platform. 
+We now use a `intptr_t` integer for the identifier of an animation.
+So you can pass a pointer as the identifier of the animation on 64-bit
+platform.
 
 As a result, the prototype of SetProperty callback function of an animation
 changed from

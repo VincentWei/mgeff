@@ -59,7 +59,7 @@ struct _EffAnimation {
     int   lasttime;
     int   duration;
     int   priority;
-    int   property_id;
+    intptr_t property_id;
     void* targetobject;
     void* context;
     EffMotionCurve* curve;
