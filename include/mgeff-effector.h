@@ -80,7 +80,7 @@ typedef int (*MGEFF_EFFECTOR_SETPROPERTY)(MGEFF_EFFECTOR effector,
 /**
  * \typedef int (*MGEFF_EFFECTOR_GETPROPERTY)(MGEFF_EFFECTOR effector,
  *                  int property_id, int* pValue)
- * \brief Type of effector get property callback functio.
+ * \brief Type of effector get property callback function.
  *
  * \param effector effector handle.
  * \param property_id property id.
