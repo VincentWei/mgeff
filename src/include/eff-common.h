@@ -48,7 +48,7 @@ static inline void eff_ms_sleep(int ms) {
 #endif
 }
 
-static inline int eff_time(void) {
+static inline DWORD eff_time(void) {
 #ifndef WIN32
     /* MiniGUI API */
     DWORD GetTickCount(void);

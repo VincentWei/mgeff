@@ -123,7 +123,7 @@ void effschedular_sync_run(EffSchedular *schedular, EffAnimation *animation) {
             eff_ms_sleep(0); /* XXX: */
             continue;
         } else if (ret == 0) {
-            eff_ms_sleep(16);
+            eff_ms_sleep(10);
         } else {
             break;
         }

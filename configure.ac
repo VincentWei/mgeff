@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.60)
-AC_INIT(libmgeff, 1.2.1)
+AC_INIT(libmgeff, 1.2.2)
 AC_CONFIG_SRCDIR(src/animation.c)
 AM_CONFIG_HEADER(mgeffconfig.h)
 
