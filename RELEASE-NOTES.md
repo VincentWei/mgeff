@@ -1,5 +1,19 @@
 # Release Notes
 
+## Version 1.2.3
+
+The MiniGUI development team announces the availability of mGEff 1.2.3.
+All users of MiniGUI are encouraged to test this version carefully, and
+report any bugs and incompatibilities on GitHub:
+
+https://github.com/VincentWei/mgeff
+
+### What's new in this version
+
+This version mainly fixed some minor issues:
+
+- Tune format string for `size_t` values.
+
 ## Version 1.2.2
 
 The MiniGUI development team announces the availability of mGEff 1.2.2.
