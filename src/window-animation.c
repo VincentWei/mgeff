@@ -61,8 +61,8 @@ extern void ReleaseSecondarySubDC (HDC secondary_subdc);
 
 void default_background_generator(HDC hdc, RECT *rc)
 {
-    DWORD color = GetWindowElementColor(WE_BGC_DESKTOP);
-    DWORD old_color = SetBrushColor(hdc, color);
+    gal_pixel color = GetWindowElementPixelEx (HWND_DESKTOP, hdc, WE_BGC_DESKTOP);
+    gal_pixel old_color = SetBrushColor(hdc, color);
     if (HDC_SCREEN == hdc) {
         FillBox(hdc, rc->left, rc->top, RECTWP(rc), RECTHP(rc));
     }
