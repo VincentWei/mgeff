@@ -44,16 +44,17 @@
 #define _EFF_EFFECTORLEAFWIN_H
 #include "effector.h"
 
-typedef struct _EffLeafCtxt{
+typedef struct _EffLeafCtxt {
     BOOL vertical;
     int  nrows;
-}EffLeafCtxt;
+} EffLeafCtxt;
 
-MGEFF_EFFECTOR effleafceffector_init(MGEFF_EFFECTOR _effector);
-void effleafceffector_finalize(MGEFF_EFFECTOR _effector);
-int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value);
-void effleafeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, intptr_t id, void* value);
+static MGEFF_EFFECTOR effleafceffector_init(MGEFF_EFFECTOR _effector);
+static void effleafceffector_finalize(MGEFF_EFFECTOR _effector);
+static int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector,
+        int property_id, int value);
+static void effleafeffector_ondraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
 //void effleafeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR effector);
 //void effleafeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR effector);
 #endif

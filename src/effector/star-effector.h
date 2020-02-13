@@ -45,34 +45,29 @@
 #define _STAR_EFFECTOR_H
 
 #include "effector.h"
+
 #include <mgplus/mgplus.h>
 
-
-typedef struct _EffStarCtxt{
+typedef struct _EffStarCtxt {
     int zoom;
     int current_angle;
 
     HPATH path;
     PCLIPRGN pRgn;
-}EffStarCtxt;
+} EffStarCtxt;
 
 
-MGEFF_EFFECTOR effstareffector_init (MGEFF_EFFECTOR _effector);
-void effstareffector_finalize (MGEFF_EFFECTOR _effector);
-
-void effstareffector_ondraw (MGEFF_ANIMATION animation,
+static MGEFF_EFFECTOR effstareffector_init (MGEFF_EFFECTOR _effector);
+static void effstareffector_finalize (MGEFF_EFFECTOR _effector);
+static void effstareffector_ondraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
-
-void effstarscaneffector_begindraw (MGEFF_ANIMATION animation,
+static void effstarscaneffector_begindraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
-
-void effstareffector_enddraw (MGEFF_ANIMATION animation,
+static void effstareffector_enddraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
-
-int effstareffector_setproperty (MGEFF_EFFECTOR _effector,
+static int effstareffector_setproperty (MGEFF_EFFECTOR _effector,
         int property_id, int value);
-
-int effstareffector_getproperty (MGEFF_EFFECTOR _effector,
+static int effstareffector_getproperty (MGEFF_EFFECTOR _effector,
         int property_id, int* value);
 
 #endif /* end of _STAR_EFFECTOR_H */

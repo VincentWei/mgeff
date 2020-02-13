@@ -49,13 +49,15 @@
 #if defined(HAVE_MESA_MINIGUI) || defined(HAVE_EGL_SUPPORT)
 
 #include "gl-coverflow-effector.h"
+
 const GLfloat MID_PANEL_PITCH = 2.4f;
 const GLfloat PANEL_GAP = 2.0f; // gap between two sides panels
 const GLfloat PANEL_SPACING = 1.0f;
 const GLfloat Z_BASE_OFFSET = -16.0f;
-GLuint g_textureSequence[MAX_FLOW] = {
+static GLuint g_textureSequence[MAX_FLOW] = {
     2, 1, 0, 3, 4, 5, 6};
-MGEFF_EFFECTOR effcoverfloweffector_init(MGEFF_EFFECTOR _effector)
+
+static MGEFF_EFFECTOR effcoverfloweffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffCoverFlowCtxt* coverflow_context = 
@@ -64,13 +66,13 @@ MGEFF_EFFECTOR effcoverfloweffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effcoverfloweffector_finalize(MGEFF_EFFECTOR _effector)
+static void effcoverfloweffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effcoverfloweffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effcoverfloweffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffCoverFlowCtxt *coverflow_context = (EffCoverFlowCtxt *)effector->context;
@@ -112,7 +114,7 @@ void effcoverfloweffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     }
 }
 
-void effcoverfloweffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
+static void effcoverfloweffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
         HDC sink_dc, int id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -240,7 +242,7 @@ void effcoverfloweffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effe
     }
 }
 
-void effcoverfloweffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effcoverfloweffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffCoverFlowCtxt *coverflow_context = (EffCoverFlowCtxt *)effector->context;
@@ -248,7 +250,7 @@ void effcoverfloweffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _eff
     DestroyOpenGLManager(coverflow_context->m_mesaManager);
 }
 
-int effcoverfloweffector_setproperty(MGEFF_EFFECTOR _effector,
+static int effcoverfloweffector_setproperty(MGEFF_EFFECTOR _effector,
         int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;

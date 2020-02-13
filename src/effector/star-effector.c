@@ -79,8 +79,7 @@ typedef enum _star_order {
     STAR_ORDER_MAX
 } STAR_ORDER;
 
-
-MGEFF_EFFECTOR effstareffector_init (MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effstareffector_init (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffStarCtxt* star_context = (EffStarCtxt*)calloc (1, sizeof(EffStarCtxt));
@@ -90,14 +89,13 @@ MGEFF_EFFECTOR effstareffector_init (MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effstareffector_finalize (MGEFF_EFFECTOR _effector)
+static void effstareffector_finalize (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-
-void effstareffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
+static void effstareffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
         HDC sink_dc, intptr_t id, void *value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -239,8 +237,7 @@ void effstareffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
         free (pts_f);
 }
 
-
-void effstareffector_begindraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effstareffector_begindraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     int r_s, r_e;
     EffEffector *effector = (EffEffector *)_effector;
@@ -295,7 +292,7 @@ void effstareffector_begindraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
 }
 
 
-void effstareffector_enddraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effstareffector_enddraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffStarCtxt* star_context = (EffStarCtxt*)effector->context;
@@ -304,8 +301,7 @@ void effstareffector_enddraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effecto
     MGPlusPathDelete (star_context->path);
 }
 
-
-int effstareffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int value)
+static int effstareffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffStarCtxt* star_context = (EffStarCtxt*)effector->context;
@@ -336,8 +332,7 @@ int effstareffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int 
     return -1;
 }
 
-
-int effstareffector_getproperty (MGEFF_EFFECTOR _effector, int property_id, int* value)
+static int effstareffector_getproperty (MGEFF_EFFECTOR _effector, int property_id, int* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffStarCtxt* star_context = (EffStarCtxt*)effector->context;

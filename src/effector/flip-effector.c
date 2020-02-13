@@ -52,7 +52,7 @@
 
 const int FLIP_ANGLE = 180;
 
-MGEFF_EFFECTOR effflipeffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effflipeffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffFlipCtxt* flip_context =
@@ -62,7 +62,7 @@ MGEFF_EFFECTOR effflipeffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-MGEFF_EFFECTOR effflipeffector_mgplus_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effflipeffector_mgplus_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffFlipCtxt* flip_context =
@@ -72,13 +72,13 @@ MGEFF_EFFECTOR effflipeffector_mgplus_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effflipeffector_finalize(MGEFF_EFFECTOR _effector)
+static void effflipeffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effflipeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effflipeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     float v_s = 0.0f, v_e = 1.0f;
     EffEffector *effector = (EffEffector *)_effector;
@@ -127,7 +127,7 @@ void effflipeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effect
     mGEffAnimationSetEndValue (animation, &v_e);
 }
 
-void effflipeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector) 
+static void effflipeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector) 
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffFlipCtxt* flip_context = (EffFlipCtxt*)effector->context;
@@ -138,7 +138,8 @@ void effflipeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
     }
     MGPlusPathDelete (flip_context->path);
 }
-void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
+
+static void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffFlipCtxt* flip_context = (EffFlipCtxt*)effector->context;

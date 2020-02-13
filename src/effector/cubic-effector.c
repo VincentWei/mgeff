@@ -50,7 +50,7 @@
 
 const int ROTATE_MAX = 90;
 
-MGEFF_EFFECTOR effcubiceffector_init (MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effcubiceffector_init (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffCubicCtxt *cubic_context =
@@ -60,7 +60,7 @@ MGEFF_EFFECTOR effcubiceffector_init (MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-MGEFF_EFFECTOR effcubiceffector_mgplus_init (MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effcubiceffector_mgplus_init (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffCubicCtxt *cubic_context =
@@ -70,13 +70,13 @@ MGEFF_EFFECTOR effcubiceffector_mgplus_init (MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effcubiceffector_finalize (MGEFF_EFFECTOR _effector)
+static void effcubiceffector_finalize (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effcubiceffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effcubiceffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     float s = 0.0f, e = 1.0f;
     EffEffector *effector = (EffEffector *)_effector;
@@ -122,7 +122,7 @@ void effcubiceffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
     mGEffAnimationSetEndValue(animation, &e);
 }
 
-void effcubiceffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effcubiceffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffCubicCtxt *cubic_context = (EffCubicCtxt *)effector->context;
@@ -133,7 +133,7 @@ void effcubiceffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effecto
     }
 }
 
-void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
+static void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
         HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -374,7 +374,7 @@ void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
     }
 }
 
-int effcubliceffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
+static int effcubliceffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     switch (property_id)

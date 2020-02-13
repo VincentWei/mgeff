@@ -86,7 +86,7 @@ int effbaseeffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* 
     return -1;
 }
 
-void effbaseeffector_begindraw(MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
+static void effbaseeffector_begindraw(MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
 {
     float s = 0.0f, e = 1.0f;
     mGEffAnimationSetStartValue(handle, &s);
@@ -102,7 +102,6 @@ static void effbaserender_enddraw(MGEFF_ANIMATION handle)
     }
 }
 
-
 void effbaseeffector_rect(HDC hdc, RECT* rect)
 {
     rect->left = 0;
@@ -114,9 +113,9 @@ void effbaseeffector_rect(HDC hdc, RECT* rect)
 static void effbaserender_ondraw(MGEFF_ANIMATION handle, void* target, intptr_t id, void* value)
 {
     EffEffector* effector = (EffEffector*)target;
-    HDC sink_dc = effsink_get(effector->sink);
+    HDC sink_dc = __mgeff_effsink_get(effector->sink);
     effector->ops->ondraw(handle, (MGEFF_EFFECTOR)effector, sink_dc, id, value);
-    effsink_release(effector->sink, sink_dc);
+    __mgeff_effsink_release(effector->sink, sink_dc);
 }
 
 static EffEffector* effbaseeffector_init(MGEFF_EFFECTOR _effector)

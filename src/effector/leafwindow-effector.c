@@ -45,7 +45,7 @@
 #include "leafwindow-effector.h"
 
 #ifdef _MGEFF_LEAFWINDOWEFFECTOR
-int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
+static int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffLeafCtxt* leaf_context = (EffLeafCtxt*)effector->context;
@@ -77,7 +77,7 @@ int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int
     return -1;
 }
 
-int  effleafceffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* pValue)
+static int  effleafceffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* pValue)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffLeafCtxt* leaf_context = (EffLeafCtxt*)effector->context;
@@ -99,7 +99,7 @@ int  effleafceffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int
     return -1;
 }
 
-void effleafeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
+static void effleafeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
         HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -211,7 +211,7 @@ void effleafeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
 }
 
 
-MGEFF_EFFECTOR effleafeffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effleafeffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffLeafCtxt* leaf_context =
@@ -223,7 +223,7 @@ MGEFF_EFFECTOR effleafeffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effleafeffector_finalize(MGEFF_EFFECTOR _effector)
+static void effleafeffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);

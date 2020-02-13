@@ -45,7 +45,7 @@
 #include "eff-common.h"
 
 #ifdef _MGEFF_ZOOMEFFECTOR
-MGEFF_EFFECTOR effzoomeffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effzoomeffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffZoomCtxt* zoom_context = (EffZoomCtxt*)calloc(1, sizeof(EffZoomCtxt));
@@ -53,13 +53,13 @@ MGEFF_EFFECTOR effzoomeffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effzoomeffector_finalize (MGEFF_EFFECTOR _effector)
+static void effzoomeffector_finalize (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effzoomeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
+static void effzoomeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
         HDC sink_dc, intptr_t id, void *value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -114,7 +114,7 @@ void effzoomeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
     zoom_context->prev_rc = cur_rc;
 }
 
-void effzoomeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effzoomeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffZoomCtxt* zoom_context = (EffZoomCtxt*)effector->context;
@@ -163,7 +163,7 @@ void effzoomeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effect
     mGEffAnimationSetEndValue (animation, &rc_e);
 }
 
-int effzoomeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
+static int effzoomeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffZoomCtxt* zoom_context = (EffZoomCtxt*)effector->context;
@@ -183,7 +183,7 @@ int effzoomeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int v
     return -1;
 }
 
-int effzoomeffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* value)
+static int effzoomeffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffZoomCtxt* zoom_context = (EffZoomCtxt*)effector->context;

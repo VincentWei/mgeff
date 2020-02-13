@@ -153,7 +153,7 @@ static int scan_vertex(int start_angle, int end_angle, int mangle,
     return i;
 }
 
-MGEFF_EFFECTOR effradarscaneffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effradarscaneffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
 
@@ -166,13 +166,13 @@ MGEFF_EFFECTOR effradarscaneffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effradarscaneffector_finalize (MGEFF_EFFECTOR _effector)
+static void effradarscaneffector_finalize (MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
+static void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -218,7 +218,7 @@ void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
     }
 }
 
-void effradarscaneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effradarscaneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffRadarScanCtxt *radar_context = (EffRadarScanCtxt*)effector->context;
@@ -247,25 +247,25 @@ void effradarscaneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     radar_context->special_points[3].y = rc.top;
 }
 
-void effradarscaneffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effradarscaneffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffRadarScanCtxt *radar_context = (EffRadarScanCtxt*)effector->context;
 
     EffHDCSource *source1 = (EffHDCSource *)(effector->source_list.next);
     EffHDCSource *source2 = (EffHDCSource *)(source1->list.next);
-    HDC sink_dc = effsink_get(effector->sink);
+    HDC sink_dc = __mgeff_effsink_get(effector->sink);
     RECT rc;
     effbaseeffector_rect(source2->hdc, &rc);
     SelectClipRect(sink_dc, &rc);
     BitBlt(source2->hdc, rc.left, rc.top, RECTW(rc), RECTH(rc),
             sink_dc, 0, 0, 0);
-    effsink_release(effector->sink, sink_dc);
+    __mgeff_effsink_release(effector->sink, sink_dc);
     EmptyClipRgn(&radar_context->cliprgn);
     DestroyFreeClipRectList(&radar_context->cliprc_heap);
 }
 
-int effradarscaneffector_setproperty(MGEFF_EFFECTOR _effector,
+static int effradarscaneffector_setproperty(MGEFF_EFFECTOR _effector,
         int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -292,7 +292,7 @@ int effradarscaneffector_setproperty(MGEFF_EFFECTOR _effector,
     return -1;
 }
 
-int effradarscaneffector_getproperty (MGEFF_EFFECTOR _effector,
+static int effradarscaneffector_getproperty (MGEFF_EFFECTOR _effector,
         int property_id, int *value)
 {
     EffEffector *effector = (EffEffector *)_effector;

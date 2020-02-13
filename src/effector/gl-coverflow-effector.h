@@ -85,15 +85,16 @@ typedef struct _EffCoverFlowCtxt
     HDC     m_background;
 } EffCoverFlowCtxt;
 
+#if 0
 /* static EffCoverFlowEffector * create(int direction, int ms_total_time,
  *         int total_frames);
  * virtual ~EffCoverFlowEffector();
  */
-int beginDraw();
-int drawOneFrame();
-int endDraw();
-int setBackground(HDC hdc);
-void slipDirection(SLIP_DIRECTION);
+//int beginDraw();
+//int drawOneFrame();
+//int endDraw();
+//int setBackground(HDC hdc);
+//void slipDirection(SLIP_DIRECTION);
 //void index(int);
 //int index() const;
 
@@ -101,13 +102,15 @@ void slipDirection(SLIP_DIRECTION);
  */
 void renderScene();
 void turnNext();
+#endif
 
-
-MGEFF_EFFECTOR effcoverfloweffector_init(MGEFF_EFFECTOR _effector);
-void effcoverfloweffector_finalize(MGEFF_EFFECTOR _effector);
-void effcoverfloweffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
-void effcoverfloweffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
-void effcoverfloweffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
-        HDC sink_dc, int id, void* value);
+static MGEFF_EFFECTOR effcoverfloweffector_init(MGEFF_EFFECTOR _effector);
+static void effcoverfloweffector_finalize(MGEFF_EFFECTOR _effector);
+static void effcoverfloweffector_begindraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector);
+static void effcoverfloweffector_enddraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector);
+static void effcoverfloweffector_ondraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value);
 
 #endif   /* ----- #ifndef GL_COVERFLOW_EFFECTOR_INC  ----- */

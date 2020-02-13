@@ -54,7 +54,7 @@ typedef struct _EffSink{
     //RECT rect;
 }EffSink;
 
-HDC effsink_get(EffSink* sink);
-void effsink_release(EffSink* sink, HDC hdc);
+HDC __mgeff_effsink_get(EffSink* sink);
+void __mgeff_effsink_release(EffSink* sink, HDC hdc);
 
 #endif

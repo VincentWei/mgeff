@@ -51,7 +51,7 @@
 #ifdef _MGEFF_SCROLLEFFECTOR
 #define SCROLL_COMPLETE (1.0f)
 
-MGEFF_EFFECTOR effscrolleffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effscrolleffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffScrollPageCtxt* scrollpage_context =
@@ -60,13 +60,13 @@ MGEFF_EFFECTOR effscrolleffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effscrolleffector_finalize(MGEFF_EFFECTOR _effector)
+static void effscrolleffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effscrolleffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effscrolleffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     float value_start = 0.0f;
     float value_end = 1.0f;
@@ -116,7 +116,7 @@ void effscrolleffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effe
     MGPlusSetSolidBrushColor (scrollpage_context->brush, 0xCC2D415F);
 }
 
-void effscrolleffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effscrolleffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffScrollPageCtxt* scrollpage_context = (EffScrollPageCtxt*)effector->context;
@@ -129,7 +129,7 @@ void effscrolleffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effect
     MGPlusGraphicDelete (scrollpage_context->graphics);
 }
 
-void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
+static void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffScrollPageCtxt* scrollpage_context = (EffScrollPageCtxt*)effector->context;

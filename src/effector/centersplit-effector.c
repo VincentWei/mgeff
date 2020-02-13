@@ -47,7 +47,8 @@
 #include "eff-common.h"
 
 #ifdef _MGEFF_CENTERSPLITEFFECTOR
-void effcenterspliteffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
+
+static void effcenterspliteffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
         HDC sink_dc, intptr_t id, void *value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -160,7 +161,7 @@ void effcenterspliteffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     }
 }
 
-void effcenterspliteffector_begindraw (MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
+static void effcenterspliteffector_begindraw (MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
 {
     float value = 0.0f;
     mGEffAnimationSetStartValue (handle, &value);
@@ -168,7 +169,7 @@ void effcenterspliteffector_begindraw (MGEFF_ANIMATION handle, MGEFF_EFFECTOR _e
     mGEffAnimationSetEndValue (handle, &value);
 }
 
-int effcenterspliteffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int value)
+static int effcenterspliteffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
 

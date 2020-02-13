@@ -57,17 +57,17 @@ typedef struct _EffRadarScanCtxt{
     int npieces;
 }EffRadarScanCtxt;
 
-MGEFF_EFFECTOR effradarscaneffector_init(MGEFF_EFFECTOR _effector);
+static MGEFF_EFFECTOR effradarscaneffector_init(MGEFF_EFFECTOR _effector);
 
-void effradarscaneffector_finalize (MGEFF_EFFECTOR _effector);
+static void effradarscaneffector_finalize (MGEFF_EFFECTOR _effector);
 
-void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
+static void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
-void effradarscaneffector_begindraw(MGEFF_ANIMATION animation,
+static void effradarscaneffector_begindraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
-void effradarscaneffector_enddraw(MGEFF_ANIMATION animation,
+static void effradarscaneffector_enddraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
-int  effradarscaneffector_setproperty(MGEFF_EFFECTOR _effector,
+static int  effradarscaneffector_setproperty(MGEFF_EFFECTOR _effector,
         int property_id, int value);
 
 #endif /* end of _EFF_RADAR_SCAN_H */

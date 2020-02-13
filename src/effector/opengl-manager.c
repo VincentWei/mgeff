@@ -53,6 +53,7 @@
 #include "effector.h"
 
 static GLuint s_textureCounter = 0;
+
 #if HAVE_EGL_SUPPORT
 BOOL mgEGLinitialize(OpenGLManager* gl_man)
 {
@@ -288,7 +289,7 @@ GLuint  textureLoadAsHDC(OpenGLManager* mesaman, HDC hdc, GLenum target)
     return 0;
 }
 
-GLuint  textureLoad(OpenGLManager* mesaman, EffHDCSource *src, GLenum target/* = GL_TEXTURE_2D*/)
+GLuint textureLoad(OpenGLManager* mesaman, EffHDCSource *src, GLenum target/* = GL_TEXTURE_2D*/)
 {
     if (NULL != mesaman && NULL != src) {
         return textureLoadAsHDC(mesaman, src->hdc, target);
@@ -296,7 +297,7 @@ GLuint  textureLoad(OpenGLManager* mesaman, EffHDCSource *src, GLenum target/* =
     return -1;
 }
 
-void    texturesUnload(OpenGLManager* mesaman)
+void texturesUnload(OpenGLManager* mesaman)
 {
     glDeleteTextures(MAX_TEXTURES, mesaman->m_textureID);
 }

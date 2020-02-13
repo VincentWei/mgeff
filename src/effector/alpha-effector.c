@@ -45,7 +45,8 @@
 #include "eff-common.h"
 
 #ifdef _MGEFF_ALPHAEFFECTOR
-void effalphaeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
+
+static void effalphaeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
         HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;

@@ -47,7 +47,8 @@
 #include "clear-effector.h"
 
 #ifdef _MGEFF_CLEAREFFECTOR
-void effcleareffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+
+static void effcleareffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
 
@@ -77,7 +78,7 @@ void effcleareffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
     mGEffAnimationSetEndValue(animation, &pt_e);
 }
 
-void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
+static void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffClearCtxt* cleareffector = (EffClearCtxt*)effector->context;
@@ -109,7 +110,7 @@ void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector
 #endif
 }
 
-MGEFF_EFFECTOR effcleareffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effcleareffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffClearCtxt* clear_context = (EffClearCtxt*)calloc(1, sizeof(EffClearCtxt));
@@ -117,7 +118,7 @@ MGEFF_EFFECTOR effcleareffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effcleareffector_finalize(MGEFF_EFFECTOR _effector)
+static void effcleareffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);

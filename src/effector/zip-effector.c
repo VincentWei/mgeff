@@ -45,7 +45,8 @@
 #include "eff-common.h"
 
 #ifdef  _MGEFF_ZIPEFFECTOR
-void effzipeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
+
+static void effzipeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
            HDC sink_dc, intptr_t id, void *value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -113,7 +114,7 @@ void effzipeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector,
             0);
 }
 
-void effzipeffector_begindraw (MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
+static void effzipeffector_begindraw (MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
 {
     float value = 0.0f;
     mGEffAnimationSetStartValue (handle, &value);
@@ -121,7 +122,7 @@ void effzipeffector_begindraw (MGEFF_ANIMATION handle, MGEFF_EFFECTOR _effector)
     mGEffAnimationSetEndValue (handle, &value);
 }
 
-int effzipeffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int value)
+static int effzipeffector_setproperty (MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector *effector = (EffEffector *)_effector;
     if (property_id == MGEFF_PROPERTY_DIRECTION) {
