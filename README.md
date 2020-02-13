@@ -9,7 +9,7 @@ This is the mainline release of mGEff for MiniGUI Version 3.2.x or later.
 
 ## Prerequisites
 
-  * MiniGUI: v3.2.0 or later
+  * MiniGUI: v4.2.0 or later
   * mGPlus: v1.4.0 or later
 
 ## Building Instructions
@@ -26,7 +26,7 @@ For more information, please run
 
 ## Copying
 
-Copyright (C) 2008 ~ 2019, Beijing FMSoft Technologies Co., Ltd.
+Copyright (C) 2008 ~ 2020, Beijing FMSoft Technologies Co., Ltd.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
