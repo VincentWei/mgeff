@@ -45,23 +45,24 @@
 #define _EFF_GL_RECT_ROTATE_H
 #include "effector.h"
 #include "opengl-manager.h"
-typedef struct _EffGLRectRotateCtxt{
+
+typedef struct _EffGLRectRotateCtxt {
     unsigned int m_texture_id[2];
     float m_angle;
     float m_x;
     float m_y;
     float m_z;
     OpenGLManager* mesa_manager;
-}EffGLRectRotateCtxt;
+} EffGLRectRotateCtxt;
 
-MGEFF_EFFECTOR effglrectrotateeffector_init (MGEFF_EFFECTOR _effector);
-void effglrectrotateeffector_finalize (MGEFF_EFFECTOR _effector);
-int  effglrectrotateeffector_setproperty(MGEFF_EFFECTOR _effector,
+static MGEFF_EFFECTOR effglrectrotateeffector_init (MGEFF_EFFECTOR _effector);
+static void effglrectrotateeffector_finalize (MGEFF_EFFECTOR _effector);
+static int  effglrectrotateeffector_setproperty(MGEFF_EFFECTOR _effector,
         int property_id, int value);
-void effglrectrotateeffector_ondraw(MGEFF_ANIMATION animation,
+static void effglrectrotateeffector_ondraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value);
-void effglrectrotateeffector_begindraw(MGEFF_ANIMATION animation,
+static void effglrectrotateeffector_begindraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
-void effglrectrotateeffector_enddraw(MGEFF_ANIMATION animation,
+static void effglrectrotateeffector_enddraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
 #endif

@@ -68,9 +68,9 @@ typedef struct _WindowAnimationContext{
     RENDER_HANDLER m_render_handler; /* animation property handle. */
 } WindowAnimationContext;
 
-HDC hold_window_for_foreground(WindowAnimationContext* ctxt);
-void drop_window_release_foreground(WindowAnimationContext* ctxt);
-void animation_generate(MGEFF_ANIMATION handle, WindowAnimationContext *context, int id, RECT *rc);
-void effector_animation_play(MGEFF_WindowAnimCtxt* ctxt);
-LRESULT AnimateWindowProcHook(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+static HDC hold_window_for_foreground(WindowAnimationContext* ctxt);
+static void drop_window_release_foreground(WindowAnimationContext* ctxt);
+static void animation_generate(MGEFF_ANIMATION handle, WindowAnimationContext *context, int id, RECT *rc);
+static void effector_animation_play(MGEFF_WindowAnimCtxt* ctxt);
+static LRESULT AnimateWindowProcHook(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 #endif   /* ----- #ifndef WINDOW_ANIMATION_INC  ----- */

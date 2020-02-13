@@ -52,7 +52,7 @@
 
 const int TURN_ANGLE = 90;
 
-int  gl_initialize(MGEFF_EFFECTOR _effector)
+static int gl_initialize(MGEFF_EFFECTOR _effector)
 {
     EffEffector * effector = (EffEffector *)_effector;
     EffCubeTurnCtxt *cubeturn_context = (EffCubeTurnCtxt *)effector->context;
@@ -76,7 +76,7 @@ int  gl_initialize(MGEFF_EFFECTOR _effector)
     return -1;
 }
 
-int  effcubeturneffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
+static int  effcubeturneffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector * effector = (EffEffector *)_effector;
     EffCubeTurnCtxt *cubeturn_context = (EffCubeTurnCtxt *)effector->context;
@@ -100,7 +100,7 @@ int  effcubeturneffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, 
     return -1;
 }
 
-void effcubeturneffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
+static void effcubeturneffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
         HDC sink_dc, int id, void* value)
 {
     assert(0 != sink_dc);
@@ -164,7 +164,7 @@ void effcubeturneffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effec
     mgMesaSwapBuffers(sink_dc);
 }
 
-MGEFF_EFFECTOR effcubeturneffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effcubeturneffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector * effector = (EffEffector *)_effector;
 
@@ -174,13 +174,13 @@ MGEFF_EFFECTOR effcubeturneffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effcubeturneffector_finalize(MGEFF_EFFECTOR _effector)
+static void effcubeturneffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector * effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effcubeturneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effcubeturneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector * effector = (EffEffector *)_effector;
     EffCubeTurnCtxt *cubeturn_context = (EffCubeTurnCtxt *)effector->context;
@@ -192,7 +192,7 @@ void effcubeturneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
     gl_initialize(_effector);
 }
 
-void effcubeturneffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effcubeturneffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector * effector = (EffEffector *)_effector;
     EffCubeTurnCtxt *cubeturn_context = (EffCubeTurnCtxt *)effector->context;

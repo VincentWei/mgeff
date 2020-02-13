@@ -59,7 +59,7 @@
 extern HDC GetSecondarySubDC (HDC secondary_dc, HWND hwnd_child, BOOL client);
 extern void ReleaseSecondarySubDC (HDC secondary_subdc);
 
-void default_background_generator(HDC hdc, RECT *rc)
+static void default_background_generator(HDC hdc, RECT *rc)
 {
     gal_pixel color = GetWindowElementPixelEx (HWND_DESKTOP, hdc, WE_BGC_DESKTOP);
     gal_pixel old_color = SetBrushColor(hdc, color);
@@ -114,7 +114,7 @@ void mGEffDestroyWindowAnimationContext(MGEFF_WINDOW_ANIMATION_CONTEXT hctxt)
 }
 
 /* get foreground of the window  */
-HDC hold_window_for_foreground(WindowAnimationContext* ctxt) 
+static HDC hold_window_for_foreground(WindowAnimationContext* ctxt) 
 {
     if (NULL != ctxt && HDC_INVALID == ctxt->m_old_secdc && HWND_INVALID != ctxt->m_hwnd)
     {
@@ -133,7 +133,7 @@ HDC hold_window_for_foreground(WindowAnimationContext* ctxt)
     return HDC_INVALID;
 }
 
-void drop_window_release_foreground(WindowAnimationContext* ctxt)
+static void drop_window_release_foreground(WindowAnimationContext* ctxt)
 {
     if (NULL != ctxt && HDC_INVALID != ctxt->m_old_secdc) {
         if (HDC_SCREEN != GetSecondaryDC(ctxt->m_hwnd)) {
@@ -205,7 +205,7 @@ void mGEffDropWindowForeground(MGEFF_WINDOW_ANIMATION_CONTEXT hctxt)
 }
 
 // hook for user msg-proc
-LRESULT AnimateWindowProcHook(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+static LRESULT AnimateWindowProcHook(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
         case MSG_NCCREATE:
@@ -623,7 +623,7 @@ BOOL mGEffShowWindowEx (HWND hwnd, int iCmdShow,
 
 }
 
-void animation_generate(MGEFF_ANIMATION handle, WindowAnimationContext *context, int id, RECT *rc) 
+static void animation_generate(MGEFF_ANIMATION handle, WindowAnimationContext *context, int id, RECT *rc) 
 {
     if (1 == id) {
         RECT old_rc = context->m_new_rect;
@@ -656,7 +656,7 @@ void animation_generate(MGEFF_ANIMATION handle, WindowAnimationContext *context,
     }
 }
 
-void  move_anim_finished(MGEFF_ANIMATION handle)
+static void move_anim_finished(MGEFF_ANIMATION handle)
 {
     WindowAnimationContext* ctxt = (WindowAnimationContext*)mGEffAnimationGetContext(handle);
     if (NULL != ctxt) {
@@ -681,7 +681,7 @@ void  move_anim_finished(MGEFF_ANIMATION handle)
     }
 }
 
-void  ready_for_move(MGEFF_ANIMATION handle, enum EffState newEffState, enum EffState oldEffState)
+static void ready_for_move(MGEFF_ANIMATION handle, enum EffState newEffState, enum EffState oldEffState)
 {
     WindowAnimationContext* ctxt = (WindowAnimationContext*)mGEffAnimationGetContext(handle);
     if (MGEFF_STATE_READY == oldEffState 

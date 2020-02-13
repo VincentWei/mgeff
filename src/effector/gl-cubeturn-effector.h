@@ -62,13 +62,16 @@ typedef struct _EffCubeTurnCtxt{
     EffHDCSource *m_source2;
 } EffCubeTurnCtxt;
 
-MGEFF_EFFECTOR effcubeturneffector_init (MGEFF_EFFECTOR _effector);
-void effcubeturneffector_finalize (MGEFF_EFFECTOR _effector);
-int  effcubeturneffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value);
-void effcubeturneffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, 
+static MGEFF_EFFECTOR effcubeturneffector_init (MGEFF_EFFECTOR _effector);
+static void effcubeturneffector_finalize (MGEFF_EFFECTOR _effector);
+static int  effcubeturneffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value);
+static void effcubeturneffector_ondraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector, 
         HDC sink_dc, int id, void* value);
-void effcubeturneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
-void effcubeturneffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector);
+static void effcubeturneffector_begindraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector);
+static void effcubeturneffector_enddraw(MGEFF_ANIMATION animation,
+        MGEFF_EFFECTOR _effector);
 
 #endif   /* ----- #ifndef _CUBETURN_EFFECTOR_H__INC  ----- */
 

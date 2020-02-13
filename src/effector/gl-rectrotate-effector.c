@@ -60,7 +60,7 @@
 
 #define dbg() printf("debug:------------%s, %d---------\n", __FUNCTION__, __LINE__);
 
-MGEFF_EFFECTOR effglrectrotateeffector_init(MGEFF_EFFECTOR _effector)
+static MGEFF_EFFECTOR effglrectrotateeffector_init(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffGLRectRotateCtxt* rect_effector = 
@@ -69,13 +69,13 @@ MGEFF_EFFECTOR effglrectrotateeffector_init(MGEFF_EFFECTOR _effector)
     return _effector;
 }
 
-void effglrectrotateeffector_finalize(MGEFF_EFFECTOR _effector)
+static void effglrectrotateeffector_finalize(MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     free (effector->context);
 }
 
-void effglrectrotateeffector_ondraw(MGEFF_ANIMATION animation,
+static void effglrectrotateeffector_ondraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, int id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
@@ -135,7 +135,7 @@ void effglrectrotateeffector_ondraw(MGEFF_ANIMATION animation,
     glDisable(GL_TEXTURE_2D);
 }
 
-void effglrectrotateeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effglrectrotateeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     EffEffector *effector = (EffEffector *)_effector;
     EffGLRectRotateCtxt *rect_effector = (EffGLRectRotateCtxt*)effector->context;
@@ -178,7 +178,7 @@ void effglrectrotateeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR
     rect_effector->m_z = 0.0;
 }
 
-void effglrectrotateeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
+static void effglrectrotateeffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector)
 {
     /* Animation end */
     EffEffector *effector = (EffEffector *)_effector;
@@ -223,7 +223,7 @@ static void set_dirction(MGEFF_EFFECTOR _effector, float x, float y, float z)
     rect_effector->m_z = z;
 }
 
-int effglrectrotateeffector_setproperty(MGEFF_EFFECTOR _effector,
+static int effglrectrotateeffector_setproperty(MGEFF_EFFECTOR _effector,
         int property_id, int value)
 {
     int axis = 1, direction = 1;
