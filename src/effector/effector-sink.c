@@ -119,9 +119,10 @@ HDC effsink_get(EffSink* sink)
 void effsink_release(EffSink* sink, HDC hdc)
 {
     if (sink->type == MGEFF_SINK_HDC) {
-        if (sink->bufdc) 
-            BitBlt(sink->bufdc, 0, 0, 0, 0, sink->hdc, 0, 0, 0);
-        return;
+        if (sink->bufdc) {
+            BitBlt (sink->bufdc, 0, 0, 0, 0, sink->hdc, 0, 0, 0);
+            SyncUpdateDC (sink->hdc);
+        }
     }
     else if (sink->type == MGEFF_SINK_HWND) {
         if (sink->bufdc) {
@@ -130,6 +131,7 @@ void effsink_release(EffSink* sink, HDC hdc)
             ReleaseDC(hdc);
             return;
         }
+
         if (hdc != HDC_INVALID)
             ReleaseDC(hdc);
     }
