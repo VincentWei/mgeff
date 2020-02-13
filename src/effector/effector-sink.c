@@ -121,7 +121,10 @@ void effsink_release(EffSink* sink, HDC hdc)
     if (sink->type == MGEFF_SINK_HDC) {
         if (sink->bufdc) {
             BitBlt (sink->bufdc, 0, 0, 0, 0, sink->hdc, 0, 0, 0);
+#ifdef _MGUSE_UPDATE_REGION
+            // Since 4.2.0
             SyncUpdateDC (sink->hdc);
+#endif
         }
     }
     else if (sink->type == MGEFF_SINK_HWND) {
@@ -136,3 +139,4 @@ void effsink_release(EffSink* sink, HDC hdc)
             ReleaseDC(hdc);
     }
 }
+
