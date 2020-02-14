@@ -229,7 +229,7 @@ static void effleafeffector_finalize(MGEFF_EFFECTOR _effector)
     free (effector->context);
 }
 
-MGEFF_EFFECTOROPS leafwindoweffector = 
+MGEFF_EFFECTOROPS __mgeff_leafwindow_effector = 
 { 
     MGEFF_MINOR_leafwindow, 
     MGEFF_FLOAT, 

@@ -202,7 +202,7 @@ static int effzoomeffector_getproperty(MGEFF_EFFECTOR _effector, int property_id
     return -1;
 }
 
-MGEFF_EFFECTOROPS zoomeffector = 
+MGEFF_EFFECTOROPS __mgeff_zoom_effector = 
 {
     MGEFF_MINOR_zoom, 
     MGEFF_RECT,

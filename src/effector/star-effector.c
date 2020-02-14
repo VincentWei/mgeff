@@ -357,7 +357,7 @@ static int effstareffector_getproperty (MGEFF_EFFECTOR _effector, int property_i
 }
 
 
-MGEFF_EFFECTOROPS stareffector = 
+MGEFF_EFFECTOROPS __mgeff_star_effector = 
 {
     MGEFF_MINOR_fivepointedstar,
     MGEFF_INT,

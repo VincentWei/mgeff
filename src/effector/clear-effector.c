@@ -81,7 +81,7 @@ static void effcleareffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR
 static void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value)
 {
     EffEffector *effector = (EffEffector *)_effector;
-    EffClearCtxt* cleareffector = (EffClearCtxt*)effector->context;
+    EffClearCtxt* __mgeff_clear_effector = (EffClearCtxt*)effector->context;
 
     EffHDCSource *src_old = (EffHDCSource *) (effector->source_list.next);
     EffHDCSource *src_new = (EffHDCSource *) (src_old->list.next);
@@ -99,14 +99,14 @@ static void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     BitBlt (src_old->hdc, ((POINT*)value)->x,((POINT*)value)->y, RECTW(rc_src_old), RECTH(rc_src_old),
             sink_dc, rc_sink.left, rc_sink.top, 0);
 #else 
-    BitBlt (src_new->hdc, cleareffector->prev_x, cleareffector->prev_y, RECTW(rc_src_old), RECTH(rc_src_old),
-            sink_dc, cleareffector->prev_x, cleareffector->prev_y, 0);
+    BitBlt (src_new->hdc, __mgeff_clear_effector->prev_x, __mgeff_clear_effector->prev_y, RECTW(rc_src_old), RECTH(rc_src_old),
+            sink_dc, __mgeff_clear_effector->prev_x, __mgeff_clear_effector->prev_y, 0);
     /*blit the old one*/
     BitBlt (src_old->hdc, rc_src_old.left, rc_src_old.top, RECTW(rc_src_old), RECTH(rc_src_old),
             sink_dc, ((POINT*)value)->x,((POINT*)value)->y, 0);
 
-    cleareffector->prev_x = ((POINT*)value)->x;
-    cleareffector->prev_y = ((POINT*)value)->y;
+    __mgeff_clear_effector->prev_x = ((POINT*)value)->x;
+    __mgeff_clear_effector->prev_y = ((POINT*)value)->y;
 #endif
 }
 
@@ -124,7 +124,7 @@ static void effcleareffector_finalize(MGEFF_EFFECTOR _effector)
     free (effector->context);
 }
 
-MGEFF_EFFECTOROPS cleareffector = 
+MGEFF_EFFECTOROPS __mgeff_clear_effector = 
 {
     MGEFF_MINOR_clear, 
     MGEFF_POINT, 

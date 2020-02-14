@@ -142,7 +142,7 @@ static int effpusheffector_setproperty(MGEFF_EFFECTOR _effector, int property_id
     return -1;
 }
 
-MGEFF_EFFECTOROPS pusheffector = 
+MGEFF_EFFECTOROPS __mgeff_push_effector = 
 {
     MGEFF_MINOR_push,
     MGEFF_RECT, 

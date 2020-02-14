@@ -183,7 +183,7 @@ static int effcenterspliteffector_setproperty (MGEFF_EFFECTOR _effector, int pro
     return __mgeffbaseeffector_setproperty(_effector, property_id, value);
 }
 
-MGEFF_EFFECTOROPS centerspliteffector = 
+MGEFF_EFFECTOROPS __mgeff_centersplit_effector = 
 {
     MGEFF_MINOR_centersplit, 
     MGEFF_FLOAT,

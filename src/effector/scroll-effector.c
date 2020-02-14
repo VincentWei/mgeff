@@ -293,7 +293,7 @@ static void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _
 	//MGPlusGraphicSave (scrollpage_context->graphics, m_sink->hdc(), 0, 0, 0, 0, rectdest.left, rectdest.top);
 }
 
-MGEFF_EFFECTOROPS scrolleffector  = 
+MGEFF_EFFECTOROPS __mgeff_scroll_effector  = 
 { 
     MGEFF_MINOR_scroll, 
     MGEFF_FLOAT, 

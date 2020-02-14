@@ -125,42 +125,42 @@ static EffEffector* effbaseeffector_init(MGEFF_EFFECTOR _effector)
 }
 
 #ifdef _MGEFF_CENTERSPLITEFFECTOR
-extern MGEFF_EFFECTOROPS centerspliteffector;
+extern MGEFF_EFFECTOROPS __mgeff_centersplit_effector;
 #endif
 #ifdef _MGEFF_CUBICROTATEEFFECTOR
-extern MGEFF_EFFECTOROPS __mgeff_cubiceffector;
-extern MGEFF_EFFECTOROPS mgpluscubiceffector;
+extern MGEFF_EFFECTOROPS __mgeff_cubic_effector;
+extern MGEFF_EFFECTOROPS __mgeff_cubic_effector_plus;
 #endif
 #ifdef _MGEFF_FLIPEFFECTOR
-extern MGEFF_EFFECTOROPS flipeffector ;
-extern MGEFF_EFFECTOROPS mgplusflipeffector;
+extern MGEFF_EFFECTOROPS __mgeff_flip_effector ;
+extern MGEFF_EFFECTOROPS __mgeff_flip_effector_plus;
 #endif
 #ifdef _MGEFF_ALPHAEFFECTOR
-extern MGEFF_EFFECTOROPS alphaeffector;
+extern MGEFF_EFFECTOROPS __mgeff_alpha_effector;
 #endif
 #ifdef _MGEFF_ZIPEFFECTOR
-extern MGEFF_EFFECTOROPS zipeffector;
+extern MGEFF_EFFECTOROPS __mgeff_zip_effector;
 #endif
 #ifdef _MGEFF_ZOOMEFFECTOR
-extern MGEFF_EFFECTOROPS zoomeffector;
+extern MGEFF_EFFECTOROPS __mgeff_zoom_effector;
 #endif
 #ifdef _MGEFF_LEAFWINDOWEFFECTOR
-extern MGEFF_EFFECTOROPS leafwindoweffector;
+extern MGEFF_EFFECTOROPS __mgeff_leafwindow_effector;
 #endif
 #ifdef _MGEFF_SCROLLEFFECTOR
-extern MGEFF_EFFECTOROPS scrolleffector;
+extern MGEFF_EFFECTOROPS __mgeff_scroll_effector;
 #endif
 #ifdef _MGEFF_PUSHEFFECTOR
-extern MGEFF_EFFECTOROPS pusheffector;
+extern MGEFF_EFFECTOROPS __mgeff_push_effector;
 #endif
 #ifdef _MGEFF_CLEAREFFECTOR
-extern MGEFF_EFFECTOROPS cleareffector;
+extern MGEFF_EFFECTOROPS __mgeff_clear_effector;
 #endif
 #ifdef _MGEFF_FIVEPOINTEDSTAREFFECTOR
-extern MGEFF_EFFECTOROPS stareffector;
+extern MGEFF_EFFECTOROPS __mgeff_star_effector;
 #endif
 #ifdef _MGEFF_RADARSCANEFFECTOR
-extern MGEFF_EFFECTOROPS radarscaneffector;
+extern MGEFF_EFFECTOROPS __mgeff_radarscan_effector;
 #endif
 #if defined(HAVE_MESA_MINIGUI) || defined(HAVE_EGL_SUPPORT)
 extern MGEFF_EFFECTOROPS glrectrotateeffector;
@@ -172,30 +172,30 @@ extern MGEFF_EFFECTOROPS glcubeturneffector;
 
 static MGEFF_EFFECTOROPS* s_effectors_ops[] = {
 #ifdef _MGEFF_CENTERSPLITEFFECTOR
-    &centerspliteffector,
+    &__mgeff_centersplit_effector,
 #endif
 #ifdef _MGEFF_ALPHAEFFECTOR
-    &alphaeffector,
+    &__mgeff_alpha_effector,
 #endif
 #ifdef _MGEFF_CUBICROTATEEFFECTOR
-    &__mgeff_cubiceffector,
-    &mgpluscubiceffector,
+    &__mgeff_cubic_effector,
+    &__mgeff_cubic_effector_plus,
 #endif
 #ifdef _MGEFF_FLIPEFFECTOR
-    &flipeffector,
-    &mgplusflipeffector,
+    &__mgeff_flip_effector,
+    &__mgeff_flip_effector_plus,
 #endif
 #ifdef _MGEFF_ZIPEFFECTOR
-    &zipeffector,
+    &__mgeff_zip_effector,
 #endif
 #ifdef _MGEFF_ZOOMEFFECTOR
-    &zoomeffector,
+    &__mgeff_zoom_effector,
 #endif
 #ifdef _MGEFF_LEAFWINDOWEFFECTOR
-    &leafwindoweffector,
+    &__mgeff_leafwindow_effector,
 #endif
 #ifdef _MGEFF_SCROLLEFFECTOR
-    &scrolleffector,
+    &__mgeff_scroll_effector,
 #endif
 #if defined(HAVE_MESA_MINIGUI) || defined(HAVE_EGL_SUPPORT)
     &glrectrotateeffector,
@@ -205,16 +205,16 @@ static MGEFF_EFFECTOROPS* s_effectors_ops[] = {
     &glcubeturneffector,
 #endif
 #ifdef _MGEFF_PUSHEFFECTOR
-    &pusheffector,
+    &__mgeff_push_effector,
 #endif
 #ifdef _MGEFF_CLEAREFFECTOR
-    &cleareffector,
+    &__mgeff_clear_effector,
 #endif
 #ifdef _MGEFF_FIVEPOINTEDSTAREFFECTOR
-    &stareffector,
+    &__mgeff_star_effector,
 #endif
 #ifdef _MGEFF_RADARSCANEFFECTOR
-    &radarscaneffector,
+    &__mgeff_radarscan_effector,
 #endif
 };
 

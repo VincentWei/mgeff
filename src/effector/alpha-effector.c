@@ -72,7 +72,7 @@ static void effalphaeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     }
 }
 
-MGEFF_EFFECTOROPS alphaeffector = 
+MGEFF_EFFECTOROPS __mgeff_alpha_effector = 
 { 
     MGEFF_MINOR_alpha,
     MGEFF_FLOAT, 

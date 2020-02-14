@@ -314,7 +314,7 @@ static int effradarscaneffector_getproperty (MGEFF_EFFECTOR _effector,
     return -1;
 }
 
-MGEFF_EFFECTOROPS radarscaneffector = 
+MGEFF_EFFECTOROPS __mgeff_radarscan_effector = 
 {
     MGEFF_MINOR_radarscan, 
     MGEFF_INT, 

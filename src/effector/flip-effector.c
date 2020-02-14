@@ -240,7 +240,7 @@ static void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
     }
 }
 
-MGEFF_EFFECTOROPS flipeffector  = 
+MGEFF_EFFECTOROPS __mgeff_flip_effector  = 
 { 
     MGEFF_MINOR_flip, 
     MGEFF_FLOAT, 
@@ -254,7 +254,7 @@ MGEFF_EFFECTOROPS flipeffector  =
 };
 
 
-MGEFF_EFFECTOROPS mgplusflipeffector  = 
+MGEFF_EFFECTOROPS __mgeff_flip_effector_plus  = 
 { 
     MGEFF_MINOR_mgplus_flip, 
     MGEFF_FLOAT, 

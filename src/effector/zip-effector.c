@@ -135,7 +135,7 @@ static int effzipeffector_setproperty (MGEFF_EFFECTOR _effector, int property_id
     return __mgeffbaseeffector_setproperty(_effector, property_id, value);
 }
 
-MGEFF_EFFECTOROPS zipeffector = 
+MGEFF_EFFECTOROPS __mgeff_zip_effector = 
 {
     MGEFF_MINOR_zip, 
     MGEFF_FLOAT,

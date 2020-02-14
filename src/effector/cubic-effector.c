@@ -393,7 +393,7 @@ static int effcubliceffector_setproperty(MGEFF_EFFECTOR _effector, int property_
     return -1;
 }
 
-MGEFF_EFFECTOROPS __mgeff_cubiceffector = 
+MGEFF_EFFECTOROPS __mgeff_cubic_effector = 
 { 
     MGEFF_MINOR_cubicrotate, 
     MGEFF_FLOAT, 
@@ -407,7 +407,7 @@ MGEFF_EFFECTOROPS __mgeff_cubiceffector =
 };
 
 
-MGEFF_EFFECTOROPS mgpluscubiceffector = 
+MGEFF_EFFECTOROPS __mgeff_cubic_effector_plus = 
 { 
     MGEFF_MINOR_mgplus_cubicrotate,
     MGEFF_FLOAT, 
