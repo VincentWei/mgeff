@@ -95,7 +95,7 @@ static int  effcubeturneffector_setproperty(MGEFF_EFFECTOR _effector, int proper
             cubeturn_context->m_axis = value;
             break;
         default:
-            return effbaseeffector_setproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty(_effector, property_id, value);
     }
     return -1;
 }

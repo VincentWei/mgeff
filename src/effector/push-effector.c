@@ -80,9 +80,9 @@ static void effpusheffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
     RECT rc_sink, rc_out, rc_in;
     RECT* cur_rc = (RECT*)value;
 
-    effbaseeffector_rect(sink_dc, &rc_sink);
-    effbaseeffector_rect(src_in->hdc, &rc_out);
-    effbaseeffector_rect(src_out->hdc, &rc_in);
+    __mgeffbaseeffector_rect(sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect(src_in->hdc, &rc_out);
+    __mgeffbaseeffector_rect(src_out->hdc, &rc_in);
 
     /*new one*/
     BitBlt (src_out->hdc, 0, 0, 0, 0,
@@ -137,7 +137,7 @@ static int effpusheffector_setproperty(MGEFF_EFFECTOR _effector, int property_id
         }
             break;
         default:
-            return effbaseeffector_setproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty(_effector, property_id, value);
     }
     return -1;
 }

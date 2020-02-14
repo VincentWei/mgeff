@@ -96,7 +96,7 @@ void mGEffSetBufferSink(MGEFF_SINK handle, HDC hdc)
     }
 }
 
-HDC __mgeff_effsink_get(EffSink* sink)
+HDC __mgeffsink_get(EffSink* sink)
 {
     if (sink->type == MGEFF_SINK_HDC) {
         if (sink->bufdc){
@@ -116,7 +116,7 @@ HDC __mgeff_effsink_get(EffSink* sink)
     return HDC_INVALID;
 }
 
-void __mgeff_effsink_release(EffSink* sink, HDC hdc)
+void __mgeffsink_release(EffSink* sink, HDC hdc)
 {
     if (sink->type == MGEFF_SINK_HDC) {
         if (sink->bufdc) {

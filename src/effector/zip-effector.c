@@ -58,9 +58,9 @@ static void effzipeffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
     int x, y, w, h;
     int cur_w, cur_h;
 
-    effbaseeffector_rect (source1->hdc, &rc1);
-    effbaseeffector_rect (source2->hdc, &rc2);
-    effbaseeffector_rect (sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect (source1->hdc, &rc1);
+    __mgeffbaseeffector_rect (source2->hdc, &rc2);
+    __mgeffbaseeffector_rect (sink_dc, &rc_sink);
     x = rc_sink.left;
     y = rc_sink.top;
     w = RECTW(rc_sink);
@@ -132,7 +132,7 @@ static int effzipeffector_setproperty (MGEFF_EFFECTOR _effector, int property_id
         }
         return -1;
     }
-    return effbaseeffector_setproperty(_effector, property_id, value);
+    return __mgeffbaseeffector_setproperty(_effector, property_id, value);
 }
 
 MGEFF_EFFECTOROPS zipeffector = 

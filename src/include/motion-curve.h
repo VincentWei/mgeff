@@ -76,10 +76,10 @@ typedef struct _EffMotionCurveEx{
     }
 
 
-EffMotionCurve* effmotioncurve_init(int type);
-float effmotioncurve_calcvalue(EffMotionCurve* c, float t);
-MGEFF_MOTIONCURVE_CB effmotioncurve_getfunc(int type);
-MGEFF_MOTIONCURVEEX_CB effmotioncurve_getfuncex(int type);
+EffMotionCurve* __mgeffmotioncurve_init(int type);
+float __mgeffmotioncurve_calcvalue(EffMotionCurve* c, float t);
+MGEFF_MOTIONCURVE_CB __mgeffmotioncurve_getfunc(int type);
+MGEFF_MOTIONCURVEEX_CB __mgeffmotioncurve_getfuncex(int type);
 
 static float effmotioncurve_elastic_cb(EffMotionCurve* c, float t);
 static float effmotioncurve_back_cb(EffMotionCurve* c, float t);

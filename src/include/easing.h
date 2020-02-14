@@ -44,400 +44,447 @@
 #ifndef __EASING_H__
 #define __EASING_H__
 
-typedef float qreal;
+typedef float effreal;
 
-qreal easeNone(qreal progress);
+effreal __mgeff_easeNone(effreal progress);
 
 /**
- * Easing equation function for a quadratic (t^2) easing in: accelerating from zero velocity.
+ * Easing equation function for a quadratic (t^2) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInQuad(qreal t);
+effreal __mgeff_easeInQuad(effreal t);
 
 
 /**
-* Easing equation function for a quadratic (t^2) easing out: decelerating to zero velocity.
-*
-* @param t		Current time (in frames or seconds).
-* @return		The correct value.
-*/
-qreal easeOutQuad(qreal t);
-
-
-/**
- * Easing equation function for a quadratic (t^2) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a quadratic (t^2) easing out:
+ * decelerating to zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutQuad(qreal t);
+effreal __mgeff_easeOutQuad(effreal t);
 
 
 /**
- * Easing equation function for a quadratic (t^2) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a quadratic (t^2) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInQuad(qreal t);
+effreal __mgeff_easeInOutQuad(effreal t);
 
 
 /**
- * Easing equation function for a cubic (t^3) easing in: accelerating from zero velocity.
+ * Easing equation function for a quadratic (t^2) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInCubic(qreal t);
+effreal __mgeff_easeOutInQuad(effreal t);
 
 
 /**
- * Easing equation function for a cubic (t^3) easing out: decelerating from zero velocity.
+ * Easing equation function for a cubic (t^3) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutCubic(qreal t);
+effreal __mgeff_easeInCubic(effreal t);
 
 
 /**
- * Easing equation function for a cubic (t^3) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a cubic (t^3) easing out:
+ * decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutCubic(qreal t);
+effreal __mgeff_easeOutCubic(effreal t);
 
 
 /**
- * Easing equation function for a cubic (t^3) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a cubic (t^3) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInCubic(qreal t);
+effreal __mgeff_easeInOutCubic(effreal t);
 
 
 /**
- * Easing equation function for a quartic (t^4) easing in: accelerating from zero velocity.
+ * Easing equation function for a cubic (t^3) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInQuart(qreal t);
+effreal __mgeff_easeOutInCubic(effreal t);
 
 
 /**
- * Easing equation function for a quartic (t^4) easing out: decelerating from zero velocity.
+ * Easing equation function for a quartic (t^4) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutQuart(qreal t);
+effreal __mgeff_easeInQuart(effreal t);
 
 
 /**
- * Easing equation function for a quartic (t^4) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a quartic (t^4) easing out:
+ * decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutQuart(qreal t);
+effreal __mgeff_easeOutQuart(effreal t);
 
 
 /**
- * Easing equation function for a quartic (t^4) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a quartic (t^4) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInQuart(qreal t);
+effreal __mgeff_easeInOutQuart(effreal t);
 
 
 /**
- * Easing equation function for a quintic (t^5) easing in: accelerating from zero velocity.
+ * Easing equation function for a quartic (t^4) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInQuint(qreal t);
+effreal __mgeff_easeOutInQuart(effreal t);
 
 
 /**
- * Easing equation function for a quintic (t^5) easing out: decelerating from zero velocity.
+ * Easing equation function for a quintic (t^5) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutQuint(qreal t);
+effreal __mgeff_easeInQuint(effreal t);
 
 
 /**
- * Easing equation function for a quintic (t^5) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a quintic (t^5) easing out:
+ * decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutQuint(qreal t);
+effreal __mgeff_easeOutQuint(effreal t);
 
 
 /**
- * Easing equation function for a quintic (t^5) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a quintic (t^5) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInQuint(qreal t);
+effreal __mgeff_easeInOutQuint(effreal t);
 
 
 /**
- * Easing equation function for a sinusoidal (sin(t)) easing in: accelerating from zero velocity.
+ * Easing equation function for a quintic (t^5) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInSine(qreal t);
+effreal __mgeff_easeOutInQuint(effreal t);
 
 
 /**
- * Easing equation function for a sinusoidal (sin(t)) easing out: decelerating from zero velocity.
+ * Easing equation function for a sinusoidal (sin(t)) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutSine(qreal t);
+effreal __mgeff_easeInSine(effreal t);
 
 
 /**
- * Easing equation function for a sinusoidal (sin(t)) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a sinusoidal (sin(t)) easing out:
+ * decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutSine(qreal t);
+effreal __mgeff_easeOutSine(effreal t);
 
 
 /**
- * Easing equation function for a sinusoidal (sin(t)) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a sinusoidal (sin(t)) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInSine(qreal t);
+effreal __mgeff_easeInOutSine(effreal t);
 
 
 /**
- * Easing equation function for an exponential (2^t) easing in: accelerating from zero velocity.
+ * Easing equation function for a sinusoidal (sin(t)) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInExpo(qreal t);
+effreal __mgeff_easeOutInSine(effreal t);
 
 
 /**
- * Easing equation function for an exponential (2^t) easing out: decelerating from zero velocity.
+ * Easing equation function for an exponential (2^t) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutExpo(qreal t);
+effreal __mgeff_easeInExpo(effreal t);
 
 
 /**
- * Easing equation function for an exponential (2^t) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for an exponential (2^t) easing out:
+ * decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutExpo(qreal t);
+effreal __mgeff_easeOutExpo(effreal t);
 
 
 /**
- * Easing equation function for an exponential (2^t) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for an exponential (2^t) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInExpo(qreal t);
+effreal __mgeff_easeInOutExpo(effreal t);
 
 
 /**
- * Easing equation function for a circular (sqrt(1-t^2)) easing in: accelerating from zero velocity.
+ * Easing equation function for an exponential (2^t) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInCirc(qreal t);
+effreal __mgeff_easeOutInExpo(effreal t);
 
 
 /**
- * Easing equation function for a circular (sqrt(1-t^2)) easing out: decelerating from zero velocity.
+ * Easing equation function for a circular (sqrt(1-t^2)) easing in:
+ * accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutCirc(qreal t);
+effreal __mgeff_easeInCirc(effreal t);
 
 
 /**
- * Easing equation function for a circular (sqrt(1-t^2)) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a circular (sqrt(1-t^2)) easing out:
+ * decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeInOutCirc(qreal t);
+effreal __mgeff_easeOutCirc(effreal t);
 
 
 /**
- * Easing equation function for a circular (sqrt(1-t^2)) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a circular (sqrt(1-t^2)) easing in/out:
+ * acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @return		The correct value.
  */
-qreal easeOutInCirc(qreal t);
-
-
-qreal easeInElastic_helper(qreal t, qreal b, qreal c, qreal d, qreal a, qreal p);
+effreal __mgeff_easeInOutCirc(effreal t);
 
 
 /**
- * Easing equation function for an elastic (exponentially decaying sine wave) easing in: accelerating from zero velocity.
+ * Easing equation function for a circular (sqrt(1-t^2)) easing out/in:
+ * deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
- * @param a		Amplitude.
- * @param p		Period.
  * @return		The correct value.
  */
-qreal easeInElastic(qreal t, qreal a, qreal p);
+effreal __mgeff_easeOutInCirc(effreal t);
 
 
-qreal easeOutElastic_helper(qreal t, qreal b, qreal c, qreal d, qreal a, qreal p);
-
-
-/**
- * Easing equation function for an elastic (exponentially decaying sine wave) easing out: decelerating from zero velocity.
- *
- * @param t		Current time (in frames or seconds).
- * @param a		Amplitude.
- * @param p		Period.
- * @return		The correct value.
- */
-qreal easeOutElastic(qreal t, qreal a, qreal p);
-
+effreal __mgeff_easeInElastic_helper(effreal t, effreal b, effreal c, effreal d, effreal a, effreal p);
 
 /**
- * Easing equation function for an elastic (exponentially decaying sine wave) easing in/out: acceleration until halfway, then deceleration.
- *
- * @param t		Current time (in frames or seconds).
- * @param a		Amplitude.
- * @param p		Period.
- * @return		The correct value.
- */
-qreal easeInOutElastic(qreal t, qreal a, qreal p);
-
-
-/**
- * Easing equation function for an elastic (exponentially decaying sine wave) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for an elastic (exponentially decaying
+ * sine wave) easing in: accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @param a		Amplitude.
  * @param p		Period.
  * @return		The correct value.
  */
-qreal easeOutInElastic(qreal t, qreal a, qreal p);
+effreal __mgeff_easeInElastic(effreal t, effreal a, effreal p);
+
+
+effreal __mgeff_easeOutElastic_helper(effreal t, effreal b, effreal c, effreal d, effreal a, effreal p);
 
 
 /**
- * Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing in: accelerating from zero velocity.
+ * Easing equation function for an elastic (exponentially decaying
+ * sine wave) easing out: decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
- * @param s		Overshoot ammount: higher s means greater overshoot (0 produces cubic easing with no overshoot, and the default value of 1.70158 produces an overshoot of 10 percent).
+ * @param a		Amplitude.
+ * @param p		Period.
  * @return		The correct value.
  */
-qreal easeInBack(qreal t, qreal s);
+effreal __mgeff_easeOutElastic(effreal t, effreal a, effreal p);
 
 
 /**
- * Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing out: decelerating from zero velocity.
+ * Easing equation function for an elastic (exponentially decaying
+ * sine wave) easing in/out: acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
- * @param s		Overshoot ammount: higher s means greater overshoot (0 produces cubic easing with no overshoot, and the default value of 1.70158 produces an overshoot of 10 percent).
+ * @param a		Amplitude.
+ * @param p		Period.
  * @return		The correct value.
  */
-qreal easeOutBack(qreal t, qreal s);
+effreal __mgeff_easeInOutElastic(effreal t, effreal a, effreal p);
 
 
 /**
- * Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for an elastic (exponentially decaying
+ * sine wave) easing out/in: deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
- * @param s		Overshoot ammount: higher s means greater overshoot (0 produces cubic easing with no overshoot, and the default value of 1.70158 produces an overshoot of 10 percent).
+ * @param a		Amplitude.
+ * @param p		Period.
  * @return		The correct value.
  */
-qreal easeInOutBack(qreal t, qreal s);
+effreal __mgeff_easeOutInElastic(effreal t, effreal a, effreal p);
 
 
 /**
- * Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a back (overshooting cubic easing:
+ * (s+1)*t^3 - s*t^2) easing in: accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
- * @param s		Overshoot ammount: higher s means greater overshoot (0 produces cubic easing with no overshoot, and the default value of 1.70158 produces an overshoot of 10 percent).
+ * @param s		Overshoot ammount: higher s means greater overshoot
+ *              (0 produces cubic easing with no overshoot, and the
+ *              default value of 1.70158 produces an overshoot of 10 percent).
  * @return		The correct value.
  */
-qreal easeOutInBack(qreal t, qreal s);
-
-
-qreal easeOutBounce_helper(qreal t, qreal c, qreal a);
+effreal __mgeff_easeInBack(effreal t, effreal s);
 
 
 /**
- * Easing equation function for a bounce (exponentially decaying parabolic bounce) easing out: decelerating from zero velocity.
+ * Easing equation function for a back (overshooting cubic easing:
+ * (s+1)*t^3 - s*t^2) easing out: decelerating from zero velocity.
+ *
+ * @param t		Current time (in frames or seconds).
+ * @param s		Overshoot ammount: higher s means greater overshoot
+ *              (0 produces cubic easing with no overshoot, and the
+ *              default value of 1.70158 produces an overshoot of 10 percent).
+ * @return		The correct value.
+ */
+effreal __mgeff_easeOutBack(effreal t, effreal s);
+
+
+/**
+ * Easing equation function for a back (overshooting cubic easing:
+ * (s+1)*t^3 - s*t^2) easing in/out: acceleration until halfway, then deceleration.
+ *
+ * @param t		Current time (in frames or seconds).
+ * @param s		Overshoot ammount: higher s means greater overshoot
+ *              (0 produces cubic easing with no overshoot, and the
+ *              default value of 1.70158 produces an overshoot of 10 percent).
+ * @return		The correct value.
+ */
+effreal __mgeff_easeInOutBack(effreal t, effreal s);
+
+
+/**
+ * Easing equation function for a back (overshooting cubic easing:
+ * (s+1)*t^3 - s*t^2) easing out/in: deceleration until halfway, then acceleration.
+ *
+ * @param t		Current time (in frames or seconds).
+ * @param s		Overshoot ammount: higher s means greater overshoot
+ *              (0 produces cubic easing with no overshoot, and the
+ *              default value of 1.70158 produces an overshoot of 10 percent).
+ * @return		The correct value.
+ */
+effreal __mgeff_easeOutInBack(effreal t, effreal s);
+
+
+effreal __mgeff_easeOutBounce_helper(effreal t, effreal c, effreal a);
+
+
+/**
+ * Easing equation function for a bounce (exponentially decaying
+ * parabolic bounce) easing out: decelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @param a		Amplitude.
  * @return		The correct value.
  */
-qreal easeOutBounce(qreal t, qreal a);
+effreal __mgeff_easeOutBounce(effreal t, effreal a);
 
 
 /**
- * Easing equation function for a bounce (exponentially decaying parabolic bounce) easing in: accelerating from zero velocity.
+ * Easing equation function for a bounce (exponentially decaying
+ * parabolic bounce) easing in: accelerating from zero velocity.
  *
  * @param t		Current time (in frames or seconds).
  * @param a		Amplitude.
  * @return		The correct value.
  */
-qreal easeInBounce(qreal t, qreal a);
+effreal __mgeff_easeInBounce(effreal t, effreal a);
 
 
 
 /**
- * Easing equation function for a bounce (exponentially decaying parabolic bounce) easing in/out: acceleration until halfway, then deceleration.
+ * Easing equation function for a bounce (exponentially decaying
+ * parabolic bounce) easing in/out: acceleration until halfway, then deceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @param a		Amplitude.
  * @return		The correct value.
  */
-qreal easeInOutBounce(qreal t, qreal a);
+effreal __mgeff_easeInOutBounce(effreal t, effreal a);
 
 
 /**
- * Easing equation function for a bounce (exponentially decaying parabolic bounce) easing out/in: deceleration until halfway, then acceleration.
+ * Easing equation function for a bounce (exponentially decaying
+ * parabolic bounce) easing out/in: deceleration until halfway, then acceleration.
  *
  * @param t		Current time (in frames or seconds).
  * @param a		Amplitude.
  * @return		The correct value.
  */
-qreal easeOutInBounce(qreal t, qreal a);
+effreal __mgeff_easeOutInBounce(effreal t, effreal a);
 
 
-qreal qt_sinProgress(qreal value);
+effreal __mgeff_sinProgress(effreal value);
 
 
-qreal qt_smoothBeginEndMixFactor(qreal value);
+effreal __mgeff_smoothBeginEndMixFactor(effreal value);
 
 
 /** 
@@ -448,27 +495,31 @@ qreal qt_smoothBeginEndMixFactor(qreal value);
  */
 
 /**
- * Easing function that starts growing slowly, then increases in speed. At the end of the curve the speed will be constant.
+ * Easing function that starts growing slowly, then increases in speed.
+ * At the end of the curve the speed will be constant.
  */
-qreal easeInCurve(qreal t);
+effreal __mgeff_easeInCurve(effreal t);
 
 
 /**
- * Easing function that starts growing steadily, then ends slowly. The speed will be constant at the beginning of the curve.
+ * Easing function that starts growing steadily, then ends slowly.
+ * The speed will be constant at the beginning of the curve.
  */
-qreal easeOutCurve(qreal t);
+effreal __mgeff_easeOutCurve(effreal t);
 
 
 /**
- * Easing function where the value grows sinusoidally. Note that the calculated  end value will be 0 rather than 1.
+ * Easing function where the value grows sinusoidally.
+ * Note that the calculated  end value will be 0 rather than 1.
  */
-qreal easeSineCurve(qreal t);
+effreal __mgeff_easeSineCurve(effreal t);
 
 
 /**
- * Easing function where the value grows cosinusoidally. Note that the calculated start value will be 0.5 and the end value will be 0.5
+ * Easing function where the value grows cosinusoidally.
+ * Note that the calculated start value will be 0.5 and the end value will be 0.5
  * contrary to the usual 0 to 1 easing curve.
  */
-qreal easeCosineCurve(qreal t);
+effreal __mgeff_easeCosineCurve(effreal t);
 
 #endif

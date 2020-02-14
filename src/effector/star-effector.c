@@ -130,9 +130,9 @@ static void effstareffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
         source1 = (EffHDCSource *) (source2->list.next);
     }
 
-    effbaseeffector_rect (source1->hdc, &rc1);
-    effbaseeffector_rect (source2->hdc, &rc2);
-    effbaseeffector_rect (sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect (source1->hdc, &rc1);
+    __mgeffbaseeffector_rect (source2->hdc, &rc2);
+    __mgeffbaseeffector_rect (sink_dc, &rc_sink);
 
 
     ox = RECTW(rc2) / 2;
@@ -327,7 +327,7 @@ static int effstareffector_setproperty (MGEFF_EFFECTOR _effector, int property_i
             break;
 
         default:
-            return effbaseeffector_setproperty (_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty (_effector, property_id, value);
     }
     return -1;
 }
@@ -350,7 +350,7 @@ static int effstareffector_getproperty (MGEFF_EFFECTOR _effector, int property_i
             return effector->direction;
 
         default:
-            return effbaseeffector_getproperty (_effector, property_id, value);
+            return __mgeffbaseeffector_getproperty (_effector, property_id, value);
     }
 
     return -1;

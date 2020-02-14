@@ -59,9 +59,9 @@ static void effcenterspliteffector_ondraw (MGEFF_ANIMATION animation, MGEFF_EFFE
     int cur_w = 0, cur_h = 0;
     int x ,y, w, h;
 
-    effbaseeffector_rect (source1->hdc, &rc1);
-    effbaseeffector_rect (source2->hdc, &rc2);
-    effbaseeffector_rect (sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect (source1->hdc, &rc1);
+    __mgeffbaseeffector_rect (source2->hdc, &rc2);
+    __mgeffbaseeffector_rect (sink_dc, &rc_sink);
 
     x = rc_sink.left;
     y = rc_sink.top;
@@ -180,7 +180,7 @@ static int effcenterspliteffector_setproperty (MGEFF_EFFECTOR _effector, int pro
         }
         return -1;
     }
-    return effbaseeffector_setproperty(_effector, property_id, value);
+    return __mgeffbaseeffector_setproperty(_effector, property_id, value);
 }
 
 MGEFF_EFFECTOROPS centerspliteffector = 

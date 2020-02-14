@@ -173,7 +173,7 @@ static inline void DrawVLine_16(const unsigned char *src_pixels, int src_pitch,
  *   ----+----
  *    2  |  1
  */
-void effcommon_v_fillladder(HDC src_dc, int src_left, int src_top, int src_right, int src_bottom,
+void EffVLineApplier(HDC src_dc, int src_left, int src_top, int src_right, int src_bottom,
         HDC dst_dc, int dst_left, int dst_top, int dst_right, int dst_bottom,
         int dst_x0, int dst_y0, 
         int dst_x1, int dst_y1, 
@@ -194,22 +194,16 @@ void effcommon_v_fillladder(HDC src_dc, int src_left, int src_top, int src_right
     if (GetGDCapability(src_dc, GDCAP_DEPTH) != depth) {
         return;
     }
+
     src_pixels = LockDC(src_dc, NULL, NULL, NULL, &src_pitch);
     UnlockDC(src_dc);
     dst_pixels = LockDC(dst_dc, NULL, NULL, NULL, &dst_pitch);
-    UnlockDC(dst_dc);
-#if 0
-    int len = dst_x0 - dst_x3;
-    for (i=0; i<len; i++) {
-        int y0 = dst_y3 - i * (dst_y0 - dst_y3) / len;
-        int y1 = dst_y2 + i * (dst_y2 - dst_y1) / len;
-        int src_x0 = i * (src_right - src_left) / len + src_left;
-#else
+
     for (i=0; i<(dst_x0 - dst_x3); i++) {
         int y0 = dst_y3 - i * (dst_y3 - dst_y0) / (dst_x0 - dst_x3);
         int y1 = dst_y2 - i * (dst_y2 - dst_y1) / (dst_x1 - dst_x2);
         int src_x0 = i * (src_right - src_left) / (dst_x0 - dst_x3) + src_left;
-#endif
+
         if (dst_x3+i < dst_left) {
             continue;
         }
@@ -220,17 +214,21 @@ void effcommon_v_fillladder(HDC src_dc, int src_left, int src_top, int src_right
             DrawVLine_32(src_pixels, src_pitch, src_x0, src_top, (src_bottom - src_top),
                     dst_pixels, dst_pitch, dst_top, dst_bottom,
                     dst_x3+i, y0, y1-y0);
-        }else if (depth == 16) {
+        }
+        else if (depth == 16) {
             DrawVLine_16(src_pixels, src_pitch, src_x0, src_top, (src_bottom - src_top),
                     dst_pixels, dst_pitch, dst_top, dst_bottom,
                     dst_x3+i, y0, y1-y0);
-        }else{
+        }
+        else{
             fprintf(stderr, "cubic-renderer: depth=%d not supported\n", depth);
         }
     }
+
+    UnlockDC(dst_dc);
 }
 
-void effcommon_h_fillladder(HDC src_dc, int src_left, int src_top, int src_right, int src_bottom,
+void EffHLineApplier(HDC src_dc, int src_left, int src_top, int src_right, int src_bottom,
         HDC dst_dc, int dst_left, int dst_top, int dst_right, int dst_bottom,
         int dst_x0, int dst_y0,
         int dst_x1, int dst_y1,
@@ -256,8 +254,8 @@ void effcommon_h_fillladder(HDC src_dc, int src_left, int src_top, int src_right
 
     src_pixels = LockDC(src_dc, NULL, NULL, NULL, &src_pitch);
     UnlockDC(src_dc);
+
     dst_pixels = LockDC(dst_dc, NULL, NULL, NULL, &dst_pitch);
-    UnlockDC(dst_dc);
 
     len = dst_y2 - dst_y3;
     for (i = 0; i < (dst_y2 - dst_y3); ++i) {
@@ -278,5 +276,7 @@ void effcommon_h_fillladder(HDC src_dc, int src_left, int src_top, int src_right
             fprintf(stderr, "cubic-renderer: depth=%d not supported\n", depth);
         }
     }
+
+    UnlockDC(dst_dc);
 }
 

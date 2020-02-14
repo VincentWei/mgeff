@@ -190,7 +190,7 @@ static void effradarscaneffector_ondraw(MGEFF_ANIMATION animation,
     int start_angle = 0, end_angle = 0;
     int i;
 
-	effbaseeffector_rect(source1->hdc, &rc);
+	__mgeffbaseeffector_rect(source1->hdc, &rc);
     for (i = 0; i < radar_context->npieces; i++) {
         start_angle = radar_context->start_angle + i * 360 /radar_context->npieces;
         if (radar_context->direction == MGEFF_CLOCKWISE) {
@@ -227,7 +227,7 @@ static void effradarscaneffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFE
     RECT rc;
     int startval = 0;
     int endval;
-    effbaseeffector_rect(source1->hdc, &rc);
+    __mgeffbaseeffector_rect(source1->hdc, &rc);
 
     InitFreeClipRectList(&radar_context->cliprc_heap, 100);
     InitClipRgn(&radar_context->cliprgn, &radar_context->cliprc_heap);
@@ -254,13 +254,13 @@ static void effradarscaneffector_enddraw(MGEFF_ANIMATION animation, MGEFF_EFFECT
 
     EffHDCSource *source1 = (EffHDCSource *)(effector->source_list.next);
     EffHDCSource *source2 = (EffHDCSource *)(source1->list.next);
-    HDC sink_dc = __mgeff_effsink_get(effector->sink);
+    HDC sink_dc = __mgeffsink_get(effector->sink);
     RECT rc;
-    effbaseeffector_rect(source2->hdc, &rc);
+    __mgeffbaseeffector_rect(source2->hdc, &rc);
     SelectClipRect(sink_dc, &rc);
     BitBlt(source2->hdc, rc.left, rc.top, RECTW(rc), RECTH(rc),
             sink_dc, 0, 0, 0);
-    __mgeff_effsink_release(effector->sink, sink_dc);
+    __mgeffsink_release(effector->sink, sink_dc);
     EmptyClipRgn(&radar_context->cliprgn);
     DestroyFreeClipRectList(&radar_context->cliprc_heap);
 }
@@ -287,7 +287,7 @@ static int effradarscaneffector_setproperty(MGEFF_EFFECTOR _effector,
             radar_context->start_angle = value;
             return 0;
         default:
-            return effbaseeffector_setproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty(_effector, property_id, value);
     }
     return -1;
 }
@@ -309,7 +309,7 @@ static int effradarscaneffector_getproperty (MGEFF_EFFECTOR _effector,
             *value = radar_context->start_angle;
             return *value;
         default:
-            return effbaseeffector_getproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_getproperty(_effector, property_id, value);
     }
     return -1;
 }

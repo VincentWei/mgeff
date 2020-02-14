@@ -44,6 +44,7 @@
 #include <math.h>
 #include "mgeff.h"
 #include "easing.h"
+
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -58,425 +59,426 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
-qreal easeNone(qreal progress)
+effreal __mgeff_easeNone(effreal progress)
 {
     return progress;
 }
 
 
-qreal easeInQuad(qreal t)
+effreal __mgeff_easeInQuad(effreal t)
 {
     return t*t;
 }
 
 
-qreal easeOutQuad(qreal t)
+effreal __mgeff_easeOutQuad(effreal t)
 {
     return -t*(t-2);
 }
 
 
-qreal easeInOutQuad(qreal t)
+effreal __mgeff_easeInOutQuad(effreal t)
 {
     t*=2.0;
     if (t < 1) {
-        return t*t/(qreal)(2);
-    } else {
-        --t;
-        return -0.5 * (t*(t-2) - 1);
+        return t*t/(effreal)(2);
     }
+
+    --t;
+    return -0.5 * (t*(t-2) - 1);
 }
 
 
-qreal easeOutInQuad(qreal t)
+effreal __mgeff_easeOutInQuad(effreal t)
 {
-    if (t < 0.5) return easeOutQuad (t*2)/2;
-    return easeInQuad((2*t)-1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutQuad (t*2)/2;
+
+    return __mgeff_easeInQuad((2*t)-1)/2 + 0.5;
 }
 
 
-qreal easeInCubic(qreal t)
+effreal __mgeff_easeInCubic(effreal t)
 {
     return t*t*t;
 }
 
 
-qreal easeOutCubic(qreal t)
+effreal __mgeff_easeOutCubic(effreal t)
 {
     t-=1.0;
     return t*t*t + 1;
 }
 
 
-qreal easeInOutCubic(qreal t)
+effreal __mgeff_easeInOutCubic(effreal t)
 {
     t*=2.0;
     if(t < 1) {
         return 0.5*t*t*t;
-    } else {
-        t -= (qreal)(2.0);
-        return 0.5*(t*t*t + 2);
     }
+
+    t -= (effreal)(2.0);
+    return 0.5*(t*t*t + 2);
 }
 
 
-qreal easeOutInCubic(qreal t)
+effreal __mgeff_easeOutInCubic(effreal t)
 {
-    if (t < 0.5) return easeOutCubic (2*t)/2;
-    return easeInCubic(2*t - 1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutCubic (2*t)/2;
+
+    return __mgeff_easeInCubic(2*t - 1)/2 + 0.5;
 }
 
 
-qreal easeInQuart(qreal t)
+effreal __mgeff_easeInQuart(effreal t)
 {
     return t*t*t*t;
 }
 
 
-qreal easeOutQuart(qreal t)
+effreal __mgeff_easeOutQuart(effreal t)
 {
-    t-= (qreal)1.0;
+    t-= (effreal)1.0;
     return - (t*t*t*t- 1);
 }
 
 
-qreal easeInOutQuart(qreal t)
+effreal __mgeff_easeInOutQuart(effreal t)
 {
     t*=2;
-    if (t < 1) return 0.5*t*t*t*t;
-    else {
-        t -= 2.0f;
-        return -0.5 * (t*t*t*t- 2);
-    }
+    if (t < 1)
+        return 0.5*t*t*t*t;
+
+    t -= 2.0f;
+    return -0.5 * (t*t*t*t- 2);
 }
 
 
-qreal easeOutInQuart(qreal t)
+effreal __mgeff_easeOutInQuart(effreal t)
 {
-    if (t < 0.5) return easeOutQuart (2*t)/2;
-    return easeInQuart(2*t-1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutQuart (2*t)/2;
+    return __mgeff_easeInQuart(2*t-1)/2 + 0.5;
 }
 
 
-qreal easeInQuint(qreal t)
+effreal __mgeff_easeInQuint(effreal t)
 {
     return t*t*t*t*t;
 }
 
 
-qreal easeOutQuint(qreal t)
+effreal __mgeff_easeOutQuint(effreal t)
 {
     t-=1.0;
     return t*t*t*t*t + 1;
 }
 
 
-qreal easeInOutQuint(qreal t)
+effreal __mgeff_easeInOutQuint(effreal t)
 {
     t*=2.0;
-    if (t < 1) return 0.5*t*t*t*t*t;
-    else {
-        t -= 2.0;
-        return 0.5*(t*t*t*t*t + 2);
-    }
+    if (t < 1)
+        return 0.5*t*t*t*t*t;
+
+    t -= 2.0;
+    return 0.5*(t*t*t*t*t + 2);
 }
 
 
-qreal easeOutInQuint(qreal t)
+effreal __mgeff_easeOutInQuint(effreal t)
 {
-    if (t < 0.5) return easeOutQuint (2*t)/2;
-    return easeInQuint(2*t - 1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutQuint (2*t)/2;
+    return __mgeff_easeInQuint(2*t - 1)/2 + 0.5;
 }
 
 
-qreal easeInSine(qreal t)
+effreal __mgeff_easeInSine(effreal t)
 {
-#if 1
     return (t == 1.0) ? 1.0 : -cos(t * M_PI_2) + 1.0;
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeOutSine(qreal t)
+effreal __mgeff_easeOutSine(effreal t)
 {
-#if 1
     return sin(t* M_PI_2);
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeInOutSine(qreal t)
+effreal __mgeff_easeInOutSine(effreal t)
 {
-#if 1
     return -0.5 * (cos(M_PI*t) - 1);
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeOutInSine(qreal t)
+effreal __mgeff_easeOutInSine(effreal t)
 {
-    if (t < 0.5) return easeOutSine (2*t)/2;
-    return easeInSine(2*t - 1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutSine (2*t)/2;
+
+    return __mgeff_easeInSine(2*t - 1)/2 + 0.5;
 }
 
 
-qreal easeInExpo(qreal t)
+effreal __mgeff_easeInExpo(effreal t)
 {
-#if 1
-    return (t==0 || t == 1.0) ? t : pow(2.0, 10 * (t - 1)) - (qreal)(0.001);
-#else
-    return 0.0;
-#endif
+    return (t==0 || t == 1.0) ? t : pow(2.0, 10 * (t - 1)) - (effreal)(0.001);
 }
 
 
-qreal easeOutExpo(qreal t)
+effreal __mgeff_easeOutExpo(effreal t)
 {
-#if 1
     return (t==1.0) ? 1.0 : 1.001 * (-pow(2.0f, -10 * t) + 1);
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeInOutExpo(qreal t)
+effreal __mgeff_easeInOutExpo(effreal t)
 {
-#if 1
-    if (t==0.0) return (qreal)(0.0);
-    if (t==1.0) return (qreal)(1.0);
+    if (t==0.0)
+        return (effreal)(0.0);
+
+    if (t==1.0)
+        return (effreal)(1.0);
+
     t*=2.0;
-    if (t < 1) return 0.5 * pow((qreal)(2.0), 10 * (t - 1)) - 0.0005;
-    return 0.5 * 1.0005 * (-pow((qreal)(2.0), -10 * (t - 1)) + 2);
-#else
-    return 0.0;
-#endif
+    if (t < 1)
+        return 0.5 * pow((effreal)(2.0), 10 * (t - 1)) - 0.0005;
+
+    return 0.5 * 1.0005 * (-pow((effreal)(2.0), -10 * (t - 1)) + 2);
 }
 
 
-qreal easeOutInExpo(qreal t)
+effreal __mgeff_easeOutInExpo(effreal t)
 {
-    if (t < 0.5) return easeOutExpo (2*t)/2;
-    return easeInExpo(2*t - 1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutExpo (2*t)/2;
+    return __mgeff_easeInExpo(2*t - 1)/2 + 0.5;
 }
 
 
-qreal easeInCirc(qreal t)
+effreal __mgeff_easeInCirc(effreal t)
 {
     return -(sqrt(1 - t*t) - 1);
 }
 
 
-qreal easeOutCirc(qreal t)
+effreal __mgeff_easeOutCirc(effreal t)
 {
-    t-= (qreal)(1.0);
+    t-= (effreal)(1.0);
     return sqrt(1 - t* t);
 }
 
 
-qreal easeInOutCirc(qreal t)
+effreal __mgeff_easeInOutCirc(effreal t)
 {
-    t*=(qreal)(2.0);
+    t*=(effreal)(2.0);
     if (t < 1) {
         return -0.5 * (sqrt(1 - t*t) - 1);
-    } else {
-        t -= (qreal)(2.0);
+    }
+    else {
+        t -= (effreal)(2.0);
         return 0.5 * (sqrt(1 - t*t) + 1);
     }
 }
 
 
-qreal easeOutInCirc(qreal t)
+effreal __mgeff_easeOutInCirc(effreal t)
 {
-    if (t < 0.5) return easeOutCirc (2*t)/2;
-    return easeInCirc(2*t - 1)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutCirc (2*t)/2;
+
+    return __mgeff_easeInCirc(2*t - 1)/2 + 0.5;
 }
 
-qreal easeInElastic_helper(qreal t, qreal b, qreal c, qreal d, qreal a, qreal p)
+effreal __mgeff_easeInElastic_helper(effreal t, effreal b, effreal c, effreal d, effreal a, effreal p)
 {
-#if 1
-    qreal t_adj;
-    qreal s;
-    if (t==0) return b;
-    t_adj = (qreal)t / (qreal)d;
-    if (t_adj==1) return b+c;
+    effreal t_adj;
+    effreal s;
+
+    if (t==0)
+        return b;
+
+    t_adj = (effreal)t / (effreal)d;
+    if (t_adj==1)
+        return b+c;
 
     if(a < fabs(c)) {
         a = c;
         s = p / 4.0f;
-    } else {
+    }
+    else {
         s = p / (2 * M_PI) * asin(c / a);
     }
 
     t_adj -= 1.0f;
     return -(a*pow(2.0f,10*t_adj) * sin( (t_adj*d-s)*(2*M_PI)/p )) + b;
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeInElastic(qreal t, qreal a, qreal p)
+effreal __mgeff_easeInElastic(effreal t, effreal a, effreal p)
 {
-    return easeInElastic_helper(t, 0, 1, 1, a, p);
+    return __mgeff_easeInElastic_helper(t, 0, 1, 1, a, p);
 }
 
-qreal easeOutElastic_helper(qreal t, qreal b, qreal c, qreal d, qreal a, qreal p)
+effreal __mgeff_easeOutElastic_helper(effreal t, effreal b, effreal c, effreal d, effreal a, effreal p)
 {
-#if 1
-    qreal s;
-    if (t==0) return 0;
-    if (t==1) return c;
+    effreal s;
+
+    if (t==0)
+        return 0;
+    if (t==1)
+        return c;
 
     if(a < c) {
         a = c;
         s = p / 4.0f;
-    } else {
+    }
+    else {
         s = p / (2 * M_PI) * asin(c / a);
     }
 
     return (a*pow(2.0f,-10*t) * sin( (t-s)*(2*M_PI)/p ) + c);
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeOutElastic(qreal t, qreal a, qreal p)
+effreal __mgeff_easeOutElastic(effreal t, effreal a, effreal p)
 {
-    return easeOutElastic_helper(t, 0, 1, 1, a, p);
+    return __mgeff_easeOutElastic_helper(t, 0, 1, 1, a, p);
 }
 
 
-qreal easeInOutElastic(qreal t, qreal a, qreal p)
+effreal __mgeff_easeInOutElastic(effreal t, effreal a, effreal p)
 {
-#if 1
-    qreal s;
-    if (t==0) return 0.0;
+    effreal s;
+
+    if (t==0)
+        return 0.0;
+
     t*=2.0;
-    if (t==2) return 1.0;
+    if (t==2)
+        return 1.0;
 
-    if(a < 1.0) {
+    if (a < 1.0) {
         a = 1.0;
         s = p / 4.0f;
     } else {
         s = p / (2 * M_PI) * asin(1.0 / a);
     }
 
-    if (t < 1) return -.5*(a*pow(2.0f,10*(t-1)) * sin( (t-1-s)*(2*M_PI)/p ));
+    if (t < 1)
+        return -.5*(a*pow(2.0f,10*(t-1)) * sin( (t-1-s)*(2*M_PI)/p ));
+
     return a*pow(2.0f,-10*(t-1)) * sin( (t-1-s)*(2*M_PI)/p )*.5 + 1.0;
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeOutInElastic(qreal t, qreal a, qreal p)
+effreal __mgeff_easeOutInElastic(effreal t, effreal a, effreal p)
 {
-    if (t < 0.5) return easeOutElastic_helper(t*2, 0, 0.5, 1.0, a, p);
-    return easeInElastic_helper(2*t - 1.0, 0.5, 0.5, 1.0, a, p);
+    if (t < 0.5)
+        return __mgeff_easeOutElastic_helper(t*2, 0, 0.5, 1.0, a, p);
+
+    return __mgeff_easeInElastic_helper(2*t - 1.0, 0.5, 0.5, 1.0, a, p);
 }
 
 
-qreal easeInBack(qreal t, qreal s)
+effreal __mgeff_easeInBack(effreal t, effreal s)
 {
     return t*t*((s+1)*t - s);
 }
 
 
-qreal easeOutBack(qreal t, qreal s)
+effreal __mgeff_easeOutBack(effreal t, effreal s)
 {
-    t-= (qreal)(1.0);
+    t -= (effreal)(1.0);
     return t*t*((s+1)*t+ s) + 1;
 }
 
 
-qreal easeInOutBack(qreal t, qreal s)
+effreal __mgeff_easeInOutBack(effreal t, effreal s)
 {
     t *= 2.0;
     if (t < 1) {
         s *= 1.525f;
         return 0.5*(t*t*((s+1)*t - s));
-    } else {
-        t -= 2;
-        s *= 1.525f;
-        return 0.5*(t*t*((s+1)*t+ s) + 2);
     }
+
+    t -= 2;
+    s *= 1.525f;
+    return 0.5*(t*t*((s+1)*t+ s) + 2);
 }
 
 
-qreal easeOutInBack(qreal t, qreal s)
+effreal __mgeff_easeOutInBack(effreal t, effreal s)
 {
-    if (t < 0.5) return easeOutBack (2*t, s)/2;
-    return easeInBack(2*t - 1, s)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeOutBack (2*t, s)/2;
+
+    return __mgeff_easeInBack(2*t - 1, s)/2 + 0.5;
 }
 
-qreal easeOutBounce_helper(qreal t, qreal c, qreal a)
+effreal __mgeff_easeOutBounce_helper(effreal t, effreal c, effreal a)
 {
-    if (t == 1.0) return c;
+    if (t == 1.0)
+        return c;
+
     if (t < (4/11.0)) {
         return c*(7.5625*t*t);
-    } else if (t < (8/11.0)) {
+    }
+    else if (t < (8/11.0)) {
         t -= (6/11.0);
         return -a * (1. - (7.5625*t*t + .75)) + c;
-    } else if (t < (10/11.0)) {
+    }
+    else if (t < (10/11.0)) {
         t -= (9/11.0);
         return -a * (1. - (7.5625*t*t + .9375)) + c;
-    } else {
-        t -= (21/22.0);
-        return -a * (1. - (7.5625*t*t + .984375)) + c;
     }
+
+    t -= (21/22.0);
+    return -a * (1. - (7.5625*t*t + .984375)) + c;
 }
 
 
-qreal easeOutBounce(qreal t, qreal a)
+effreal __mgeff_easeOutBounce(effreal t, effreal a)
 {
-    return easeOutBounce_helper(t, 1, a);
+    return __mgeff_easeOutBounce_helper(t, 1, a);
 }
 
 
-qreal easeInBounce(qreal t, qreal a)
+effreal __mgeff_easeInBounce(effreal t, effreal a)
 {
-    return 1.0 - easeOutBounce_helper(1.0-t, 1.0, a);
+    return 1.0 - __mgeff_easeOutBounce_helper(1.0-t, 1.0, a);
 }
 
 
 
-qreal easeInOutBounce(qreal t, qreal a)
+effreal __mgeff_easeInOutBounce(effreal t, effreal a)
 {
-    if (t < 0.5) return easeInBounce (2*t, a)/2;
-    else return (t == 1.0) ? 1.0 : easeOutBounce (2*t - 1, a)/2 + 0.5;
+    if (t < 0.5)
+        return __mgeff_easeInBounce (2*t, a)/2;
+
+    return (t == 1.0) ? 1.0 : __mgeff_easeOutBounce (2*t - 1, a)/2 + 0.5;
 }
 
 
-qreal easeOutInBounce(qreal t, qreal a)
+effreal __mgeff_easeOutInBounce(effreal t, effreal a)
 {
-    if (t < 0.5) return easeOutBounce_helper(t*2, 0.5, a);
-    return 1.0 - easeOutBounce_helper (2.0-2*t, 0.5, a);
+    if (t < 0.5)
+        return __mgeff_easeOutBounce_helper(t*2, 0.5, a);
+
+    return 1.0 - __mgeff_easeOutBounce_helper (2.0-2*t, 0.5, a);
 }
 
-inline qreal qt_sinProgress(qreal value)
+inline effreal __mgeff_sinProgress(effreal value)
 {
-#if 1
-    return sin((value * M_PI) - M_PI_2) / 2 + (qreal)(0.5);
-#else
-    return 0.0;
-#endif
+    return sin((value * M_PI) - M_PI_2) / 2 + (effreal)(0.5);
 }
 
-inline qreal qt_smoothBeginEndMixFactor(qreal value)
+inline effreal __mgeff_smoothBeginEndMixFactor(effreal value)
 {
-#if 1
-    return MIN(MAX(1 - value * 2 + (qreal)(0.3), (qreal)(0.0)), (qreal)(1.0));
-#else
-    return 0.0;
-#endif
+    return MIN(MAX(1 - value * 2 + (effreal)(0.3), (effreal)(0.0)), (effreal)(1.0));
 }
 
 /** 
@@ -487,38 +489,30 @@ inline qreal qt_smoothBeginEndMixFactor(qreal value)
  */
 
 
-qreal easeInCurve(qreal t)
+effreal __mgeff_easeInCurve(effreal t)
 {
-    const qreal sinProgress = qt_sinProgress(t);
-    const qreal mix = qt_smoothBeginEndMixFactor(t);
+    const effreal sinProgress = __mgeff_sinProgress(t);
+    const effreal mix = __mgeff_smoothBeginEndMixFactor(t);
     return sinProgress * mix + t * (1 - mix);
 }
 
 
-qreal easeOutCurve(qreal t)
+effreal __mgeff_easeOutCurve(effreal t)
 {
-    const qreal sinProgress = qt_sinProgress(t);
-    const qreal mix = qt_smoothBeginEndMixFactor(1 - t);
+    const effreal sinProgress = __mgeff_sinProgress(t);
+    const effreal mix = __mgeff_smoothBeginEndMixFactor(1 - t);
     return sinProgress * mix + t * (1 - mix);
 }
 
 
-qreal easeSineCurve(qreal t)
+effreal __mgeff_easeSineCurve(effreal t)
 {
-#if 1
     return (sin(((t * M_PI * 2)) - M_PI_2) + 1) / 2;
-#else
-    return 0.0;
-#endif
 }
 
 
-qreal easeCosineCurve(qreal t)
+effreal __mgeff_easeCosineCurve(effreal t)
 {
-#if 1
     return (cos(((t * M_PI * 2)) - M_PI_2) + 1) / 2;
-#else
-    return 0.0;
-#endif
 }
 

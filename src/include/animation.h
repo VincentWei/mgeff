@@ -84,15 +84,15 @@ struct _EffAnimation {
     MGEFF_DIRCHANGED_CB     dirchanged_cb;
 };
 
-MGEFF_BOOL effanimation_init(EffAnimation* anim, int type);
-MGEFF_BOOL effanimation_running(EffAnimation* anim);
-int  effanimation_comparetime(EffAnimation* a, EffAnimation* b);
-int effanimation_setcurrenttime(EffAnimation* anim, int currenttime);
-int  effanimation_getnexttime(EffAnimation* anim);
-void effanimation_setstart(EffAnimation* anim, int time_ms);
-MGEFF_BOOL effanimation_ready(EffAnimation* anim);
-void effanimation_start(EffAnimation* anim, int);
-void effanimation_setstate(EffAnimation* anim, int state);
-void effanimation_restart(MGEFF_ANIMATION handle);
+MGEFF_BOOL __mgeffanimation_init(EffAnimation* anim, int type);
+MGEFF_BOOL __mgeffanimation_running(EffAnimation* anim);
+int  __mgeffanimation_comparetime(EffAnimation* a, EffAnimation* b);
+int __mgeffanimation_setcurrenttime(EffAnimation* anim, int currenttime);
+int  __mgeffanimation_getnexttime(EffAnimation* anim);
+void __mgeffanimation_setstart(EffAnimation* anim, int time_ms);
+MGEFF_BOOL __mgeffanimation_ready(EffAnimation* anim);
+void __mgeffanimation_start(EffAnimation* anim, int);
+void __mgeffanimation_setstate(EffAnimation* anim, int state);
+void __mgeffanimation_restart(MGEFF_ANIMATION handle);
 
 #endif

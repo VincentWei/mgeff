@@ -88,7 +88,7 @@ static void effglrectrotateeffector_ondraw(MGEFF_ANIMATION animation,
     RECT *rc = (RECT *)value;
 
     /* Get rect size */
-    effbaseeffector_rect(HDC_SCREEN, &screen_rc);
+    __mgeffbaseeffector_rect(HDC_SCREEN, &screen_rc);
     size_x = (float)(RECTWP(rc))/(RECTW(screen_rc));
     size_y = (float)(RECTHP(rc))/(RECTH(screen_rc));
     position_x = (float)(rc->left)/(RECTW(screen_rc));
@@ -146,7 +146,7 @@ static void effglrectrotateeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_E
     rect_effector->mesa_manager = mesa_manager;
 
     RECT screen_rc;
-    effbaseeffector_rect(HDC_SCREEN, &screen_rc);
+    __mgeffbaseeffector_rect(HDC_SCREEN, &screen_rc);
     
     RECT start_rc = {0, 0, RECTW(screen_rc), RECTH(screen_rc)};
     RECT end_rc = {0, 0, 0, 0};
@@ -264,7 +264,7 @@ static int effglrectrotateeffector_setproperty(MGEFF_EFFECTOR _effector,
             }
             break;
         default:
-            return effbaseeffector_setproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty(_effector, property_id, value);
     }
     if (axis == 1) {
         set_dirction(_effector, 1.0 *direction, 0.0, 0.0);

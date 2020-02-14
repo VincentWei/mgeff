@@ -86,7 +86,7 @@ float mGEffCurveGetProperty(MGEFF_MOTIONCURVE handle, enum EffCurveProperty id)
     return ret;
 }
 
-EffMotionCurve* effmotioncurve_init(int type)
+EffMotionCurve* __mgeffmotioncurve_init(int type)
 {
     EffMotionCurve* curve = NULL; 
 
@@ -96,11 +96,11 @@ EffMotionCurve* effmotioncurve_init(int type)
         ((EffMotionCurveEx*)curve)->amplitude = 1.0;
         ((EffMotionCurveEx*)curve)->overshoot = 1.70158;
         ((EffMotionCurveEx*)curve)->curveex_cb = 
-            effmotioncurve_getfuncex(type);
+            __mgeffmotioncurve_getfuncex(type);
     }
     else {
         curve = (EffMotionCurve*)calloc(1, sizeof(EffMotionCurve));
-        curve->curve_cb = effmotioncurve_getfunc(type);
+        curve->curve_cb = __mgeffmotioncurve_getfunc(type);
     }
     return curve;
 }
@@ -112,13 +112,13 @@ static float effmotioncurve_elastic_cb(EffMotionCurve* c, float t)
 
     switch(c->curve_type) {
         case InElastic:
-            return easeInElastic(t, a, p);
+            return __mgeff_easeInElastic(t, a, p);
         case OutElastic:
-            return easeOutElastic(t, a, p);
+            return __mgeff_easeOutElastic(t, a, p);
         case InOutElastic:
-            return easeInOutElastic(t, a, p);
+            return __mgeff_easeInOutElastic(t, a, p);
         case OutInElastic:
-            return easeOutInElastic(t, a, p);
+            return __mgeff_easeOutInElastic(t, a, p);
         default:
             return t;
     }
@@ -130,13 +130,13 @@ static float effmotioncurve_back_cb(EffMotionCurve* c, float t)
 
     switch(c->curve_type) {
         case InBack:
-            return easeInBack(t, o);
+            return __mgeff_easeInBack(t, o);
         case OutBack:
-            return easeOutBack(t, o);
+            return __mgeff_easeOutBack(t, o);
         case InOutBack:
-            return easeInOutBack(t, o);
+            return __mgeff_easeInOutBack(t, o);
         case OutInBack:
-            return easeOutInBack(t, o);
+            return __mgeff_easeOutInBack(t, o);
         default:
             return t;
     }
@@ -148,19 +148,19 @@ static float effmotioncurve_bounce_cb(EffMotionCurve* c, float t)
 
     switch(c->curve_type) {
         case InBounce:
-            return easeInBounce(t, a);
+            return __mgeff_easeInBounce(t, a);
         case OutBounce:
-            return easeOutBounce(t, a);
+            return __mgeff_easeOutBounce(t, a);
         case InOutBounce:
-            return easeInOutBounce(t, a);
+            return __mgeff_easeInOutBounce(t, a);
         case OutInBounce:
-            return easeOutInBounce(t, a);
+            return __mgeff_easeOutInBounce(t, a);
         default:
             return t;
     }
 }
 
-float effmotioncurve_calcvalue(EffMotionCurve* c, float t)
+float __mgeffmotioncurve_calcvalue(EffMotionCurve* c, float t)
 {
     if (c->curve_cb) {
         return c->curve_cb(t);
@@ -171,82 +171,82 @@ float effmotioncurve_calcvalue(EffMotionCurve* c, float t)
     return t;
 }
 
-MGEFF_MOTIONCURVE_CB effmotioncurve_getfunc(int type)
+MGEFF_MOTIONCURVE_CB __mgeffmotioncurve_getfunc(int type)
 {
     switch(type) {
     case Linear:
-        return &easeNone;
+        return &__mgeff_easeNone;
     case InQuad:
-        return &easeInQuad;
+        return &__mgeff_easeInQuad;
     case OutQuad:
-        return &easeOutQuad;
+        return &__mgeff_easeOutQuad;
     case InOutQuad:
-        return &easeInOutQuad;
+        return &__mgeff_easeInOutQuad;
     case OutInQuad:
-        return &easeOutInQuad;
+        return &__mgeff_easeOutInQuad;
     case InCubic:
-        return &easeInCubic;
+        return &__mgeff_easeInCubic;
     case OutCubic:
-        return &easeOutCubic;
+        return &__mgeff_easeOutCubic;
     case InOutCubic:
-        return &easeInOutCubic;
+        return &__mgeff_easeInOutCubic;
     case OutInCubic:
-        return &easeOutInCubic;
+        return &__mgeff_easeOutInCubic;
     case InQuart:
-        return &easeInQuart;
+        return &__mgeff_easeInQuart;
     case OutQuart:
-        return &easeOutQuart;
+        return &__mgeff_easeOutQuart;
     case InOutQuart:
-        return &easeInOutQuart;
+        return &__mgeff_easeInOutQuart;
     case OutInQuart:
-        return &easeOutInQuart;
+        return &__mgeff_easeOutInQuart;
     case InQuint:
-        return &easeInQuint;
+        return &__mgeff_easeInQuint;
     case OutQuint:
-        return &easeOutQuint;
+        return &__mgeff_easeOutQuint;
     case InOutQuint:
-        return &easeInOutQuint;
+        return &__mgeff_easeInOutQuint;
     case OutInQuint:
-        return &easeOutInQuint;
+        return &__mgeff_easeOutInQuint;
     case InSine:
-        return &easeInSine;
+        return &__mgeff_easeInSine;
     case OutSine:
-        return &easeOutSine;
+        return &__mgeff_easeOutSine;
     case InOutSine:
-        return &easeInOutSine;
+        return &__mgeff_easeInOutSine;
     case OutInSine:
-        return &easeOutInSine;
+        return &__mgeff_easeOutInSine;
     case InExpo:
-        return &easeInExpo;
+        return &__mgeff_easeInExpo;
     case OutExpo:
-        return &easeOutExpo;
+        return &__mgeff_easeOutExpo;
     case InOutExpo:
-        return &easeInOutExpo;
+        return &__mgeff_easeInOutExpo;
     case OutInExpo:
-        return &easeOutInExpo;
+        return &__mgeff_easeOutInExpo;
     case InCirc:
-        return &easeInCirc;
+        return &__mgeff_easeInCirc;
     case OutCirc:
-        return &easeOutCirc;
+        return &__mgeff_easeOutCirc;
     case InOutCirc:
-        return &easeInOutCirc;
+        return &__mgeff_easeInOutCirc;
     case OutInCirc:
-        return &easeOutInCirc;
+        return &__mgeff_easeOutInCirc;
     case InCurve:
-        return &easeInCurve;
+        return &__mgeff_easeInCurve;
     case OutCurve:
-        return &easeOutCurve;
+        return &__mgeff_easeOutCurve;
     case SineCurve:
-        return &easeSineCurve;
+        return &__mgeff_easeSineCurve;
     case CosineCurve:
-        return &easeCosineCurve;
+        return &__mgeff_easeCosineCurve;
     default:
         return NULL;
     }
     return NULL;
 }
 
-MGEFF_MOTIONCURVEEX_CB effmotioncurve_getfuncex(int type)
+MGEFF_MOTIONCURVEEX_CB __mgeffmotioncurve_getfuncex(int type)
 {
     switch(type) {
         case InElastic:

@@ -57,9 +57,9 @@ static void effalphaeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     RECT rc2;
     RECT rc_sink;
 
-    effbaseeffector_rect(source1->hdc, &rc1);
-    effbaseeffector_rect(source2->hdc, &rc2);
-    effbaseeffector_rect(sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect(source1->hdc, &rc1);
+    __mgeffbaseeffector_rect(source2->hdc, &rc2);
+    __mgeffbaseeffector_rect(sink_dc, &rc_sink);
 
     _DBG_PRINTF("%s:value = %f\n", __FUNCTION__, *(float*)value);
 

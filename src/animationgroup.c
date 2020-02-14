@@ -59,12 +59,12 @@ static int effanimgroup_parallel_update(EffAnimation* anim, int time)
 
         list_for_each(i, &group->animation_list) {
             animation = (EffAnimation *)i;
-            if (effanimation_ready(animation)) {
-                effanimation_setstart(animation, eff_time());
+            if (__mgeffanimation_ready(animation)) {
+                __mgeffanimation_setstart(animation, eff_time());
             }
-            if (effanimation_running(animation)) {
-                effanimation_setcurrenttime(animation, time);
-                if (effanimation_running(animation)) {
+            if (__mgeffanimation_running(animation)) {
+                __mgeffanimation_setcurrenttime(animation, time);
+                if (__mgeffanimation_running(animation)) {
                     find_running_one = 1;
                 }
             }
@@ -73,13 +73,13 @@ static int effanimgroup_parallel_update(EffAnimation* anim, int time)
             if (anim->loopcount > 0) 
                 anim->loopcount--;
             if (anim->loopcount == 0) {
-                effanimation_setstate(anim, MGEFF_STATE_STOPPED);
+                __mgeffanimation_setstate(anim, MGEFF_STATE_STOPPED);
             }
             else{
                 list_for_each(i, &group->animation_list) {
                     animation = (EffAnimation *)i;
-                    effanimation_restart((MGEFF_ANIMATION)animation);
-                    effanimation_setstate(animation, MGEFF_STATE_RUNNING);
+                    __mgeffanimation_restart((MGEFF_ANIMATION)animation);
+                    __mgeffanimation_setstate(animation, MGEFF_STATE_RUNNING);
                 }
             }
         }
@@ -99,28 +99,28 @@ static int effanimgroup_sequential_update(EffAnimation* anim, int time)
         list_for_each(i, &group->animation_list) {
             animation = (EffAnimation *)i;
             /* should be start next animation at this moment.*/
-            if (effanimation_ready(animation)) {
-                effanimation_setstart(animation, eff_time());
+            if (__mgeffanimation_ready(animation)) {
+                __mgeffanimation_setstart(animation, eff_time());
             }
-            if (effanimation_running(animation)) {
+            if (__mgeffanimation_running(animation)) {
                 find_running_one = 1;   
                 break;
             }
         }
         if (find_running_one) {
-            effanimation_setcurrenttime(animation, time);
+            __mgeffanimation_setcurrenttime(animation, time);
         }
         else {
             if (anim->loopcount > 0)
                 anim->loopcount--;
 
             if (anim->loopcount == 0) {
-                effanimation_setstate(anim, MGEFF_STATE_STOPPED);
+                __mgeffanimation_setstate(anim, MGEFF_STATE_STOPPED);
             }
             else {
                 list_for_each(i, &group->animation_list) {
                     animation = (EffAnimation *)i;
-                    effanimation_restart((MGEFF_ANIMATION)animation);
+                    __mgeffanimation_restart((MGEFF_ANIMATION)animation);
                 }
             }
         }
@@ -135,7 +135,7 @@ MGEFF_ANIMATION mGEffAnimationCreateGroup(enum EffAnimationType type)
 
     group->animation.keepalive = 1;
 
-    effanimation_init((EffAnimation*)group, -1);
+    __mgeffanimation_init((EffAnimation*)group, -1);
     INIT_LIST_HEAD(&group->animation_list);
     group->animation.animationtype = type;
     if (type == MGEFF_PARALLEL) {
@@ -158,6 +158,6 @@ void mGEffAnimationAddToGroup(MGEFF_ANIMATION handle, MGEFF_ANIMATION anim)
 
     list_add_tail(&a->list, (&group->animation_list));
 
-    effanimation_start(a, 1);
+    __mgeffanimation_start(a, 1);
 }
 

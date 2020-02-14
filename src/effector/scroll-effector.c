@@ -83,9 +83,9 @@ static void effscrolleffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTO
 	mGEffAnimationSetStartValue (animation, &value_start);
     mGEffAnimationSetEndValue (animation, &value_end);
 
-	effbaseeffector_rect(effector->sink->hdc, &rc_sink);
-    effbaseeffector_rect(source1->hdc, &rc_src1);
-    effbaseeffector_rect(source2->hdc, &rc_src2);
+	__mgeffbaseeffector_rect(effector->sink->hdc, &rc_sink);
+    __mgeffbaseeffector_rect(source1->hdc, &rc_src1);
+    __mgeffbaseeffector_rect(source2->hdc, &rc_src2);
     memset (&src1_bitmap, 0x0, sizeof (src1_bitmap));
     memset (&src2_bitmap, 0x0, sizeof (src2_bitmap));
 
@@ -148,9 +148,9 @@ static void effscrolleffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _
     RECT rc_sink;
     RECT rc_src1;
     RECT rc_src2;
-    effbaseeffector_rect(effector->sink->hdc, &rc_sink);
-    effbaseeffector_rect(source1->hdc, &rc_src1);
-    effbaseeffector_rect(source2->hdc, &rc_src2);
+    __mgeffbaseeffector_rect(effector->sink->hdc, &rc_sink);
+    __mgeffbaseeffector_rect(source1->hdc, &rc_src1);
+    __mgeffbaseeffector_rect(source2->hdc, &rc_src2);
 
     w = GetGDCapability (MGPlusGetGraphicDC (scrollpage_context->graphics), GDCAP_MAXX) + 1;
     h = GetGDCapability (MGPlusGetGraphicDC (scrollpage_context->graphics), GDCAP_MAXY) + 1;

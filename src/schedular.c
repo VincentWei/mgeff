@@ -77,7 +77,7 @@ static pthread_key_t s_threadinfo_key;
  * Internal implementations
  */
 
-int effschedular_one_step(EffSchedular *schedular, EffAnimation *animation_wanted) {
+int __mgeffschedular_one_step(EffSchedular *schedular, EffAnimation *animation_wanted) {
     // TODO: optimization
     struct list_head *i;
     struct list_head *n;
@@ -93,12 +93,12 @@ int effschedular_one_step(EffSchedular *schedular, EffAnimation *animation_wante
         }
         switch (animation->state) {
             case MGEFF_STATE_RUNNING:
-                effanimation_setcurrenttime(animation, now_ms);
+                __mgeffanimation_setcurrenttime(animation, now_ms);
                 ++nActive;
                 break;
             case MGEFF_STATE_READY:
-                effanimation_setstart(animation, now_ms);
-                effanimation_setcurrenttime(animation, now_ms);
+                __mgeffanimation_setstart(animation, now_ms);
+                __mgeffanimation_setcurrenttime(animation, now_ms);
                 ++nActive;
                 break;
             case MGEFF_STATE_PAUSED:
@@ -127,10 +127,10 @@ int effschedular_one_step(EffSchedular *schedular, EffAnimation *animation_wante
     return found ? 1 : -1;
 }
 
-void effschedular_sync_run(EffSchedular *schedular, EffAnimation *animation) {
+void __mgeffschedular_sync_run(EffSchedular *schedular, EffAnimation *animation) {
     int ret;
     for (;;) {
-        ret = effschedular_one_step(schedular, animation);
+        ret = __mgeffschedular_one_step(schedular, animation);
         if (ret > 0) {
             eff_ms_sleep(0); /* XXX: */
             continue;
@@ -178,12 +178,12 @@ static inline void effschedular_delete_threadkey (void)
 #ifndef _MG_MINIMALGDI 
 static MGEFF_BOOL effschedular_ontimer(HWND hwnd, LINT id, DWORD tickcount) {
     EffSchedular *schedular = (EffSchedular *)hwnd;
-    effschedular_one_step(schedular, NULL);
+    __mgeffschedular_one_step(schedular, NULL);
     return MGEFF_TRUE;
 }
 #endif
 
-int effschedular_setup_timer(EffSchedular *schedular) 
+int __mgeffschedular_setup_timer(EffSchedular *schedular) 
 {
 #ifndef _MG_MINIMALGDI 
     if (schedular->status == 0) {
@@ -202,7 +202,7 @@ int effschedular_setup_timer(EffSchedular *schedular)
 #endif
 }
 
-int effschedular_kill_timer(EffSchedular *schedular) 
+int __mgeffschedular_kill_timer(EffSchedular *schedular) 
 {
 #ifndef _MG_MINIMALGDI 
     return KillTimer((HWND)schedular, (MGEFF_TIMER_ID | schedular->id));
@@ -212,7 +212,7 @@ int effschedular_kill_timer(EffSchedular *schedular)
 /******************************************
  * Internal interfaces
  */
-void effschedular_add_animation(EffSchedular *schedular, EffAnimation *animation) {
+void __mgeffschedular_add_animation(EffSchedular *schedular, EffAnimation *animation) {
     struct list_head *i;
     list_for_each(i, &schedular->animation_list) {
         if ((EffAnimation *)i == animation) {
@@ -222,7 +222,7 @@ void effschedular_add_animation(EffSchedular *schedular, EffAnimation *animation
     list_add_tail(&animation->list, &schedular->animation_list);
 }
 
-void effschedular_remove_animation(EffSchedular *schedular, EffAnimation *animation) {
+void __mgeffschedular_remove_animation(EffSchedular *schedular, EffAnimation *animation) {
     struct list_head *i;
     list_for_each(i, &schedular->animation_list) {
         if ((EffAnimation *)i == animation) {
@@ -238,12 +238,12 @@ void effschedular_remove_animation(EffSchedular *schedular, EffAnimation *animat
  */
 EffSchedular *g_schedular_default = NULL;
 static struct list_head schedular_list;
-EffSchedular* effschedular_check_sch(void)
+EffSchedular* __mgeffschedular_check_sch(void)
 {
 #ifdef _MGEFF_THREADMODE
     EffSchedular* schedular;
     if ((schedular = pthread_getspecific (s_threadinfo_key)) == NULL) {
-        schedular = effschedular_create();
+        schedular = __mgeffschedular_create();
         pthread_setspecific (s_threadinfo_key, schedular);
     }
     return schedular;
@@ -265,12 +265,12 @@ int mGEffInit (void)
         effschedular_create_threadkey();
 #endif
         INIT_LIST_HEAD(&schedular_list);
-        g_schedular_default = (EffSchedular *)effschedular_create();
+        g_schedular_default = (EffSchedular *)__mgeffschedular_create();
         /* start global timer schedular.*/
-        effschedular_setup_timer(g_schedular_default);
+        __mgeffschedular_setup_timer(g_schedular_default);
         /* init and register default effector.*/
 #ifdef _MGEFF_EFFECTOR
-        effeffector_init();
+        __mgeffeffector_init();
 #endif
     }
     return 0;
@@ -287,9 +287,9 @@ void mGEffDeinit (void)
         pthread_mutex_destroy(&s_mutex);
         pthread_cond_destroy(&s_cond);
 #endif
-        effschedular_kill_timer(g_schedular_default);
+        __mgeffschedular_kill_timer(g_schedular_default);
 #ifdef _MGEFF_EFFECTOR
-        effeffector_deinit();
+        __mgeffeffector_deinit();
 #endif
         /* destroy all create schedular.*/
         {
@@ -298,7 +298,7 @@ void mGEffDeinit (void)
             list_for_each(i, &schedular_list) {
                 j = i->prev;
                 child = (EffSchedular *)i;
-                effschedular_destroy(child);
+                __mgeffschedular_destroy(child);
                 i = j;
             }
         }
@@ -310,7 +310,7 @@ void mGEffDeinit (void)
     }
 }
 
-EffSchedular* effschedular_create(void) 
+EffSchedular* __mgeffschedular_create(void) 
 {
     EffSchedular *sch;
     sch = (EffSchedular *)malloc(sizeof(*sch));
@@ -324,7 +324,7 @@ EffSchedular* effschedular_create(void)
     return sch;
 }
 
-void effschedular_destroy(EffSchedular* schedular) 
+void __mgeffschedular_destroy(EffSchedular* schedular) 
 {
     EffGCRemoveSchedular(schedular);
     assert(schedular);

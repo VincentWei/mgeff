@@ -94,9 +94,9 @@ static void effflipeffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR 
         BITMAP src1_bitmap;
         BITMAP src2_bitmap;
 
-        effbaseeffector_rect(effector->sink->hdc, &rc_sink);
-        effbaseeffector_rect(source1->hdc, &rc_src1);
-        effbaseeffector_rect(source2->hdc, &rc_src2);
+        __mgeffbaseeffector_rect(effector->sink->hdc, &rc_sink);
+        __mgeffbaseeffector_rect(source1->hdc, &rc_src1);
+        __mgeffbaseeffector_rect(source2->hdc, &rc_src2);
 
         memset (&src1_bitmap, 0x0, sizeof (src1_bitmap));
         memset (&src2_bitmap, 0x0, sizeof (src2_bitmap));
@@ -161,9 +161,9 @@ static void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
 
     _MGEFF_PRINTF("%s:value = %f\n", __FUNCTION__, *(float*)value);
 
-    effbaseeffector_rect(sink_dc, &rc_sink);
-    effbaseeffector_rect(source1->hdc, &rc_src1);
-    effbaseeffector_rect(source2->hdc, &rc_src2);
+    __mgeffbaseeffector_rect(sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect(source1->hdc, &rc_src1);
+    __mgeffbaseeffector_rect(source2->hdc, &rc_src2);
 
     center_point.x = 0 + ((RECTW(rc_sink)) >> 1); 
     center_point.y = 0; 
@@ -208,7 +208,7 @@ static void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
         if (curval < FLIP_COMPLETE /2) {
             if (LeftPoints[0].x < LeftPoints[1].x) {
                 const RECT *src_rc = &rc_src1;
-                effcommon_v_fillladder(source1->hdc, src_rc->left, src_rc->top, RECTWP(src_rc), RECTHP(src_rc),
+                EffVLineApplier(source1->hdc, src_rc->left, src_rc->top, RECTWP(src_rc), RECTHP(src_rc),
                         sink_dc, rc_sink.left, rc_sink.top, rc_sink.right, rc_sink.bottom,
                         LeftPoints[1].x, LeftPoints[1].y,
                         LeftPoints[2].x, LeftPoints[2].y,
@@ -219,7 +219,7 @@ static void effflipeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
         else {
             if (RightPoints[0].x < RightPoints[1].x) {
                 const RECT *src_rc = &rc_src2;
-                effcommon_v_fillladder(source2->hdc, src_rc->left, src_rc->top, RECTWP(src_rc), RECTHP(src_rc),
+                EffVLineApplier(source2->hdc, src_rc->left, src_rc->top, RECTWP(src_rc), RECTHP(src_rc),
                         sink_dc, rc_sink.left, rc_sink.top, rc_sink.right, rc_sink.bottom,
                         RightPoints[1].x, RightPoints[1].y,
                         RightPoints[2].x, RightPoints[2].y,

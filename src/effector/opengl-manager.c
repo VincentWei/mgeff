@@ -195,7 +195,7 @@ GLuint  textureLoadAsHDC(OpenGLManager* mesaman, HDC hdc, GLenum target)
         size_t len = 0;
         unsigned char r, g, b, a;
         int x, y;
-        effbaseeffector_rect(hdc, &rect);
+        __mgeffbaseeffector_rect(hdc, &rect);
         width = RECTW(rect);
         height = RECTH(rect);
         len = width * height * BYTE_PER_RGBA_PIXEL;

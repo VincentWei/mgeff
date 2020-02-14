@@ -72,9 +72,9 @@ struct _EffEffector{
     MGEFF_EFFECTOROPS* ops;
 };
 
-int  effbaseeffector_setproperty(MGEFF_EFFECTOR effector, int property_id, int value);
-int  effbaseeffector_getproperty(MGEFF_EFFECTOR effector, int property_id, int* pValue);
-void effbaseeffector_rect(HDC hdc, RECT* rect);
-int  effeffector_init(void);
-void effeffector_deinit(void);
+int  __mgeffbaseeffector_setproperty(MGEFF_EFFECTOR effector, int property_id, int value);
+int  __mgeffbaseeffector_getproperty(MGEFF_EFFECTOR effector, int property_id, int* pValue);
+void __mgeffbaseeffector_rect(HDC hdc, RECT* rect);
+int  __mgeffeffector_init(void);
+void __mgeffeffector_deinit(void);
 #endif

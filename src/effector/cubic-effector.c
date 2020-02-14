@@ -92,9 +92,9 @@ static void effcubiceffector_begindraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR
         BITMAP src1_bitmap;
         BITMAP src2_bitmap;
 
-        effbaseeffector_rect(effector->sink->hdc, &rc_sink);
-        effbaseeffector_rect(source1->hdc, &rc_src1);
-        effbaseeffector_rect(source2->hdc, &rc_src2);
+        __mgeffbaseeffector_rect(effector->sink->hdc, &rc_sink);
+        __mgeffbaseeffector_rect(source1->hdc, &rc_src1);
+        __mgeffbaseeffector_rect(source2->hdc, &rc_src2);
 
         memset (&src1_bitmap, 0x0, sizeof (src1_bitmap));
         memset (&src2_bitmap, 0x0, sizeof (src2_bitmap));
@@ -157,7 +157,7 @@ static void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
 
         if (dAngle > ROTATE_MAX) dAngle = ROTATE_MAX;
 
-        effbaseeffector_rect(effector->sink->hdc, &sink_rc);
+        __mgeffbaseeffector_rect(effector->sink->hdc, &sink_rc);
 
         w = RECTW(sink_rc);
         h = RECTH(sink_rc);
@@ -235,8 +235,8 @@ static void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
                 if (LeftPoints[0].x < LeftPoints[1].x) {
                     index = m_direction == 0 ? 1 : 0;
                     src_dc = m_sourceList[index]->hdc;
-                    effbaseeffector_rect(src_dc, &src_rc);
-                    effcommon_v_fillladder(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
+                    __mgeffbaseeffector_rect(src_dc, &src_rc);
+                    EffVLineApplier(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
                             sink_dc, sink_rc.left, sink_rc.top, sink_rc.right, sink_rc.bottom,
                             LeftPoints[1].x, LeftPoints[1].y, 
                             LeftPoints[2].x, LeftPoints[2].y, 
@@ -246,8 +246,8 @@ static void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
                 if (RightPoints[0].x < RightPoints[1].x) {
                     index = m_direction == 0 ? 0 : 1;
                     src_dc = m_sourceList[index]->hdc;
-                    effbaseeffector_rect(src_dc, &src_rc);
-                    effcommon_v_fillladder(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
+                    __mgeffbaseeffector_rect(src_dc, &src_rc);
+                    EffVLineApplier(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
                             sink_dc, sink_rc.left, sink_rc.top, sink_rc.right, sink_rc.bottom,
                             RightPoints[1].x, RightPoints[1].y, 
                             RightPoints[2].x, RightPoints[2].y, 
@@ -333,8 +333,8 @@ static void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
                 if (TopPoints[3].y > TopPoints[0].y) {
                     index = m_direction == 0 ? 1 : 0;
                     src_dc = m_sourceList[index]->hdc;
-                    effbaseeffector_rect(src_dc, &src_rc);
-                    effcommon_h_fillladder(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
+                    __mgeffbaseeffector_rect(src_dc, &src_rc);
+                    EffHLineApplier(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
                             sink_dc, sink_rc.left, sink_rc.top, sink_rc.right, sink_rc.bottom,
                             TopPoints[1].x, TopPoints[1].y, 
                             TopPoints[2].x, TopPoints[2].y,
@@ -347,8 +347,8 @@ static void effcubiceffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
                 if (BottomPoints[3].y > BottomPoints[0].y) {
                     index = m_direction == 0 ? 0 : 1;
                     src_dc = m_sourceList[index]->hdc;
-                    effbaseeffector_rect(src_dc, &src_rc);
-                    effcommon_h_fillladder(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
+                    __mgeffbaseeffector_rect(src_dc, &src_rc);
+                    EffHLineApplier(src_dc, src_rc.left, src_rc.top, RECTW(src_rc), RECTH(src_rc),
                             sink_dc, sink_rc.left, sink_rc.top, sink_rc.right, sink_rc.bottom,
                             BottomPoints[1].x, BottomPoints[1].y, 
                             BottomPoints[2].x, BottomPoints[2].y,
@@ -388,12 +388,12 @@ static int effcubliceffector_setproperty(MGEFF_EFFECTOR _effector, int property_
             }
             break;
         default:
-            return effbaseeffector_setproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty(_effector, property_id, value);
     }
     return -1;
 }
 
-MGEFF_EFFECTOROPS cubiceffector = 
+MGEFF_EFFECTOROPS __mgeff_cubiceffector = 
 { 
     MGEFF_MINOR_cubicrotate, 
     MGEFF_FLOAT, 

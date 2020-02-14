@@ -218,7 +218,7 @@ static int effanimation_updatevalue(EffAnimation* anim, int time)
     else 
         progress = 1.0f;
 
-    curve_value  = effmotioncurve_calcvalue(anim->curve, progress);
+    curve_value  = __mgeffmotioncurve_calcvalue(anim->curve, progress);
     _DBG_PRINTF("%s:time =%d, anim->duration = %d, progess = %f, curve_value = %f\n", 
             __FUNCTION__, time, anim->duration, progress, curve_value);
 
@@ -232,7 +232,7 @@ static int effanimation_updatevalue(EffAnimation* anim, int time)
 }
 
 
-MGEFF_BOOL effanimation_init(EffAnimation* anim, int type)
+MGEFF_BOOL __mgeffanimation_init(EffAnimation* anim, int type)
 {
     switch(type) {
         case MGEFF_INT:
@@ -285,26 +285,26 @@ MGEFF_BOOL effanimation_init(EffAnimation* anim, int type)
     return MGEFF_TRUE;
 }
 
-int effanimation_getnexttime(EffAnimation* anim)
+int __mgeffanimation_getnexttime(EffAnimation* anim)
 {
     return anim->lasttime + (anim->duration/anim->frequency);
 }
 
-MGEFF_BOOL effanimation_comparetime(EffAnimation* a, EffAnimation* b)
+MGEFF_BOOL __mgeffanimation_comparetime(EffAnimation* a, EffAnimation* b)
 {
-    if (effanimation_getnexttime(a) < effanimation_getnexttime(b)) {
+    if (__mgeffanimation_getnexttime(a) < __mgeffanimation_getnexttime(b)) {
         return MGEFF_TRUE;
     }
     return MGEFF_FALSE;
 }
 
-void effanimation_setstart(EffAnimation* anim, int time_ms)
+void __mgeffanimation_setstart(EffAnimation* anim, int time_ms)
 {
     if (IS_ANIMATION(anim)
             || (IS_SEQGROUP(anim))) {
         if (anim->state == MGEFF_STATE_READY) {
             anim->lasttime = time_ms;
-            effanimation_setstate(anim, MGEFF_STATE_RUNNING);
+            __mgeffanimation_setstate(anim, MGEFF_STATE_RUNNING);
         }
     }
     else if (IS_PARGROUP(anim)){
@@ -315,21 +315,21 @@ void effanimation_setstart(EffAnimation* anim, int time_ms)
             /* If it's a animation group, make all animation nodes start. */
             list_for_each(i, &group->animation_list) {
                 animation = (EffAnimation *)i;
-                effanimation_setstart(animation, time_ms);
+                __mgeffanimation_setstart(animation, time_ms);
             }
             anim->lasttime = time_ms;
-            effanimation_setstate(anim, MGEFF_STATE_RUNNING);
+            __mgeffanimation_setstate(anim, MGEFF_STATE_RUNNING);
         }
     }
 }
 
 
-MGEFF_BOOL effanimation_running(EffAnimation* anim)
+MGEFF_BOOL __mgeffanimation_running(EffAnimation* anim)
 {
     return anim->state == MGEFF_STATE_RUNNING;
 }
 
-MGEFF_BOOL effanimation_ready(EffAnimation* anim)
+MGEFF_BOOL __mgeffanimation_ready(EffAnimation* anim)
 {
     return anim->state == MGEFF_STATE_READY;
 }
@@ -353,7 +353,7 @@ static int effanimation_get_totaltime(EffAnimation* anim)
 }
 
 /* If animation over or param invalid, it will return 0, else return 1. */
-int effanimation_setcurrenttime(EffAnimation* anim, int currenttime)
+int __mgeffanimation_setcurrenttime(EffAnimation* anim, int currenttime)
 {
     int oldloop, delta, time, total_time;
 
@@ -420,29 +420,29 @@ int effanimation_setcurrenttime(EffAnimation* anim, int currenttime)
     if (!IS_GROUP(anim) && ((anim->direction == MGEFF_DIR_FORWARD
             && anim->currenttime == total_time)
             || (anim->direction == MGEFF_DIR_BACKWARD && anim->currenttime == 0))) {
-        effanimation_setstate(anim, MGEFF_STATE_STOPPED);
+        __mgeffanimation_setstate(anim, MGEFF_STATE_STOPPED);
         return 0;
     }
     return 1;
 }
 
-void effanimation_resume(EffAnimation* anim, int not_used)
+void __mgeffanimation_resume(EffAnimation* anim, int not_used)
 {
     if (anim->state != MGEFF_STATE_PAUSED) {
         return;
     }
-    effanimation_setstate(anim, MGEFF_STATE_READY);
+    __mgeffanimation_setstate(anim, MGEFF_STATE_READY);
 }
 
-void effanimation_paused(EffAnimation* anim, int no_used)
+void __mgeffanimation_paused(EffAnimation* anim, int no_used)
 {
     if (anim->state != MGEFF_STATE_RUNNING) {
         return;
     }
-    effanimation_setstate(anim, MGEFF_STATE_PAUSED);
+    __mgeffanimation_setstate(anim, MGEFF_STATE_PAUSED);
 }
 
-void effanimation_setstate(EffAnimation* anim, int state)
+void __mgeffanimation_setstate(EffAnimation* anim, int state)
 {
     //int oldstate;
     if (anim->state == state) {
@@ -479,7 +479,7 @@ void effanimation_setstate(EffAnimation* anim, int state)
     switch (state) {
         case MGEFF_STATE_RUNNING:
             /* not need call at this moment.*/
-            //effanimation_setcurrenttime(anim, anim->lasttime);
+            //__mgeffanimation_setcurrenttime(anim, anim->lasttime);
             break;
         case MGEFF_STATE_STOPPED:
             _MGEFF_PRINTF("%s:animation stopped.\n", __FUNCTION__);
@@ -532,7 +532,7 @@ MGEFF_ANIMATION mGEffAnimationCreate(void* target, MGEFF_SETPROPERTY_CB setprope
     EffAnimation* anim = (EffAnimation*)calloc(1, sizeof(EffAnimation));
 
     CHECK_HANDLE_RET_NIL(anim);
-    effanimation_init(anim, varianttype);
+    __mgeffanimation_init(anim, varianttype);
     anim->setProperty = setproperty;
     anim->property_id = id;
     anim->targetobject = target;
@@ -585,7 +585,7 @@ void  mGEffAnimationDelete(MGEFF_ANIMATION handle)
 
     /* if is not keepalive there is auto delete in another place */
     if (anim->keepalive) 
-        effschedular_remove_animation(g_schedular_default, anim);
+        __mgeffschedular_remove_animation(g_schedular_default, anim);
 
     free(anim);
 
@@ -823,14 +823,14 @@ void  mGEffAnimationSetCurve(MGEFF_ANIMATION handle, enum EffMotionType type)
     if (anim->curve) {
         free(anim->curve);
     }
-    anim->curve = effmotioncurve_init(type);
+    anim->curve = __mgeffmotioncurve_init(type);
 
     if (type >= InElastic && type <= OutInBounce) {  
         EffMotionCurveEx* curve_ex = (EffMotionCurveEx*)anim->curve;
-        curve_ex->curveex_cb = effmotioncurve_getfuncex(type);
+        curve_ex->curveex_cb = __mgeffmotioncurve_getfuncex(type);
     }
     else {
-        anim->curve->curve_cb = effmotioncurve_getfunc(type);
+        anim->curve->curve_cb = __mgeffmotioncurve_getfunc(type);
     }
     anim->curve->curve_type = type;
 }
@@ -864,14 +864,14 @@ void*  mGEffAnimationGetTarget(MGEFF_ANIMATION handle)
     return anim->targetobject;
 }
 
-void effanimation_start(EffAnimation* anim, int not_used)
+void __mgeffanimation_start(EffAnimation* anim, int not_used)
 {
     if (anim->state != MGEFF_STATE_READY) {
-        effanimation_setstate(anim, MGEFF_STATE_READY);
+        __mgeffanimation_setstate(anim, MGEFF_STATE_READY);
 
         /* if not set curve, default set as Linear. */
         if (!anim->curve) {
-            anim->curve = effmotioncurve_init(Linear);
+            anim->curve = __mgeffmotioncurve_init(Linear);
         }
     }
 }
@@ -882,11 +882,11 @@ int  mGEffAnimationSyncRun(MGEFF_ANIMATION handle)
     CHECK_HANDLE_RET(handle);
 
     if (!g_schedular_default) return -1;
-    effanimation_recursion(anim, effanimation_start, -1);
-    effschedular_add_animation(g_schedular_default, anim);
+    effanimation_recursion(anim, __mgeffanimation_start, -1);
+    __mgeffschedular_add_animation(g_schedular_default, anim);
 
     if (anim->state != MGEFF_STATE_READY) return -1;
-    effschedular_sync_run(g_schedular_default, anim);
+    __mgeffschedular_sync_run(g_schedular_default, anim);
 
     return 0;
 }
@@ -898,13 +898,13 @@ int mGEffAnimationAsyncRun(MGEFF_ANIMATION handle)
     EffSchedular* schedular;
 
     CHECK_HANDLE_RET(handle);
-    schedular = effschedular_check_sch();
+    schedular = __mgeffschedular_check_sch();
     if (!schedular) {
         return -1;
     }
 
-    effanimation_recursion(anim, effanimation_start, -1);
-    effschedular_add_animation(schedular, anim);
+    effanimation_recursion(anim, __mgeffanimation_start, -1);
+    __mgeffschedular_add_animation(schedular, anim);
 
     return 0;
 }
@@ -915,7 +915,7 @@ void mGEffAnimationPause(MGEFF_ANIMATION handle)
     CHECK_HANDLE(handle);
 
     if (anim->state == MGEFF_STATE_PAUSED) return;
-    effanimation_recursion(anim, effanimation_paused, MGEFF_STATE_PAUSED);
+    effanimation_recursion(anim, __mgeffanimation_paused, MGEFF_STATE_PAUSED);
 }
 
 void mGEffAnimationResume(MGEFF_ANIMATION handle)
@@ -924,7 +924,7 @@ void mGEffAnimationResume(MGEFF_ANIMATION handle)
     CHECK_HANDLE(handle);
 
     if (anim->state != MGEFF_STATE_PAUSED) return;
-    effanimation_recursion(anim, effanimation_resume, MGEFF_STATE_READY);
+    effanimation_recursion(anim, __mgeffanimation_resume, MGEFF_STATE_READY);
 }
 
 MGEFF_BOOL mGEffAnimationWait(void* phWnd, MGEFF_ANIMATION handle)
@@ -935,7 +935,7 @@ MGEFF_BOOL mGEffAnimationWait(void* phWnd, MGEFF_ANIMATION handle)
     CHECK_HANDLE_RET(handle);
 
     mainHwnd = GetMainWindowHandle(*(HWND *)phWnd);
-    schedular = effschedular_check_sch();
+    schedular = __mgeffschedular_check_sch();
     if (!schedular) {
         assert(0);
         return MGEFF_FALSE;
@@ -984,11 +984,11 @@ void mGEffAnimationStop(MGEFF_ANIMATION handle)
     CHECK_HANDLE(handle);
 
     if (anim->state == MGEFF_STATE_STOPPED) return;
-    effanimation_setstate((EffAnimation *)handle, MGEFF_STATE_STOPPED);
+    __mgeffanimation_setstate((EffAnimation *)handle, MGEFF_STATE_STOPPED);
 
     /* delete the animation or remove from animation list at moment*/
 #if 0
-    effschedular_remove_animation(g_schedular_default, anim);
+    __mgeffschedular_remove_animation(g_schedular_default, anim);
     if (!anim->keepalive) {
         mGEffAnimationDelete((MGEFF_ANIMATION)anim);
     }
@@ -1027,7 +1027,7 @@ MGEFF_ANIMATION mGEffCreatePropertyAnimation(const EffPropertyAnimationSetting *
     return group;
 }
 
-void effanimation_restart(MGEFF_ANIMATION handle)
+void __mgeffanimation_restart(MGEFF_ANIMATION handle)
 {
     EffAnimation* anim = (EffAnimation*)handle;
     CHECK_HANDLE(handle);
@@ -1036,10 +1036,10 @@ void effanimation_restart(MGEFF_ANIMATION handle)
             || (IS_SEQGROUP(anim))) {
         if (anim->state != MGEFF_STATE_RUNNING) {
 #if 0
-            effanimation_recursion(anim, effanimation_start, -1);
-            effanimation_recursion(anim, effanimation_setstate, MGEFF_STATE_READY);
+            effanimation_recursion(anim, __mgeffanimation_start, -1);
+            effanimation_recursion(anim, __mgeffanimation_setstate, MGEFF_STATE_READY);
 #else
-            effanimation_recursion(anim, effanimation_start, MGEFF_STATE_READY);
+            effanimation_recursion(anim, __mgeffanimation_start, MGEFF_STATE_READY);
 #endif
         }
     }

@@ -87,9 +87,9 @@ static void effcleareffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _e
     EffHDCSource *src_new = (EffHDCSource *) (src_old->list.next);
     RECT rc_sink, rc_src_old, rc_src_new;
 
-    effbaseeffector_rect(sink_dc, &rc_sink);
-    effbaseeffector_rect(src_old->hdc, &rc_src_old);
-    effbaseeffector_rect(src_new->hdc, &rc_src_new);
+    __mgeffbaseeffector_rect(sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect(src_old->hdc, &rc_src_old);
+    __mgeffbaseeffector_rect(src_new->hdc, &rc_src_new);
 
 #if 0
     /*blit the new picture*/

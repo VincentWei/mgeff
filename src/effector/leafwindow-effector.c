@@ -72,7 +72,7 @@ static int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector, int property_
             leaf_context->nrows= value;
             return 0;
         default:
-            return effbaseeffector_setproperty(_effector, property_id, value);
+            return __mgeffbaseeffector_setproperty(_effector, property_id, value);
     }
     return -1;
 }
@@ -94,7 +94,7 @@ static int  effleafceffector_getproperty(MGEFF_EFFECTOR _effector, int property_
             *pValue = leaf_context->nrows;
             return 0;
         default:
-            return effbaseeffector_getproperty(_effector, property_id, pValue);
+            return __mgeffbaseeffector_getproperty(_effector, property_id, pValue);
     }
     return -1;
 }
@@ -111,8 +111,8 @@ static void effleafeffector_ondraw(MGEFF_ANIMATION animation, MGEFF_EFFECTOR _ef
 
     source = (EffHDCSource *) (source->list.next);
     
-    effbaseeffector_rect(source->hdc, &rc1);
-    effbaseeffector_rect(sink_dc, &rc_sink);
+    __mgeffbaseeffector_rect(source->hdc, &rc1);
+    __mgeffbaseeffector_rect(sink_dc, &rc_sink);
 
     _MGEFF_PRINTF("%s:value = %f\n", __FUNCTION__, *(float*)value);
     //printf("%s:value = %f\n", __FUNCTION__, *(float*)value);

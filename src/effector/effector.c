@@ -58,7 +58,7 @@ static int effeffector_sourcecount(EffEffector* effector)
 }
 #endif 
 
-int effbaseeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
+int __mgeffbaseeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int value)
 {
     EffEffector* effector = (EffEffector*)_effector;
     switch (property_id)
@@ -72,7 +72,7 @@ int effbaseeffector_setproperty(MGEFF_EFFECTOR _effector, int property_id, int v
     return -1;
 }
 
-int effbaseeffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* pValue)
+int __mgeffbaseeffector_getproperty(MGEFF_EFFECTOR _effector, int property_id, int* pValue)
 {
     EffEffector* effector = (EffEffector*)_effector;
     switch (property_id)
@@ -102,7 +102,7 @@ static void effbaserender_enddraw(MGEFF_ANIMATION handle)
     }
 }
 
-void effbaseeffector_rect(HDC hdc, RECT* rect)
+void __mgeffbaseeffector_rect(HDC hdc, RECT* rect)
 {
     rect->left = 0;
     rect->top  = 0;
@@ -113,9 +113,9 @@ void effbaseeffector_rect(HDC hdc, RECT* rect)
 static void effbaserender_ondraw(MGEFF_ANIMATION handle, void* target, intptr_t id, void* value)
 {
     EffEffector* effector = (EffEffector*)target;
-    HDC sink_dc = __mgeff_effsink_get(effector->sink);
+    HDC sink_dc = __mgeffsink_get(effector->sink);
     effector->ops->ondraw(handle, (MGEFF_EFFECTOR)effector, sink_dc, id, value);
-    __mgeff_effsink_release(effector->sink, sink_dc);
+    __mgeffsink_release(effector->sink, sink_dc);
 }
 
 static EffEffector* effbaseeffector_init(MGEFF_EFFECTOR _effector)
@@ -128,7 +128,7 @@ static EffEffector* effbaseeffector_init(MGEFF_EFFECTOR _effector)
 extern MGEFF_EFFECTOROPS centerspliteffector;
 #endif
 #ifdef _MGEFF_CUBICROTATEEFFECTOR
-extern MGEFF_EFFECTOROPS cubiceffector;
+extern MGEFF_EFFECTOROPS __mgeff_cubiceffector;
 extern MGEFF_EFFECTOROPS mgpluscubiceffector;
 #endif
 #ifdef _MGEFF_FLIPEFFECTOR
@@ -178,7 +178,7 @@ static MGEFF_EFFECTOROPS* s_effectors_ops[] = {
     &alphaeffector,
 #endif
 #ifdef _MGEFF_CUBICROTATEEFFECTOR
-    &cubiceffector,
+    &__mgeff_cubiceffector,
     &mgpluscubiceffector,
 #endif
 #ifdef _MGEFF_FLIPEFFECTOR
@@ -221,7 +221,7 @@ static MGEFF_EFFECTOROPS* s_effectors_ops[] = {
 /* effector list. */
 static struct list_head effector_list;
 
-int effeffector_init(void)
+int __mgeffeffector_init(void)
 {
     int i = 0;
     INIT_LIST_HEAD(&effector_list);
@@ -235,7 +235,7 @@ int effeffector_init(void)
     return 0;
 }
 
-void effeffector_deinit(void)
+void __mgeffeffector_deinit(void)
 {
     /* destroy all create effector.*/
     struct list_head *i, *j;
@@ -334,12 +334,12 @@ MGEFF_EFFECTOR mGEffEffectorCreate(unsigned long key)
             if (ops->setproperty) 
                 effector->ops->setproperty = ops->setproperty;
             else
-                effector->ops->setproperty = effbaseeffector_setproperty;
+                effector->ops->setproperty = __mgeffbaseeffector_setproperty;
 
             if (ops->getproperty)
                 effector->ops->getproperty = ops->getproperty;
             else
-                effector->ops->getproperty = effbaseeffector_getproperty;
+                effector->ops->getproperty = __mgeffbaseeffector_getproperty;
 
             break;
         }
@@ -629,16 +629,16 @@ MGEFF_ANIMATION mGEffCreateRollerAnimation(HDC dc_rollup, HDC dc_expand, HDC dc_
     MGEFF_ANIMATION anim_rollup, anim_expand, seq_group;
 
     SetBrushColor(white_dc_rollup, RGB2Pixel(white_dc_rollup, 0xff, 0xff, 0xff));
-    effbaseeffector_rect(white_dc_rollup, &rc);
+    __mgeffbaseeffector_rect(white_dc_rollup, &rc);
     FillBox(white_dc_rollup, 0, 0, RECTW(rc), RECTH(rc));
 
     SetBrushColor(white_dc_expand, RGB2Pixel(white_dc_expand, 0xff, 0xff, 0xff));
-    effbaseeffector_rect(white_dc_expand, &rc);
+    __mgeffbaseeffector_rect(white_dc_expand, &rc);
     FillBox(white_dc_expand, 0, 0, RECTW(rc), RECTH(rc));
 
     zoom_rollup  = mGEffEffectorCreateEx(white_dc_rollup, dc_rollup, dc_dst, MGEFF_EFFECTOR_ZOOM);
     mGEffSetBufferSink(mGEffEffectorGetSink(zoom_rollup), dc_dst);
-    effbaseeffector_rect(dc_rollup, &rollup_rc);
+    __mgeffbaseeffector_rect(dc_rollup, &rollup_rc);
     anim_rollup  = mGEffAnimationCreateWithEffector(zoom_rollup);
     mGEffAnimationSetStartValue(anim_rollup, &rollup_rc);
     rollup_rc.right = rollup_rc.left = RECTW(rollup_rc)/2;
@@ -647,7 +647,7 @@ MGEFF_ANIMATION mGEffCreateRollerAnimation(HDC dc_rollup, HDC dc_expand, HDC dc_
 
     zoom_expand  = mGEffEffectorCreateEx(white_dc_expand, dc_expand, dc_dst, MGEFF_EFFECTOR_ZOOM);
     mGEffSetBufferSink(mGEffEffectorGetSink(zoom_expand), dc_dst);
-    effbaseeffector_rect(dc_expand, &expand_rc);
+    __mgeffbaseeffector_rect(dc_expand, &expand_rc);
     anim_expand  = mGEffAnimationCreateWithEffector(zoom_expand);
     mGEffAnimationSetEndValue(anim_expand, &expand_rc);
     expand_rc.right = expand_rc.left = RECTW(expand_rc)/2;

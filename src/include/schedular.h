@@ -63,7 +63,7 @@ extern EffSchedular *g_schedular_default;
  *
  * \sa schedular_remove_animation
  */
-void effschedular_add_animation(EffSchedular *schedular, EffAnimation *animation);
+void __mgeffschedular_add_animation(EffSchedular *schedular, EffAnimation *animation);
 
 /**
  * \fn void schedular_remove_animation(EffSchedular *schedular, EffAnimation *animation)
@@ -72,12 +72,12 @@ void effschedular_add_animation(EffSchedular *schedular, EffAnimation *animation
  *
  * \sa schedular_add_animation
  */
-void effschedular_remove_animation(EffSchedular *schedular, EffAnimation *animation);
+void __mgeffschedular_remove_animation(EffSchedular *schedular, EffAnimation *animation);
 
-void effschedular_destroy(EffSchedular* schedular);
-EffSchedular* effschedular_create(void);
-EffSchedular* effschedular_check_sch(void);
-void effschedular_sync_run(EffSchedular *schedular, EffAnimation *animation);
-int effschedular_one_step(EffSchedular *schedular, EffAnimation *animation_wanted);
+void __mgeffschedular_destroy(EffSchedular* schedular);
+EffSchedular* __mgeffschedular_create(void);
+EffSchedular* __mgeffschedular_check_sch(void);
+void __mgeffschedular_sync_run(EffSchedular *schedular, EffAnimation *animation);
+int __mgeffschedular_one_step(EffSchedular *schedular, EffAnimation *animation_wanted);
 
 #endif
