@@ -105,7 +105,7 @@ EffMotionCurve* effmotioncurve_init(int type)
     return curve;
 }
 
-float effmotioncurve_elastic_cb(EffMotionCurve* c, float t)
+static float effmotioncurve_elastic_cb(EffMotionCurve* c, float t)
 {
     float p = (((EffMotionCurveEx *)c)->period < 0) ? 0.3f : ((EffMotionCurveEx *)c)->period ;
     float a = (((EffMotionCurveEx *)c)->amplitude < 0) ? 1.0f : ((EffMotionCurveEx *)c)->amplitude;
@@ -124,7 +124,7 @@ float effmotioncurve_elastic_cb(EffMotionCurve* c, float t)
     }
 }
 
-float effmotioncurve_back_cb(EffMotionCurve* c, float t)
+static float effmotioncurve_back_cb(EffMotionCurve* c, float t)
 {
     float  o = (((EffMotionCurveEx *)c)->overshoot < 0) ? 1.70158f : ((EffMotionCurveEx *)c)->overshoot;
 
@@ -142,7 +142,7 @@ float effmotioncurve_back_cb(EffMotionCurve* c, float t)
     }
 }
 
-float effmotioncurve_bounce_cb(EffMotionCurve* c, float t)
+static float effmotioncurve_bounce_cb(EffMotionCurve* c, float t)
 {
     float a = (((EffMotionCurveEx *)c)->amplitude < 0) ? 1.0f : ((EffMotionCurveEx *)c)->amplitude;
 
@@ -232,7 +232,6 @@ MGEFF_MOTIONCURVE_CB effmotioncurve_getfunc(int type)
         return &easeInOutCirc;
     case OutInCirc:
         return &easeOutInCirc;
-    // Internal for, compatibility with QTimeLine only ??
     case InCurve:
         return &easeInCurve;
     case OutCurve:
