@@ -98,6 +98,6 @@ static inline DWORD eff_time(void) {
 #define CHECK_HANDLE_RET_INV(handle) do { if (handle == NULL) { assert(handle); return INV_PTR;} } while(0)
 #define CHECK_HANDLE_RET_NIL(handle) do { if (handle == NULL) { assert(handle); return NULL;} } while(0)
 
-#define _MGEFF_PRINTF _MG_PRINTF
+#define _MGEFF_PRINTF _DBG_PRINTF
 
 #endif
