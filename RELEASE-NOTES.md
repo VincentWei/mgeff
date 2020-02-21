@@ -3,14 +3,14 @@
 ## Version 1.4.0
 
 The MiniGUI development team announces the availability of mGEff 1.4.0.
-All users of MiniGUI are encouraged to test this version carefully, and
-report any bugs and incompatibilities on GitHub:
+All users of MiniGUI are encouraged to use this version, and report
+any bugs and incompatibilities on GitHub:
 
-https://github.com/VincentWei/mgeff
+<https://github.com/VincentWei/mgeff>
 
 ### What's new in this version
 
-- Tune code for MiniGUI 4.2.x or later.
+- Tune code for MiniGUI 5.0.0 or later.
 - Cleanup code for bad symbols.
 
 ## Version 1.2.3
