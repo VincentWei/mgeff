@@ -65,51 +65,65 @@ static int  effanimation_get_totaltime(EffAnimation* anim);
 static void effanimation_setdirection(EffAnimation* anim, int direction);
 static void effanimation_recursion(EffAnimation* anim, EFF_RECURSION_CB cb, int param);
 
-#define IS_GROUP(a) (a->animationtype == MGEFF_PARALLEL \
-        || a->animationtype == MGEFF_SEQUENTIAL)
+#define IS_GROUP(a)                         \
+    (a->animationtype == MGEFF_PARALLEL ||  \
+     a->animationtype == MGEFF_SEQUENTIAL)
 
-#define IS_PARGROUP(a) \
+#define IS_PARGROUP(a)                      \
     (a->animationtype == MGEFF_PARALLEL)
 
-#define IS_SEQGROUP(a) (\
-        a->animationtype == MGEFF_SEQUENTIAL)
+#define IS_SEQGROUP(a)                      \
+    (a->animationtype == MGEFF_SEQUENTIAL)
 
-#define IS_ANIMATION(a) (\
-        a->animationtype == MGEFF_NORMAL)
+#define IS_ANIMATION(a)                     \
+    (a->animationtype == MGEFF_NORMAL)
 
-#define CHECK_PROPID(id) \
-        if (id < MGEFF_PROP_DURATION  || id >= MGEFF_PROP_MAX) { \
-                   return; \
-                }
-#define CHECK_PROPID_RET(id, ret) \
-        if (id < MGEFF_PROP_DURATION  || id >= MGEFF_PROP_MAX) { \
-                   return ret; \
-                }
+#define CHECK_PROPID(id)                    \
+    if (id < MGEFF_PROP_DURATION ||         \
+            id >= MGEFF_PROP_MAX) {         \
+        return;                             \
+    }
 
-#define MALLOC_VAR(type) (type*) malloc(sizeof(type))
+#define CHECK_PROPID_RET(id, ret)           \
+    if (id < MGEFF_PROP_DURATION ||         \
+            id >= MGEFF_PROP_MAX) {         \
+        return ret;                         \
+    }
 
-#define  ANIM_VAR_INIT(anim, t) do {     \
-    anim->startvalue = MALLOC_VAR(t);    \
-    anim->endvalue   = MALLOC_VAR(t);    \
-    anim->currentvalue = MALLOC_VAR(t);  \
-    anim->variantsize = sizeof(t);       \
-} while (0)
+/* Since 1.4.0, use MiniGUI slice allocator for animation variables */
+#define ALLOC_VAR(type)                    \
+    mg_slice_alloc (sizeof (type))
 
-#define ANIM_VAR_DEINIT(anim) do {       \
-    free(anim->startvalue);              \
-    anim->startvalue = NULL;             \
-    free(anim->endvalue);                \
-    anim->endvalue= NULL;                \
-    free(anim->currentvalue);            \
-    anim->currentvalue= NULL;            \
-    if (anim->curve) {                   \
-        free(anim->curve);               \
-    }                                    \
-} while (0)
+#define FREE_VAR(anim, var)                 \
+    mg_slice_free (anim->variantsize, var)
 
-#define FACTOR(v1, v2, factor)        (v1) + ((v2) - (v1)) * (factor)
-#define INTERPOLATE(type, s, e, v, factor)   *v = (type)(*s + (*e - *s) * factor)
-#define INTERPOLATOR_TYPE(type) \
+#define  ANIM_VAR_INIT(anim, t)             \
+    do {                                    \
+        anim->startvalue = ALLOC_VAR(t);    \
+        anim->endvalue   = ALLOC_VAR(t);    \
+        anim->currentvalue = ALLOC_VAR(t);  \
+        anim->variantsize = sizeof(t);      \
+    } while (0)
+
+#define ANIM_VAR_DEINIT(anim)               \
+    do {                                    \
+        FREE_VAR(anim, anim->startvalue);   \
+        anim->startvalue = NULL;            \
+        FREE_VAR(anim, anim->endvalue);     \
+        anim->endvalue= NULL;               \
+        FREE_VAR(anim, anim->currentvalue); \
+        anim->currentvalue= NULL;           \
+        if (anim->curve) {                  \
+            free (anim->curve);              \
+        }                                   \
+    } while (0)
+
+#define FACTOR(v1, v2, factor)              \
+    (v1) + ((v2) - (v1)) * (factor)
+#define INTERPOLATE(type, s, e, v, factor)  \
+    *v = (type)(*s + (*e - *s) * factor)
+
+#define INTERPOLATOR_TYPE(type)             \
     INTERPOLATE(type, (type*)start, (type*)end, (type*)value, factor)
 
 static void effanimation_interpolator_int(MGEFF_ANIMATION handle, void* start, void* end, 
