@@ -56,8 +56,10 @@
 #include "animation.h"
 #include "window-animation.h"
 
+#if 0   /* deprecated code */
 extern HDC GetSecondarySubDC (HDC secondary_dc, HWND hwnd_child, BOOL client);
 extern void ReleaseSecondarySubDC (HDC secondary_subdc);
+#endif   /* deprecated code */
 
 static void default_background_generator(HDC hdc, RECT *rc)
 {
@@ -346,76 +348,6 @@ typedef struct _CTXT{
     int h;
     POINT prev_pt;
 }CTXT;
-
-#if 0
-static void ondraw(MGEFF_ANIMATION handle, void* _ctxt, int id, void* value)
-{
-    CTXT* ctxt = (CTXT*)_ctxt;
-    POINT* pt = (POINT*)value;
-    BitBlt(ctxt->dc2, ctxt->prev_pt.x, ctxt->prev_pt.y, ctxt->w, ctxt->h, 
-            ctxt->dst_dc, ctxt->prev_pt.x, ctxt->prev_pt.y, 0);
-    BitBlt(ctxt->dc1, 0, 0, 0, 0, ctxt->dst_dc, pt->x, pt->y, 0);
-    ctxt->prev_pt.x = pt->x;
-    ctxt->prev_pt.y = pt->y;
-}
-
-static void control_animation_play(MGEFF_WindowAnimCtxt* _ctxt)
-{
-    POINT pt_s = {0, 0};
-    POINT pt_e = {0, 0};
-    RECT  rc;
-    CTXT* ctxt = (CTXT*)_ctxt;
-    MGEFF_ANIMATION anim = mGEffAnimationCreate(ctxt, ondraw, 0, MGEFF_POINT);
-    GetWindowRect(ctxt->hwnd, &rc);
-    ctxt->w = RECTW(rc);
-    ctxt->h = RECTH(rc);
-    ClientToScreen(ctxt->hwnd, &pt_e.x, &pt_e.y);
-    //fprintf(stderr, "rc.left=%d,rc.top=%d,e.x=%d,e.y=%d.\n", rc.left, rc.top, pt_e.x, pt_e.y);
-    mGEffAnimationSetStartValue(anim, &pt_s);
-    mGEffAnimationSetEndValue(anim, &pt_e);
-    mGEffAnimationSetDuration(anim, 1000);
-    mGEffAnimationSyncRun(anim);
-}
-
-static CTXT* hold_control_for_foreground(HWND hWnd, HWND hControl, CTXT* ctxt)
-{
-    HDC secondary_dc = CreateSecondaryDC(hWnd);
-    HDC memdc = CreateCompatibleDC(HDC_SCREEN);
-    HDC tmp_button_dc;
-    HDC button_dc;
-    HDC old_secondary_dc = GetSecondaryDC(hWnd);
-
-    SetSecondaryDC(hWnd, secondary_dc, ON_UPDSECDC_DONOTHING);
-    tmp_button_dc = GetSecondarySubDC(secondary_dc, hControl, FALSE);
-    button_dc = CreateCompatibleDC(tmp_button_dc);
-
-    IncludeWindowStyle(hControl, WS_VISIBLE);
-    UpdateWindow(hControl, TRUE);
-    ExcludeWindowStyle(hControl, WS_VISIBLE); /* hide, else will disaply when update hParent. */
-    BitBlt(tmp_button_dc, 0, 0, 0, 0, button_dc, 0, 0, 0);
-
-    SetSecondaryDC(hWnd, secondary_dc, ON_UPDSECDC_DEFAULT);
-    ReleaseSecondarySubDC(tmp_button_dc);
-    UpdateWindow(hWnd, TRUE);
-
-    ctxt->dc1 = button_dc;
-    ctxt->dc2 = memdc;
-    ctxt->hwnd = hControl;
-    BitBlt(HDC_SCREEN, 0, 0, 0, 0, memdc, 0, 0, 0);
-    if (!old_secondary_dc || old_secondary_dc == HDC_SCREEN) {
-        DeleteSecondaryDC(hWnd);
-    }
-    return ctxt;
-}
-
-static void drop_control_release_foreground(CTXT* ctxt)
-{
-    if (NULL != ctxt) {
-        DeleteMemDC(ctxt->dc1);
-        DeleteMemDC(ctxt->dc2);
-    }
-}
-#endif
 
 // hook for user msg-proc
 int AnimateControlProcHook(HWND hWnd, int message, WPARAM wParam, LPARAM lParam)
@@ -799,7 +731,11 @@ BOOL ControlExtract(HWND mainHwnd, int ctrl_id, PMAINWINCREATE pCreateInfo)
             hdc = hold_window_for_foreground(ctxt);
 
             if (HDC_INVALID != hdc) {
+#if 0   /* since 5.0.0, use GetDCInSecondarySurface */
                 sub_dc = GetSecondarySubDC (hdc, hctrl, FALSE);
+#else
+                sub_dc = GetDCInSecondarySurface (hctrl, FALSE);
+#endif
                 clone_dc = CreateCompatibleDC(sub_dc);
                 if (HDC_INVALID != clone_dc) {
                     if (GetClientRect(hctrl, &rc)) {
@@ -807,7 +743,11 @@ BOOL ControlExtract(HWND mainHwnd, int ctrl_id, PMAINWINCREATE pCreateInfo)
                         int y = rc.top;
                         ClientToScreen(hctrl, &x, &y);
                         BitBlt(sub_dc, 0, 0, 0, 0, clone_dc, 0, 0, -1);
+#if 0   /* Since 5.0.0, use ReleaseDC */
                         ReleaseSecondarySubDC(sub_dc);
+#else
+                        ReleaseDC(sub_dc);
+#endif
                         pCreateInfo->MainWindowProc = ExtractWindowProc;
                         pCreateInfo->lx = x;
                         pCreateInfo->ty = y;
