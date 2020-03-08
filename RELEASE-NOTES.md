@@ -6,7 +6,7 @@ The MiniGUI development team announces the availability of mGEff 1.4.0.
 All users of MiniGUI are encouraged to use this version, and report
 any bugs and incompatibilities on GitHub:
 
-<https://github.com/VincentWei/mgeff>
+<https://github.com/VincentWei/mgeff/tree/dev-4-1>
 
 ### What's new in this version
 
