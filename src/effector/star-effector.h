@@ -61,8 +61,6 @@ static MGEFF_EFFECTOR effstareffector_init (MGEFF_EFFECTOR _effector);
 static void effstareffector_finalize (MGEFF_EFFECTOR _effector);
 static void effstareffector_ondraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
-static void effstarscaneffector_begindraw (MGEFF_ANIMATION animation,
-        MGEFF_EFFECTOR _effector);
 static void effstareffector_enddraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
 static int effstareffector_setproperty (MGEFF_EFFECTOR _effector,

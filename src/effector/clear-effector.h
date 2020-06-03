@@ -52,11 +52,7 @@ typedef struct _EffClearCtxt {
 
 static MGEFF_EFFECTOR effcleareffector_init(MGEFF_EFFECTOR _effector);
 static void effcleareffector_finalize(MGEFF_EFFECTOR _effector);
-static int  effcleareffector_setproperty(MGEFF_EFFECTOR _effector,
-        int property_id, int value);
 static void effcleareffector_begindraw(MGEFF_ANIMATION animation,
-        MGEFF_EFFECTOR _effector);
-static void effcleareffector_enddraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
 static void effcleareffector_ondraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);

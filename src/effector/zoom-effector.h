@@ -53,8 +53,6 @@ static MGEFF_EFFECTOR effzoomeffector_init (MGEFF_EFFECTOR _effector);
 static void effzoomeffector_finalize (MGEFF_EFFECTOR _effector);
 static void effzoomeffector_ondraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void* value);
-static void effstarscaneffector_begindraw (MGEFF_ANIMATION animation,
-        MGEFF_EFFECTOR _effector);
 static int effzoomeffector_setproperty (MGEFF_EFFECTOR _effector,
         int property_id, int value);
 static int effzoomeffector_getproperty (MGEFF_EFFECTOR _effector,

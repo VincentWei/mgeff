@@ -52,8 +52,6 @@ typedef struct _EffCubicCtxt{
 static MGEFF_EFFECTOR effcubiceffector_init (MGEFF_EFFECTOR _effector);
 static MGEFF_EFFECTOR effcubiceffector_mgplus_init (MGEFF_EFFECTOR _effector);
 static void effcubiceffector_finalize (MGEFF_EFFECTOR _effector);
-static int  effcubiceffector_setproperty(MGEFF_EFFECTOR _effector,
-        int property_id, int value);
 static void effcubiceffector_ondraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, 
         HDC sink_dc, intptr_t id, void* value);

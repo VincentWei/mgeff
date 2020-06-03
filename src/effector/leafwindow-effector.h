@@ -49,8 +49,8 @@ typedef struct _EffLeafCtxt {
     int  nrows;
 } EffLeafCtxt;
 
-static MGEFF_EFFECTOR effleafceffector_init(MGEFF_EFFECTOR _effector);
-static void effleafceffector_finalize(MGEFF_EFFECTOR _effector);
+//static MGEFF_EFFECTOR effleafceffector_init(MGEFF_EFFECTOR _effector);
+//static void effleafceffector_finalize(MGEFF_EFFECTOR _effector);
 static int  effleafceffector_setproperty(MGEFF_EFFECTOR _effector,
         int property_id, int value);
 static void effleafeffector_ondraw(MGEFF_ANIMATION animation,

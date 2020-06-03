@@ -44,8 +44,8 @@
 #define _CENTERSPLIT_EFFECTOR_H
 #include "effector.h"
 
-static MGEFF_EFFECTOR effcenterspliteffector_init(MGEFF_EFFECTOR _effector);
-static void effcenterspliteffector_finalize(MGEFF_EFFECTOR _effector);
+//static MGEFF_EFFECTOR effcenterspliteffector_init(MGEFF_EFFECTOR _effector);
+//static void effcenterspliteffector_finalize(MGEFF_EFFECTOR _effector);
 static void effcenterspliteffector_ondraw (MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector, HDC sink_dc, intptr_t id, void *value);
 static void effcenterspliteffector_begindraw (MGEFF_ANIMATION handle,

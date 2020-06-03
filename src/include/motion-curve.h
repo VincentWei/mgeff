@@ -81,7 +81,4 @@ float __mgeffmotioncurve_calcvalue(EffMotionCurve* c, float t);
 MGEFF_MOTIONCURVE_CB __mgeffmotioncurve_getfunc(int type);
 MGEFF_MOTIONCURVEEX_CB __mgeffmotioncurve_getfuncex(int type);
 
-static float effmotioncurve_elastic_cb(EffMotionCurve* c, float t);
-static float effmotioncurve_back_cb(EffMotionCurve* c, float t);
-static float effmotioncurve_bounce_cb(EffMotionCurve* c, float t);
 #endif

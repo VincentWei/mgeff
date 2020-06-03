@@ -53,8 +53,6 @@ typedef struct _EffFlipCtxt{
 
 static MGEFF_EFFECTOR effflipeffector_init(MGEFF_EFFECTOR _effector);
 static void effflipeffector_finalize(MGEFF_EFFECTOR _effector);
-static int  effflipeffector_setproperty(MGEFF_EFFECTOR _effector,
-        int property_id, int value);
 static void effflipeffector_begindraw(MGEFF_ANIMATION animation,
         MGEFF_EFFECTOR _effector);
 static void effflipeffector_enddraw(MGEFF_ANIMATION animation,
