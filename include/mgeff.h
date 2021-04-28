@@ -53,9 +53,10 @@
 #ifndef _MGEFF_H_
 #define _MGEFF_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <minigui/common.h>
+#include <minigui/minigui.h>
+#include <minigui/gdi.h>
+#include <minigui/window.h>
 
 #include "mgeff-common.h"
 #include "mgeff-animation.h"
@@ -66,6 +67,10 @@ extern "C" {
     #include "mgeff-effector-source.h"
     #include "mgeff-effector.h"
     #include "mgeff-window-animation.h"
+#endif
+
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 #ifdef __cplusplus

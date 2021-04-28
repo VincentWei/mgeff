@@ -53,6 +53,9 @@
 #include <minigui/window.h>
 
 #include "mgeff.h"
+
+#ifdef _MGEFF_EFFECTOR
+
 #include "animation.h"
 #include "window-animation.h"
 
@@ -803,3 +806,5 @@ BOOL WindowExtract(HWND mainHwnd, RECT *rc, PMAINWINCREATE pCreateInfo)
     }
     return ret;
 }
+
+#endif /* _MGEFF_EFFECTOR */

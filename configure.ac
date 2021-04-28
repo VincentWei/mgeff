@@ -218,9 +218,15 @@ fi
 if test "x$use_opengles2" = "xyes"; then
     AC_DEFINE(HAVE_GLES2_SUPPORT, 1, [Define if have OpenGL ES 2.0])
 fi
+
+EFFECTOR_SUBDIR=""
+EFFECTOR_LIB=""
 if test "x$have_effectors" = "xyes"; then
     AC_DEFINE(_MGEFF_EFFECTOR, 1, [Define if include effectors])
+    EFFECTOR_SUBDIR="effector"
+    EFFECTOR_LIB="effector/libeffectors.la"
 fi
+
 if test "x$effector_fastmode" = "xyes"; then
     AC_DEFINE(_MGEFF_FASTMODE, 1, [Define if enable fast mode of effectors])
 fi
@@ -296,6 +302,8 @@ fi
 
 AM_CONDITIONAL(MGEFF_NOSUFFIX, test "x$with_libsuffix" = "x")
 
+AC_SUBST(EFFECTOR_SUBDIR)
+AC_SUBST(EFFECTOR_LIB)
 AC_SUBST(LIB_SUFFIX)
 AC_SUBST(DEP_LIBS)
 AC_SUBST(APP_LIBS)
