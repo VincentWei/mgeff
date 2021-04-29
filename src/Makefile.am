@@ -5,7 +5,7 @@ DIST_SUBDIRS=include effector
 
 lib_LTLIBRARIES=libmgeff@LIB_SUFFIX@.la
 
-COMMON_LADD=@EFFECTOR_SUBDIR@
+COMMON_LADD=@EFFECTOR_LIB@
 COMMON_SRCS=animation.c animationgroup.c easing.c garbage-collection.c motioncurve.c schedular.c window-animation.c 
 
 libmgeff@LIB_SUFFIX@_la_LIBADD=$(COMMON_LADD) @DEP_LIBS@
