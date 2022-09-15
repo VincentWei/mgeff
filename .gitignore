@@ -25,4 +25,8 @@ Makefile.in
 /*config.h
 /*config.h.in
 /*config.h.in~
-
+/configure~
+testcase/aclocal.m4
+testcase/autom4te.cache/
+testcase/config.h.in
+testcase/configure
