@@ -41,7 +41,8 @@
  *   <http://www.minigui.com/blog/minigui-licensing-policy/>.
  */
 #ifndef _ZOOM_EFFECTOR_H
-#define _ZOOM_EFFECTOR_h
+#define _ZOOM_EFFECTOR_H
+
 #include "effector.h"
 
 typedef struct _EffZoomCtxt {
