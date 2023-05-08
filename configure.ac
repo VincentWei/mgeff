@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.60)
-AC_INIT(libmgeff, 1.5.1)
+AC_INIT(libmgeff, 1.5.2)
 AC_CONFIG_SRCDIR(src/animation.c)
 AM_CONFIG_HEADER(mgeffconfig.h)
 
@@ -20,9 +20,9 @@ dnl Set various version strings
 #
 MGEFF_MAJOR_VERSION=1
 MGEFF_MINOR_VERSION=5
-MGEFF_MICRO_VERSION=1
-MGEFF_INTERFACE_AGE=1
-MGEFF_BINARY_AGE=1
+MGEFF_MICRO_VERSION=2
+MGEFF_INTERFACE_AGE=2
+MGEFF_BINARY_AGE=2
 
 MGEFF_VERSION=$MGEFF_MAJOR_VERSION.$MGEFF_MINOR_VERSION.$MGEFF_MICRO_VERSION
 
@@ -322,12 +322,11 @@ AC_OUTPUT([
 
 dnl samples/easing/Makefile
 dnl samples/easing/src/Makefile
-
-echo
-echo "Creating include directory for samples"
-cd samples/
-if test ! -h mgeff; then
-    ln -s ../include mgeff
-fi
-cd ..
-echo "Done."
+dnl echo
+dnl echo "Creating include directory for samples"
+dnl cd samples/
+dnl if test ! -h mgeff; then
+dnl    ln -s ../include mgeff
+dnl fi
+dnl cd ..
+dnl echo "Done."
