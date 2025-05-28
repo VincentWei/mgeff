@@ -1,9 +1,10 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.60)
-AC_INIT(libmgeff, 1.5.2)
+AC_PREREQ([2.71])
+AC_INIT([libmgeff],[1.5.2])
 AC_CONFIG_SRCDIR(src/animation.c)
-AM_CONFIG_HEADER(mgeffconfig.h)
+AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_HEADERS([mgeffconfig.h])
 
 MGEFF_NAME="mgeff"
 
@@ -44,18 +45,16 @@ AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
 AC_SUBST(LT_AGE)
 
-AC_CANONICAL_SYSTEM
+AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE
 
 dnl ========================================================================
 # Checks for programs.
 AC_PROG_CC
-AC_PROG_LD
-AC_PROG_RANLIB
-AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
+LT_INIT
 
 dnl ========================================================================
 dnl Put the name and version of the package here
@@ -64,7 +63,7 @@ dnl Put the name and version of the package here
 
 # Checks for header files.
 AC_HEADER_DIRENT
-AC_HEADER_STDC
+
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS([stdint.h stdlib.h string.h fcntl.h sys/time.h unistd.h])
 
@@ -289,14 +288,14 @@ if test "x$devel_mode" = "xyes"; then
         CPPFLAGS="$CPPFLAGS -DDEBUG"
     fi
 
-    if test "$ac_cv_prog_gcc" = "yes"; then
+    if test "$ac_cv_c_compiler_gnu" = "yes"; then
         CPPFLAGS="$CPPFLAGS -Wall -Werror"
     fi
 else
     CPPFLAGS="$CPPFLAGS -DNDEBUG"
 fi
 
-if test "$ac_cv_prog_gcc" = "yes"; then
+if test "$ac_cv_c_compiler_gnu" = "yes"; then
     CFLAGS="$CFLAGS -Wstrict-prototypes -pipe"
 fi
 
@@ -310,7 +309,7 @@ AC_SUBST(APP_LIBS)
 AC_SUBST(PC_LIBS)
 AC_SUBST(PC_CFLAGS)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
     mgeff.pc
     Makefile
     m4/Makefile
@@ -319,6 +318,7 @@ AC_OUTPUT([
     src/include/Makefile
     src/effector/Makefile
 ])
+AC_OUTPUT
 
 dnl samples/easing/Makefile
 dnl samples/easing/src/Makefile
